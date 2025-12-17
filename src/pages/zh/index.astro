@@ -1,0 +1,57 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import ImageWithText from "../../components/ImageWithText.astro";
+import FeaturesGrid from "../../components/FeaturesGrid.astro";
+import Reviews from "../../components/Reviews.astro";
+import Pricing from "../../components/Pricing.astro";
+import FAQ from "../../components/FAQ.astro";
+import CTACard from "../../components/CTACard.astro";
+import Footer from "../../components/Footer.astro";
+
+const lang = "zh";
+---
+
+<Layout currentPage="home" lang={lang}>
+  <Header currentPage="home" lang={lang} />
+  <main>
+    <Hero lang={lang} />
+
+    <ImageWithText
+      title="即时翻译任意字段"
+      description="每个文本字段旁边都有 AI 翻译按钮 - 点击即可翻译该特定内容。"
+      mediaType="video"
+      mediaSrc="/videos/button.mp4"
+      layout="left"
+    />
+
+    <ImageWithText
+      title="一键翻译整个页面"
+      description="自动翻译按钮智能检测页面上的所有文本项，一次翻译所有内容。"
+      mediaType="video"
+      mediaSrc="/videos/onclick.mp4"
+      layout="right"
+    />
+
+    <ImageWithText
+      title="AI 侧边栏：您的电商创作副驾驶"
+      description="即时重写、润色及翻译您的商品文案。告别标签页跳转——以更无缝的方式提升商店内容质量。"
+      mediaType="video"
+      mediaSrc="/videos/siderbar.mp4"
+      layout="left"
+    />
+
+    <FeaturesGrid lang={lang} />
+
+    <Reviews lang={lang} />
+
+    <Pricing lang={lang} />
+
+    <FAQ lang={lang} />
+
+    <CTACard lang={lang} />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

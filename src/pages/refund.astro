@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout currentPage="refund" title="Refund Policy - Yahao Translate">
+  <Header currentPage="refund" />
+  <main>
+    <article class="refund-page">
+      <div class="refund-container">
+        <header class="refund-header">
+          <h1 class="refund-title">Yahao Translate Refund Policy</h1>
+          <p class="refund-date">Last Updated: November 30, 2025</p>
+        </header>
+        
+        <div class="refund-content">
+          <p>This policy applies to digital services subscribed through the website or extension. Please read carefully before purchasing.</p>
+          
+          <h2>1. General Terms</h2>
+          <p>Since this service is an immediately usable digital product / immediately consumable subscription service, once purchased successfully:</p>
+          <p class="highlight"><strong>Refunds are generally NOT supported</strong> (including subscriptions, renewals, buyouts, upgrades, etc.).</p>
+          
+          <h2>2. No Refunds in the Following Situations</h2>
+          <ul>
+            <li>Translation features have been used or API has been called once</li>
+            <li>Subscription has been activated and premium services have been enjoyed</li>
+            <li>Inability to use due to user reasons (such as network issues, device incompatibility)</li>
+            <li>Accidental operations or duplicate purchases</li>
+            <li>Issues caused by Shopify or browser environment</li>
+          </ul>
+          
+          <h2>3. Partial Refunds or Compensation in Special Cases</h2>
+          <p>We may provide compensation or partial refunds in the following special situations (at our discretion):</p>
+          <ul>
+            <li>Serious system failures causing service unavailability for more than 72 hours</li>
+            <li>Technical issues on our end preventing users from accessing services normally</li>
+            <li>Subscription auto-renewal failures or abnormal charges (users contact us in advance)</li>
+          </ul>
+          
+          <h2>4. Refunds as Required by Law</h2>
+          <p>If applicable law requires refunds, we will comply within the scope of legal requirements.</p>
+          
+          <h2>5. How to Contact Us</h2>
+          <p>If you have questions about fees or subscriptions, please contact:</p>
+          <p>📧 <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a></p>
+          <p>We will process your inquiry within 3–7 days.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .refund-page {
+    padding: 60px 0 var(--section-spacing);
+    background-color: var(--color-background);
+  }
+  
+  .refund-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .refund-header {
+    margin-bottom: 48px;
+  }
+  
+  .refund-title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+  }
+  
+  .refund-date {
+    font-size: 14px;
+    color: var(--color-text-light);
+  }
+  
+  .refund-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-text-dark);
+  }
+  
+  .refund-content h2 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    margin: 40px 0 16px;
+  }
+  
+  .refund-content p {
+    margin-bottom: 16px;
+  }
+  
+  .refund-content ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  
+  .refund-content li {
+    margin-bottom: 8px;
+  }
+  
+  .refund-content a {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  
+  .refund-content a:hover {
+    color: var(--color-primary);
+  }
+  
+  .highlight {
+    background-color: #FFF8E1;
+    padding: 16px 20px;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 768px) {
+    .refund-page {
+      padding: 40px 0 var(--section-spacing);
+    }
+    
+    .refund-container {
+      padding: 0 16px;
+    }
+    
+    .refund-header {
+      margin-bottom: 32px;
+    }
+    
+    .refund-content {
+      font-size: 15px;
+    }
+    
+    .refund-content h2 {
+      font-size: 20px;
+      margin: 32px 0 12px;
+    }
+  }
+</style>

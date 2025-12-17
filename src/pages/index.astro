@@ -1,11 +1,55 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ImageWithText from "../components/ImageWithText.astro";
+import FeaturesGrid from "../components/FeaturesGrid.astro";
+import Reviews from "../components/Reviews.astro";
+import Pricing from "../components/Pricing.astro";
+import FAQ from "../components/FAQ.astro";
+import CTACard from "../components/CTACard.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout currentPage="home">
+	<Header currentPage="home" />
+	<main>
+		<Hero />
+
+		<ImageWithText
+			title="Translate Any Field Instantly"
+			description="AI translate button next to every text field - click to translate that specific content."
+			mediaType="video"
+			mediaSrc="/videos/button.mp4"
+			layout="left"
+		/>
+
+		<ImageWithText
+			title="Translate Entire Pages with One Click"
+			description="Auto-translate button intelligently detects all text items on the page and translates everything at once."
+			mediaType="video"
+			mediaSrc="/videos/onclick.mp4"
+			layout="right"
+		/>
+
+		<ImageWithText
+			title="AI Sidebar: Your E-commerce Copilot"
+			description="Rewrite, refine, and translate your product copy instantly. No more tab-jumping—just a seamless way to power up your store’s content."
+			mediaType="video"
+			mediaSrc="/videos/siderbar.mp4"
+			layout="left"
+		/>
+
+		<FeaturesGrid />
+
+		<Reviews />
+
+		<Pricing />
+
+		<FAQ />
+
+		<CTACard />
+	</main>
+
+	<Footer />
 </Layout>

@@ -1,0 +1,509 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const sections = [
+    { id: "getting-started", title: "快速开始" },
+    { id: "installation", title: "安装扩展" },
+    { id: "basic-usage", title: "基本使用" },
+    { id: "translation-settings", title: "翻译设置" },
+    { id: "advanced-features", title: "高级功能" },
+    { id: "faq", title: "常见问题" },
+];
+---
+
+<Layout
+    title="使用文档 - Yahao Translate"
+    description="Yahao Translate 使用指南和文档 - 了解如何翻译您的 Shopify 商店"
+    lang="zh"
+>
+    <Header currentPage="docs" lang="zh" />
+    <main class="docs-page">
+        <div class="docs-container">
+            <!-- 左侧边栏：目录 -->
+            <aside class="docs-sidebar">
+                <nav class="docs-toc">
+                    <h3 class="toc-heading">本页目录</h3>
+                    <ul class="toc-list">
+                        {
+                            sections.map((section) => (
+                                <li>
+                                    <a href={`#${section.id}`} class="toc-link">
+                                        {section.title}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- 主要内容 -->
+            <article class="docs-content">
+                <header class="docs-header">
+                    <h1>Yahao Translate 使用文档</h1>
+                    <p class="docs-intro">
+                        了解如何使用 Yahao Translate 通过 AI 驱动的翻译功能，
+                        结合 Shopify 的 Translate & Adapt 应用自动翻译您的商店。
+                    </p>
+                </header>
+
+                <section id="getting-started" class="docs-section">
+                    <h2>快速开始</h2>
+                    <p>
+                        Yahao Translate 是一款浏览器扩展，为 Shopify 内置的
+                        <strong>Translate & Adapt</strong> 应用增加 AI 驱动的翻译功能。
+                        无需手动逐个翻译产品，您可以在几分钟内翻译整个商店。
+                    </p>
+                    <div class="callout callout-info">
+                        <strong>前提条件：</strong>
+                        <ul>
+                            <li>
+                                已安装 <a
+                                    href="https://apps.shopify.com/translate-and-adapt"
+                                    target="_blank">Translate & Adapt</a
+                                > 应用的 Shopify 商店
+                            </li>
+                            <li>Google Chrome 或 Microsoft Edge 浏览器</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="installation" class="docs-section">
+                    <h2>安装扩展</h2>
+                    <h3>步骤 1：安装扩展</h3>
+                    <ol>
+                        <li>
+                            访问 <a href="#">Chrome 网上应用店</a>（或 Edge
+                            外接程序）
+                        </li>
+                        <li>搜索 "Yahao Translate"</li>
+                        <li>点击 <strong>添加至 Chrome</strong></li>
+                        <li>点击 <strong>添加扩展程序</strong> 确认</li>
+                    </ol>
+
+                    <h3>步骤 2：固定扩展（可选）</h3>
+                    <p>
+                        为了方便访问，点击浏览器工具栏中的拼图图标，将 Yahao
+                        Translate 固定到工具栏。
+                    </p>
+                </section>
+
+                <section id="basic-usage" class="docs-section">
+                    <h2>基本使用</h2>
+                    <h3>翻译您的商店</h3>
+                    <ol>
+                        <li>
+                            <strong>打开 Translate & Adapt：</strong>在 Shopify
+                            后台，进入
+                            <code>设置 → 语言 → Translate & Adapt</code>
+                        </li>
+                        <li>
+                            <strong>选择语言：</strong>选择您要翻译到的目标语言
+                        </li>
+                        <li>
+                            <strong>点击翻译按钮：</strong>Yahao Translate
+                            会自动检测页面并显示悬浮翻译按钮
+                        </li>
+                        <li>
+                            <strong>等待完成：</strong>AI
+                            将翻译所有可见内容，进度实时显示
+                        </li>
+                    </ol>
+
+                    <div class="callout callout-tip">
+                        <strong>提示：</strong
+                        >您可以每次翻译一种资源类型（产品、系列、页面等），
+                        以便更好地组织和管理翻译内容。
+                    </div>
+                </section>
+
+                <section id="translation-settings" class="docs-section">
+                    <h2>翻译设置</h2>
+                    <p>点击工具栏中的 Yahao Translate 图标访问设置：</p>
+                    <table class="settings-table">
+                        <thead>
+                            <tr>
+                                <th>设置项</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AI 模型</strong></td>
+                                <td>选择不同的 AI 提供商（GPT-4、Claude 等）</td
+                                >
+                            </tr>
+                            <tr>
+                                <td><strong>翻译风格</strong></td>
+                                <td>正式、轻松或电商优化风格</td>
+                            </tr>
+                            <tr>
+                                <td><strong>自动保存</strong></td>
+                                <td>翻译完成后自动保存</td>
+                            </tr>
+                            <tr>
+                                <td><strong>批量大小</strong></td>
+                                <td>每次翻译的项目数量</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="advanced-features" class="docs-section">
+                    <h2>高级功能</h2>
+
+                    <h3>术语锁定 / 词汇表</h3>
+                    <p>保持某些术语不被翻译（品牌名称、专业术语）：</p>
+                    <ol>
+                        <li>打开扩展设置</li>
+                        <li>进入 <strong>词汇表</strong> 选项卡</li>
+                        <li>添加您想要保留的术语</li>
+                    </ol>
+
+                    <h3>批量翻译</h3>
+                    <p>
+                        一次翻译多个页面或整个资源类型。导航到列表页面（如产品列表），
+                        然后点击批量翻译选项。
+                    </p>
+
+                    <h3>翻译记忆</h3>
+                    <p>
+                        之前翻译过的短语会被记住以保持一致性。这确保您的产品描述
+                        在整个商店中保持统一的语气。
+                    </p>
+                </section>
+
+                <section id="faq" class="docs-section">
+                    <h2>常见问题</h2>
+
+                    <div class="faq-item">
+                        <h3>费用是多少？</h3>
+                        <p>
+                            Yahao Translate 提供免费层级，每月有限制的翻译次数。
+                            高级计划提供无限翻译和额外功能。
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>支持哪些语言？</h3>
+                        <p>
+                            我们支持 Shopify Translate & Adapt
+                            应用中所有可用的语言，
+                            包括中文、西班牙语、法语、德语、日语、韩语等 50
+                            多种语言。
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>生成后可以编辑翻译吗？</h3>
+                        <p>
+                            可以！所有翻译都保存在 Shopify 的 Translate & Adapt
+                            应用中， 您可以随时查看和编辑。
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>我的数据安全吗？</h3>
+                        <p>
+                            我们只在 Translate & Adapt 界面中访问翻译内容。
+                            不会在我们的服务器上存储任何商店数据。详情请参阅我们的<a
+                                href="/zh/privacy">隐私政策</a
+                            >。
+                        </p>
+                    </div>
+                </section>
+
+                <footer class="docs-footer">
+                    <p>
+                        还有疑问？<a href="/zh/contact">联系我们的支持团队</a>。
+                    </p>
+                </footer>
+            </article>
+        </div>
+    </main>
+    <Footer lang="zh" />
+</Layout>
+
+<style>
+    .docs-page {
+        background-color: var(--color-background);
+        min-height: 100vh;
+    }
+
+    .docs-container {
+        max-width: var(--page-width);
+        margin: 0 auto;
+        padding: 60px 24px var(--section-spacing);
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 60px;
+        align-items: start;
+    }
+
+    /* Sidebar */
+    .docs-sidebar {
+        position: sticky;
+        top: 100px;
+    }
+
+    .toc-heading {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-light);
+        margin-bottom: 16px;
+        font-weight: 600;
+    }
+
+    .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-left: 2px solid #e0e0e0;
+    }
+
+    .toc-link {
+        display: block;
+        padding: 10px 0 10px 20px;
+        font-size: 14px;
+        color: var(--color-text-light);
+        border-left: 2px solid transparent;
+        margin-left: -2px;
+        transition: all 0.2s;
+    }
+
+    .toc-link:hover,
+    .toc-link.active {
+        color: var(--color-primary);
+        border-left-color: var(--color-primary);
+    }
+
+    /* Content */
+    .docs-content {
+        max-width: 800px;
+    }
+
+    .docs-header {
+        margin-bottom: 48px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .docs-header h1 {
+        font-family: "Zilla Slab", serif;
+        font-size: clamp(32px, 5vw, 42px);
+        font-weight: 500;
+        margin-bottom: 16px;
+        color: var(--color-text-dark);
+    }
+
+    .docs-intro {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--color-text-light);
+    }
+
+    .docs-section {
+        margin-bottom: 56px;
+        scroll-margin-top: 100px;
+    }
+
+    .docs-section h2 {
+        font-family: "Zilla Slab", serif;
+        font-size: 28px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        color: var(--color-text-dark);
+        padding-bottom: 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .docs-section h3 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 32px 0 16px;
+        color: var(--color-text-dark);
+    }
+
+    .docs-section p {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+        color: var(--color-text-dark);
+    }
+
+    .docs-section ol,
+    .docs-section ul {
+        padding-left: 24px;
+        margin-bottom: 20px;
+    }
+
+    .docs-section li {
+        font-size: 16px;
+        line-height: 1.8;
+        margin-bottom: 8px;
+    }
+
+    .docs-section a {
+        color: var(--color-primary);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+
+    .docs-section code {
+        background-color: #f0f4f8;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-family: "SF Mono", Monaco, monospace;
+    }
+
+    /* Callouts */
+    .callout {
+        padding: 20px 24px;
+        border-radius: 8px;
+        margin: 24px 0;
+    }
+
+    .callout-info {
+        background-color: #e8f4fd;
+        border-left: 4px solid var(--color-primary);
+    }
+
+    .callout-tip {
+        background-color: #e6f7ed;
+        border-left: 4px solid #10b981;
+    }
+
+    .callout ul {
+        margin-bottom: 0;
+        margin-top: 12px;
+    }
+
+    /* Table */
+    .settings-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0;
+    }
+
+    .settings-table th,
+    .settings-table td {
+        text-align: left;
+        padding: 14px 16px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .settings-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .settings-table td {
+        font-size: 15px;
+    }
+
+    /* FAQ */
+    .faq-item {
+        margin-bottom: 28px;
+    }
+
+    .faq-item h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .faq-item p {
+        margin-bottom: 0;
+    }
+
+    /* Footer */
+    .docs-footer {
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid #eee;
+    }
+
+    .docs-footer p {
+        color: var(--color-text-light);
+    }
+
+    /* Mobile */
+    @media (max-width: 1024px) {
+        .docs-container {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .docs-sidebar {
+            position: static;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 24px;
+        }
+
+        .toc-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-left: none;
+        }
+
+        .toc-link {
+            border-left: none;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            margin-left: 0;
+        }
+
+        .toc-link:hover,
+        .toc-link.active {
+            border-color: var(--color-primary);
+            background-color: #e8f4fd;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .docs-container {
+            padding: 40px 16px;
+        }
+
+        .docs-header h1 {
+            font-size: 28px;
+        }
+
+        .docs-section h2 {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<script>
+    // Highlight active TOC link on scroll
+    const sections = document.querySelectorAll(".docs-section");
+    const tocLinks = document.querySelectorAll(".toc-link");
+
+    function updateActiveLink() {
+        let currentSection = "";
+
+        sections.forEach((section) => {
+            const sectionTop = section.getBoundingClientRect().top;
+            if (sectionTop < 150) {
+                currentSection = section.getAttribute("id") || "";
+            }
+        });
+
+        tocLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentSection}`) {
+                link.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", updateActiveLink);
+    updateActiveLink();
+</script>

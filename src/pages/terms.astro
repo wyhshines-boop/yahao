@@ -1,0 +1,230 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout currentPage="terms" title="Terms of Service - Yahao Translate">
+  <Header currentPage="terms" />
+  <main>
+    <article class="terms-page">
+      <div class="terms-container">
+        <header class="terms-header">
+          <h1 class="terms-title">Yahao Translate Terms of Service</h1>
+          <p class="terms-date">Last Updated: November 30, 2025</p>
+        </header>
+        
+        <div class="terms-content">
+          <p>Welcome to Yahao Translate (hereinafter referred to as "this service"). This agreement is a legal agreement between you ("user") and us. Please read it carefully before using this service.</p>
+          
+          <p>By using or continuing to use this service, you indicate that you have read, understood, and agree to be bound by the following terms. If you do not agree to these terms, please stop using this service.</p>
+          
+          <h2>1. Service Content</h2>
+          <p>This service is a browser extension that provides AI translation enhancement for Shopify stores, mainly including:</p>
+          <ul>
+            <li>One-click translation of Shopify language content</li>
+            <li>AI translation model invocation</li>
+            <li>Usage statistics</li>
+            <li>User account system</li>
+            <li>Subscription or buyout services (if applicable)</li>
+          </ul>
+          <p>We reserve the right to modify, expand, or remove features at any time based on product needs.</p>
+          
+          <h2>2. User Accounts</h2>
+          
+          <h3>2.1 Registration and Login</h3>
+          <p>Users can create accounts in the extension interface for:</p>
+          <ul>
+            <li>Synchronizing usage</li>
+            <li>Using advanced features</li>
+            <li>Managing subscriptions</li>
+          </ul>
+          <p>Users must ensure that the information provided is accurate and valid.</p>
+          
+          <h3>2.2 Account Security</h3>
+          <p>Users are fully responsible for their accounts and login credentials. This service is not responsible for account security issues caused by users themselves.</p>
+          
+          <h2>3. License and Usage Restrictions</h2>
+          <p>We grant you a personal, non-commercial, non-transferable, revocable license to use.</p>
+          <p>You may not engage in the following behaviors:</p>
+          <ul>
+            <li>Attempting to crack, decompile, or reverse engineer the extension or service</li>
+            <li>Abusing translation features for crawling, batch processing, attacking models, or abnormal calls</li>
+            <li>Unauthorized resale, lending, or mass forwarding of translation results</li>
+            <li>Using this service to process illegal, sensitive, or violating content (pornography, violence, hatred, fraud, etc.)</li>
+          </ul>
+          <p>If users violate the above behaviors, we may suspend or terminate accounts.</p>
+          
+          <h2>4. Subscriptions and Fees</h2>
+          <p>This service may offer:</p>
+          <ul>
+            <li>Subscription packages (monthly/yearly)</li>
+            <li>Usage-based billing</li>
+            <li>One-time buyout services</li>
+          </ul>
+          <p>We may adjust prices based on market conditions but will notify existing users in advance of changes.</p>
+          
+          <h2>5. Third-Party Services</h2>
+          <p>This service may invoke the following model service providers to provide AI translation capabilities:</p>
+          <ul>
+            <li>Open AI</li>
+            <li>Alibaba Cloud Bailian</li>
+            <li>Zhipu AI</li>
+            <li>(Future potential additional service providers)</li>
+          </ul>
+          <p>You understand and agree that:</p>
+          <ul>
+            <li>Translation text will be submitted to model service providers for processing</li>
+            <li>We will not authorize model providers to use your data to train advertising or user profiles</li>
+            <li>Third-party services may change according to their own policies</li>
+          </ul>
+          
+          <h2>6. Service Changes and Interruptions</h2>
+          <p>We may suspend or interrupt this service due to the following situations:</p>
+          <ul>
+            <li>System maintenance or upgrades</li>
+            <li>Third-party model service failures</li>
+            <li>Force majeure (power outages, network fluctuations, policy changes, etc.)</li>
+            <li>User violations and service abuse</li>
+          </ul>
+          <p>We will try to notify in advance but do not guarantee service availability at all times.</p>
+          
+          <h2>7. Disclaimer</h2>
+          <p>You understand and agree that:</p>
+          <ul>
+            <li>Translation results are generated by AI and may not be completely accurate</li>
+            <li>We are not responsible for any losses caused by translation errors</li>
+            <li>This service is provided "as is" and "as available," without guarantee of error-free or uninterrupted operation</li>
+          </ul>
+          
+          <h2>8. Limitation of Liability</h2>
+          <p>To the maximum extent permitted by applicable law:</p>
+          <ul>
+            <li>Our liability is limited to the subscription fees you have paid in the last 3 months</li>
+            <li>We are not responsible for indirect, incidental, business loss, profit loss, or data loss</li>
+          </ul>
+          
+          <h2>9. User Data and Privacy</h2>
+          <p>User data is handled according to the <a href="/privacy">Privacy Policy</a>.</p>
+          <p>If users request data deletion, please contact: 📧 <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a></p>
+          
+          <h2>10. Service Termination</h2>
+          <p>We may suspend or terminate your account in the following situations:</p>
+          <ul>
+            <li>Serious abuse of API or translation resources</li>
+            <li>Violation of laws, policies, or this agreement</li>
+            <li>Long-term non-use of account (if applicable)</li>
+          </ul>
+          <p>Users may also request account closure at any time.</p>
+          
+          <h2>11. Governing Law</h2>
+          <p>These terms are governed by the applicable laws of the user's location.</p>
+          
+          <h2>12. Contact</h2>
+          <p>If you have any questions about these terms, please contact:</p>
+          <p>📧 <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a></p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .terms-page {
+    padding: 60px 0 var(--section-spacing);
+    background-color: var(--color-background);
+  }
+  
+  .terms-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .terms-header {
+    margin-bottom: 48px;
+  }
+  
+  .terms-title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+  }
+  
+  .terms-date {
+    font-size: 14px;
+    color: var(--color-text-light);
+  }
+  
+  .terms-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-text-dark);
+  }
+  
+  .terms-content h2 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    margin: 40px 0 16px;
+  }
+  
+  .terms-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 24px 0 12px;
+  }
+  
+  .terms-content p {
+    margin-bottom: 16px;
+  }
+  
+  .terms-content ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  
+  .terms-content li {
+    margin-bottom: 8px;
+  }
+  
+  .terms-content a {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  
+  .terms-content a:hover {
+    color: var(--color-primary);
+  }
+  
+  @media (max-width: 768px) {
+    .terms-page {
+      padding: 40px 0 var(--section-spacing);
+    }
+    
+    .terms-container {
+      padding: 0 16px;
+    }
+    
+    .terms-header {
+      margin-bottom: 32px;
+    }
+    
+    .terms-content {
+      font-size: 15px;
+    }
+    
+    .terms-content h2 {
+      font-size: 20px;
+      margin: 32px 0 12px;
+    }
+    
+    .terms-content h3 {
+      font-size: 16px;
+    }
+  }
+</style>

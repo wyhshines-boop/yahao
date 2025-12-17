@@ -1,0 +1,281 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  mediaType: 'image' | 'video';
+  mediaSrc: string;
+  mediaAlt?: string;
+  layout?: 'left' | 'right'; // 'left' = media on left, 'right' = media on right
+  videoPoster?: string;
+}
+
+const { 
+  title, 
+  description, 
+  mediaType, 
+  mediaSrc, 
+  mediaAlt = '',
+  layout = 'left',
+  videoPoster
+} = Astro.props;
+
+const uniqueId = `video-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<section class="image-with-text">
+  <div class:list={['iwt-container', `layout-${layout}`]}>
+    <div class="iwt-media">
+      {mediaType === 'video' ? (
+        <div class="video-wrapper" data-video-id={uniqueId}>
+          <video 
+            id={uniqueId}
+            src={mediaSrc}
+            poster={videoPoster}
+            muted
+            autoplay
+            loop
+            playsinline
+          />
+          <div class="video-controls">
+            <button class="play-pause-btn" aria-label="Play/Pause" data-playing="true">
+              <span class="icon-pause">II</span>
+              <span class="icon-play">▶</span>
+            </button>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <img src={mediaSrc} alt={mediaAlt} loading="lazy" />
+      )}
+    </div>
+    <div class="iwt-content">
+      <h2 class="iwt-title">{title}</h2>
+      <p class="iwt-description">{description}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .image-with-text {
+    background-color: #E1F5FF;
+    padding: var(--section-spacing) 0;
+  }
+  
+  .iwt-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 48px;
+    align-items: center;
+  }
+  
+  .layout-right.iwt-container {
+    grid-template-columns: 2fr 3fr;
+  }
+  
+  .layout-left .iwt-media {
+    order: 1;
+  }
+  
+  .layout-left .iwt-content {
+    order: 2;
+  }
+  
+  .layout-right .iwt-media {
+    order: 2;
+  }
+  
+  .layout-right .iwt-content {
+    order: 1;
+  }
+  
+  .iwt-media {
+    position: relative;
+  }
+  
+  .iwt-media img,
+  .iwt-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+  
+  .video-wrapper {
+    position: relative;
+  }
+  
+  .video-controls {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .play-pause-btn {
+    width: 36px;
+    height: 28px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 0;
+    border-radius: 4px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  
+  .play-pause-btn:hover {
+    opacity: 0.85;
+  }
+  
+  .play-pause-btn:active {
+    transform: scale(0.92);
+  }
+  
+  .play-pause-btn .icon-play {
+    display: none;
+    font-size: 12px;
+  }
+  
+  .play-pause-btn .icon-pause {
+    display: block;
+  }
+  
+  .play-pause-btn[data-playing="false"] .icon-play {
+    display: block;
+  }
+  
+  .play-pause-btn[data-playing="false"] .icon-pause {
+    display: none;
+  }
+  
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--color-primary);
+    transition: width 0.1s linear;
+  }
+  
+  .iwt-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .iwt-title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-dark);
+  }
+  
+  .iwt-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    max-width: 400px;
+  }
+  
+  @media (max-width: 768px) {
+    .image-with-text {
+      padding: var(--section-spacing) 0;
+    }
+    
+    .iwt-container,
+    .layout-right.iwt-container {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 0 16px;
+    }
+    
+    .layout-left .iwt-media,
+    .layout-right .iwt-media {
+      order: 1;
+    }
+    
+    .layout-left .iwt-content,
+    .layout-right .iwt-content {
+      order: 2;
+    }
+    
+    .iwt-title {
+      font-size: 24px;
+    }
+    
+    .iwt-description {
+      font-size: 15px;
+      max-width: 100%;
+    }
+    
+    .play-pause-btn {
+      width: 32px;
+      height: 24px;
+      font-size: 9px;
+    }
+    
+    .video-controls {
+      bottom: 8px;
+      left: 8px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoWrappers = document.querySelectorAll('.video-wrapper');
+    
+    videoWrappers.forEach((wrapper) => {
+      const video = wrapper.querySelector('video') as HTMLVideoElement;
+      const playPauseBtn = wrapper.querySelector('.play-pause-btn') as HTMLButtonElement;
+      const progressFill = wrapper.querySelector('.progress-fill') as HTMLElement;
+      
+      if (!video || !playPauseBtn || !progressFill) return;
+      
+      // Play/Pause toggle
+      playPauseBtn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          playPauseBtn.setAttribute('data-playing', 'true');
+        } else {
+          video.pause();
+          playPauseBtn.setAttribute('data-playing', 'false');
+        }
+      });
+      
+      // Update progress bar
+      video.addEventListener('timeupdate', () => {
+        const progress = (video.currentTime / video.duration) * 100;
+        progressFill.style.width = `${progress}%`;
+      });
+      
+      // Reset on ended (if not looping)
+      video.addEventListener('ended', () => {
+        playPauseBtn.setAttribute('data-playing', 'false');
+        progressFill.style.width = '0%';
+      });
+    });
+  });
+</script>

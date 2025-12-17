@@ -1,22 +1,137 @@
+---
+import "../styles/global.css";
+import { getLangFromUrl, getAlternatePath } from "../i18n/utils";
+import { SEO } from "astro-seo";
+import AnnouncementBar from "../components/AnnouncementBar.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  currentPage?: string;
+  lang?: "en" | "zh";
+}
+
+const currentLang = Astro.props.lang || getLangFromUrl(Astro.url);
+
+const defaultTitles = {
+  en: "Yahao Translate - Translate Your Shopify Store 5x Faster",
+  zh: "Yahao Translate - 让您的 Shopify 商店翻译速度提升 5 倍",
+};
+
+const defaultDescriptions = {
+  en: "Browser extension that adds instant AI translation to Shopify's Translate & Adapt. Translate your Shopify store content faster and more efficiently.",
+  zh: "浏览器扩展，为 Shopify 的 Translate & Adapt 添加即时 AI 翻译功能。更快、更高效地翻译您的 Shopify 商店内容。",
+};
+
+const {
+  title = defaultTitles[currentLang],
+  description = defaultDescriptions[currentLang],
+  image = "/images/og-default.png",
+  currentPage = "home",
+} = Astro.props;
+
+const canonicalURL = Astro.url.href;
+const alternatePath = getAlternatePath(Astro.url.pathname, currentLang);
+const alternateURL = new URL(alternatePath, Astro.url.origin).href;
+const alternateLang = currentLang === "en" ? "zh" : "en";
+
+const absoluteImageUrl = new URL(image, Astro.url.origin).href;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang={currentLang}>
+  <head>
+    <SEO
+      charset="UTF-8"
+      title={title}
+      description={description}
+      canonical={canonicalURL}
+      languageAlternates={[
+        { href: canonicalURL, hrefLang: currentLang },
+        { href: alternateURL, hrefLang: alternateLang },
+        {
+          href: currentLang === "en" ? canonicalURL : alternateURL,
+          hrefLang: "x-default",
+        },
+      ]}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: absoluteImageUrl,
+          url: canonicalURL,
+        },
+        optional: {
+          description: description,
+          locale: currentLang === "en" ? "en_US" : "zh_CN",
+          siteName: "Yahao Translate",
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        image: absoluteImageUrl,
+      }}
+      extend={{
+        link: [
+          {
+            rel: "apple-touch-icon",
+            sizes: "180x180",
+            href: "/favicon/apple-touch-icon.png",
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "32x32",
+            href: "/favicon/favicon-32x32.png",
+          },
+          {
+            rel: "icon",
+            type: "image/png",
+            sizes: "16x16",
+            href: "/favicon/favicon-16x16.png",
+          },
+          { rel: "manifest", href: "/favicon/site.webmanifest" },
+          { rel: "shortcut icon", href: "/favicon/favicon.ico" },
+          { rel: "preconnect", href: "https://fonts.googleapis.com" },
+          {
+            rel: "preconnect",
+            href: "https://fonts.gstatic.com",
+            crossorigin: "",
+          },
+        ],
+        meta: [
+          {
+            name: "viewport",
+            content: "width=device-width, initial-scale=1.0",
+          },
+          { name: "generator", content: Astro.generator },
+        ],
+      }}
+    />
+    <script
+      async
+      data-uid="63da439e3f"
+      src="https://yahao-translate.kit.com/63da439e3f/index.js"></script>
+  </head>
+  <body>
+    <AnnouncementBar lang={currentLang} />
+    <div class="page-wrapper">
+      <slot />
+    </div>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  .page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .page-wrapper :global(main) {
+    flex: 1;
+  }
 </style>

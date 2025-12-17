@@ -1,0 +1,150 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const lang = 'zh';
+---
+
+<Layout currentPage="refund" title="退款政策 - Yahao Translate" lang={lang}>
+  <Header currentPage="refund" lang={lang} />
+  <main>
+    <article class="refund-page">
+      <div class="refund-container">
+        <header class="refund-header">
+          <h1 class="refund-title">Yahao Translate 退款政策</h1>
+          <p class="refund-date">最后更新：2025 年 11 月 30 日</p>
+        </header>
+        
+        <div class="refund-content">
+          <p>本政策适用于通过网站或扩展程序订阅的数字服务。在购买前请仔细阅读。</p>
+          
+          <h2>1. 一般条款</h2>
+          <p>由于本服务是可立即使用的数字产品/即时消费的订阅服务，一旦购买成功：</p>
+          <p class="highlight"><strong>一般不支持退款</strong>（包括订阅、续订、买断、升级等）。</p>
+          
+          <h2>2. 以下情况不予退款</h2>
+          <ul>
+            <li>翻译功能已被使用或 API 已被调用过一次</li>
+            <li>订阅已激活且已享受高级服务</li>
+            <li>因用户原因导致无法使用（如网络问题、设备不兼容）</li>
+            <li>意外操作或重复购买</li>
+            <li>由 Shopify 或浏览器环境导致的问题</li>
+          </ul>
+          
+          <h2>3. 特殊情况下的部分退款或补偿</h2>
+          <p>在以下特殊情况（由我方酌情决定），我们可能会提供补偿或部分退款：</p>
+          <ul>
+            <li>严重系统故障导致服务不可用超过 72 小时</li>
+            <li>我方技术问题导致用户无法正常访问服务</li>
+            <li>订阅自动续费失败或异常扣费（用户提前联系我们）</li>
+          </ul>
+          
+          <h2>4. 法律要求的退款</h2>
+          <p>如果适用法律要求退款，我们将按照法律要求的范围内执行。</p>
+          
+          <h2>5. 如何联系我们</h2>
+          <p>如果您对费用或订阅有疑问，请联系：</p>
+          <p>📧 <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a></p>
+          <p>我们将在 3-7 天内处理您的询问。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  .refund-page {
+    padding: 60px 0 var(--section-spacing);
+    background-color: var(--color-background);
+  }
+  
+  .refund-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .refund-header {
+    margin-bottom: 48px;
+  }
+  
+  .refund-title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+  }
+  
+  .refund-date {
+    font-size: 14px;
+    color: var(--color-text-light);
+  }
+  
+  .refund-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-text-dark);
+  }
+  
+  .refund-content h2 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    margin: 40px 0 16px;
+  }
+  
+  .refund-content p {
+    margin-bottom: 16px;
+  }
+  
+  .refund-content ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  
+  .refund-content li {
+    margin-bottom: 8px;
+  }
+  
+  .refund-content a {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  
+  .refund-content a:hover {
+    color: var(--color-primary);
+  }
+  
+  .highlight {
+    background-color: #FFF8E1;
+    padding: 16px 20px;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 768px) {
+    .refund-page {
+      padding: 40px 0 var(--section-spacing);
+    }
+    
+    .refund-container {
+      padding: 0 16px;
+    }
+    
+    .refund-header {
+      margin-bottom: 32px;
+    }
+    
+    .refund-content {
+      font-size: 15px;
+    }
+    
+    .refund-content h2 {
+      font-size: 20px;
+      margin: 32px 0 12px;
+    }
+  }
+</style>

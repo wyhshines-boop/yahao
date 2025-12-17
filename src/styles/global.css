@@ -1,0 +1,157 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --color-background: rgb(243, 251, 255);
+  --color-primary: #00A0E8;
+  --color-text-dark: #1a1a1a;
+  --color-text-light: #666666;
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Zilla Slab', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Layout */
+  --page-width: 1200px;
+  --section-spacing: 80px;
+  --component-spacing: 40px;
+
+  /* Responsive */
+  --mobile-breakpoint: 768px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-text-dark);
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Container */
+.container {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-spacing: 48px;
+    --component-spacing: 24px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text-dark);
+  border: 1.5px solid var(--color-text-dark);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-text-dark);
+  color: #ffffff;
+}
+
+/* Arrow hover effect */
+.btn-primary .btn-arrow,
+.btn-outline .btn-arrow,
+.btn-arrow-effect::before {
+  content: '→';
+  display: inline-block;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: width 0.25s ease, opacity 0.25s ease, margin 0.25s ease;
+  margin-right: 0;
+}
+
+.btn-primary:hover .btn-arrow,
+.btn-outline:hover .btn-arrow,
+.btn-arrow-effect:hover::before {
+  width: 18px;
+  opacity: 1;
+  margin-right: 4px;
+}
+
+.btn-text {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}

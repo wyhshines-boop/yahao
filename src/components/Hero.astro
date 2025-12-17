@@ -1,0 +1,278 @@
+---
+import heroImage from "../assets/hero.webp";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-left">
+        <h1 class="hero-title">
+          {t("hero.title")}
+        </h1>
+        <a
+          href="#"
+          class="hero-cta"
+          id="hero-cta-btn"
+          data-chrome-url="#chrome-store"
+          data-edge-url="#edge-store"
+        >
+          <span class="btn-arrow">→</span>
+          <!-- Chrome Icon -->
+          <svg
+            class="cta-icon cta-icon-chrome"
+            width="20"
+            height="20"
+            viewBox="0 0 59 59"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.88809 19.8337L16.5838 36.6266C18.1082 39.389 20.4784 41.5898 23.3461 42.9057C26.2137 44.2217 29.4278 44.5833 32.5162 43.9377L26.749 53.9283C14.4671 52.5615 4.9165 42.1455 4.9165 29.4974C4.9165 26.0656 5.61959 22.8009 6.88809 19.8337ZM52.0378 19.6641C53.3891 22.7662 54.0854 26.1138 54.0832 29.4974C54.0832 42.0792 44.6309 52.4533 32.44 53.9087L42.1455 37.0937C43.4828 34.8762 44.2498 32.2753 44.2498 29.4974C44.2544 25.8683 42.9164 22.3658 40.4935 19.6641H52.0378ZM29.4998 19.6641C32.1078 19.6641 34.6089 20.7001 36.4531 22.5442C38.2972 24.3883 39.3332 26.8894 39.3332 29.4974C39.3332 32.1054 38.2972 34.6065 36.4531 36.4506C34.6089 38.2947 32.1078 39.3307 29.4998 39.3307C26.8919 39.3307 24.3907 38.2947 22.5466 36.4506C20.7025 34.6065 19.6665 32.1054 19.6665 29.4974C19.6665 26.8894 20.7025 24.3883 22.5466 22.5442C24.3907 20.7001 26.8919 19.6641 29.4998 19.6641ZM29.4998 4.91407C33.3166 4.91216 37.0813 5.79988 40.4951 7.5068C43.909 9.21372 46.878 11.6928 49.1665 14.7474H29.4998C26.3935 14.7466 23.3663 15.7266 20.8497 17.5475C18.3331 19.3684 16.4556 21.9373 15.4849 24.888L9.71763 14.8998C12.0017 11.8015 14.9822 9.28349 18.4184 7.54892C21.8547 5.81434 25.6506 4.91179 29.4998 4.91407Z"
+              fill="currentColor"></path>
+          </svg>
+          <!-- Edge Icon -->
+          <svg
+            class="cta-icon cta-icon-edge"
+            width="20"
+            height="20"
+            viewBox="0 0 512 512"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="display: none;"
+          >
+            <path
+              fill="currentColor"
+              d="M481.92 134.48C440.87 54.18 352.26 8 255.91 8C137.05 8 37.51 91.68 13.47 203.66c26-46.49 86.22-79.14 149.46-79.14c79.27 0 121.09 48.93 122.25 50.18c22 23.8 33 50.39 33 83.1c0 10.4-5.31 25.82-15.11 38.57c-1.57 2-6.39 4.84-6.39 11c0 5.06 3.29 9.92 9.14 14c27.86 19.37 80.37 16.81 80.51 16.81A115.4 115.4 0 0 0 444.94 322a118.92 118.92 0 0 0 58.95-102.44c.5-43.43-15.5-72.3-21.97-85.08M212.77 475.67a154.9 154.9 0 0 1-46.64-45c-32.94-47.42-34.24-95.6-20.1-136A155.5 155.5 0 0 1 203 215.75c59-45.2 94.84-5.65 99.06-1a80 80 0 0 0-4.89-10.14c-9.24-15.93-24-36.41-56.56-53.51c-33.72-17.69-70.59-18.59-77.64-18.59c-38.71 0-77.9 13-107.53 35.69C35.68 183.3 12.77 208.72 8.6 243c-1.08 12.31-2.75 62.8 23 118.27a248 248 0 0 0 248.3 141.61c-38.12-6.62-65.85-26.64-67.13-27.21m250.72-98.33a7.76 7.76 0 0 0-7.92-.23a182 182 0 0 1-20.41 9.12a197.5 197.5 0 0 1-69.55 12.52c-91.67 0-171.52-63.06-171.52-144a61.1 61.1 0 0 1 6.52-26.75a168.7 168.7 0 0 0-38.76 50c-14.92 29.37-33 88.13 13.33 151.66c6.51 8.91 23 30 56 47.67c23.57 12.65 49 19.61 71.7 19.61c35.14 0 115.43-33.44 163-108.87a7.75 7.75 0 0 0-2.39-10.73"
+            ></path>
+          </svg>
+          <span class="btn-text">{t("btn.tryFree")}</span>
+        </a>
+      </div>
+      <div class="hero-right">
+        <p class="hero-description">
+          {t("hero.description")}
+          <a href="#shopify-translate-adapt" class="hero-link"
+            >{t("hero.shopifyLink")}</a
+          >{lang === "zh" ? t("hero.descriptionAfter") : ""}
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-image-wrapper">
+      <img
+        src={heroImage.src}
+        alt="Yahao Translate interface showing Shopify product translation"
+        class="hero-image"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 40px 0 var(--section-spacing);
+  }
+
+  .hero-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text-dark);
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: opacity 0.2s ease;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-cta:hover {
+    opacity: 0.9;
+  }
+
+  .hero-cta svg.cta-icon {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+
+  .hero-cta .btn-text {
+    transition: transform 0.25s ease;
+  }
+
+  .hero-cta .btn-arrow {
+    position: absolute;
+    left: 16px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .hero-cta:hover .btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .hero-cta:hover svg.cta-icon,
+  .hero-cta:hover .btn-text {
+    transform: translateX(12px);
+  }
+
+  .hero-right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-top: 8px;
+  }
+
+  .hero-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    max-width: 380px;
+    text-align: right;
+  }
+
+  .hero-link {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .hero-image-wrapper {
+    width: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    border: 2px solid #b5d5fdc2; /* 修改这里的颜色值即可改变边框颜色 */
+    border-radius: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 24px 0 var(--section-spacing);
+    }
+
+    .hero-container {
+      padding: 0 16px;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .hero-left {
+      gap: 24px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+    }
+
+    .hero-cta {
+      padding: 12px 20px;
+      font-size: 15px;
+    }
+
+    .hero-right {
+      padding-top: 0;
+      justify-content: flex-start;
+    }
+
+    .hero-description {
+      font-size: 16px;
+      max-width: 100%;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 24px;
+    }
+  }
+</style>
+
+<script>
+  // Detect browser and toggle icons/links
+  function setupBrowserIcon() {
+    const ctaBtn = document.getElementById(
+      "hero-cta-btn",
+    ) as HTMLAnchorElement | null;
+    if (!ctaBtn) return;
+
+    const chromeIcon = ctaBtn.querySelector(
+      ".cta-icon-chrome",
+    ) as HTMLElement | null;
+    const edgeIcon = ctaBtn.querySelector(
+      ".cta-icon-edge",
+    ) as HTMLElement | null;
+
+    // Detect Edge browser (Edge includes both "Edg" and "Chrome" in UA)
+    const isEdge = navigator.userAgent.includes("Edg");
+
+    if (isEdge) {
+      // Show Edge icon, hide Chrome
+      if (chromeIcon) chromeIcon.style.display = "none";
+      if (edgeIcon) edgeIcon.style.display = "block";
+      // Set Edge store URL
+      ctaBtn.href = ctaBtn.dataset.edgeUrl || "#edge-store";
+    } else {
+      // Show Chrome icon (default), hide Edge
+      if (chromeIcon) chromeIcon.style.display = "block";
+      if (edgeIcon) edgeIcon.style.display = "none";
+      // Set Chrome store URL
+      ctaBtn.href = ctaBtn.dataset.chromeUrl || "#chrome-store";
+    }
+  }
+
+  // Run on page load
+  setupBrowserIcon();
+  // Also run on Astro page transitions
+  document.addEventListener("astro:page-load", setupBrowserIcon);
+</script>

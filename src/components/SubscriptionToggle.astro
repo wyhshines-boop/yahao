@@ -1,0 +1,162 @@
+---
+interface Props {
+    label?: string;
+    lang?: "en" | "zh";
+    size?: "normal" | "large";
+    showLabel?: boolean;
+}
+
+const { label, lang = "en", size = "normal", showLabel = true } = Astro.props;
+const defaultLabel = lang === "en" ? "Get Updates" : "订阅更新";
+const displayText = label !== undefined ? label : defaultLabel;
+---
+
+<div class={`subscription-container ${size}`}>
+    {showLabel && <span class="subscription-label">{displayText}</span>}
+
+    <button
+        type="button"
+        class="toggle-interactive-area"
+        aria-label={displayText}
+    >
+        <div class="ios-switch">
+            <div
+                class="switch-handle"
+                style="background-color: white !important;"
+            >
+            </div>
+        </div>
+    </button>
+
+    <a
+        class="hidden-trigger"
+        data-formkit-toggle="63da439e3f"
+        href="https://yahao-translate.kit.com/63da439e3f"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-hidden="true"
+        style="display: none;"></a>
+</div>
+
+<script>
+    function setupToggles() {
+        const buttons = document.querySelectorAll(".toggle-interactive-area");
+
+        buttons.forEach((button) => {
+            if (button.hasAttribute("data-initialized")) return;
+            button.setAttribute("data-initialized", "true");
+
+            button.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const container = button.closest(".subscription-container");
+                if (!container) return;
+
+                const hiddenLink = container.querySelector(
+                    ".hidden-trigger",
+                ) as HTMLElement;
+                const switchEl = button.querySelector(".ios-switch");
+
+                if (!hiddenLink || !switchEl) return;
+
+                // Add animating class
+                switchEl.classList.add("toggled");
+
+                // Wait for animation (400ms match CSS)
+                setTimeout(() => {
+                    hiddenLink.click();
+                    // Reset
+                    setTimeout(() => {
+                        switchEl.classList.remove("toggled");
+                    }, 1000);
+                }, 400);
+            });
+        });
+    }
+
+    setupToggles();
+    document.addEventListener("astro:page-load", setupToggles);
+</script>
+
+<style>
+    .subscription-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .subscription-label {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--color-text-dark);
+    }
+
+    .toggle-interactive-area {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer !important;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+        display: inline-block;
+    }
+
+    .ios-switch {
+        width: 51px;
+        height: 31px;
+        background-color: #00a0e8; /* Blue background */
+        border-radius: 31px;
+        position: relative;
+        transition: background-color 0.4s;
+        pointer-events: none;
+    }
+
+    .switch-handle {
+        width: 27px;
+        height: 27px;
+        background-color: white; /* White handle override inline too */
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        box-shadow:
+            0 3px 8px rgba(0, 0, 0, 0.15),
+            0 3px 1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    /* Toggled State */
+    .ios-switch.toggled {
+        background-color: #008dc9; /* Slightly darker/active blue */
+    }
+
+    .ios-switch.toggled .switch-handle {
+        transform: translateX(20px);
+    }
+
+    /* Hover */
+    @media (hover: hover) {
+        .toggle-interactive-area:hover .ios-switch {
+            background-color: #008dc9; /* Hover effect */
+        }
+    }
+
+    /* === LARGE SIZE VARIANT === */
+    .subscription-container.large .ios-switch {
+        width: 160px;
+        height: 80px;
+        border-radius: 80px;
+    }
+
+    .subscription-container.large .switch-handle {
+        width: 72px;
+        height: 72px;
+        top: 4px;
+        left: 4px;
+    }
+
+    .subscription-container.large .ios-switch.toggled .switch-handle {
+        transform: translateX(80px);
+    }
+</style>

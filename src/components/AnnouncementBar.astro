@@ -1,0 +1,95 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+    lang?: "en" | "zh";
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+
+const content = {
+    en: {
+        message: "Coming Soon!",
+        cta: "Get notified →",
+    },
+    zh: {
+        message: "即将上线！",
+        cta: "订阅通知 →",
+    },
+};
+
+const text = content[lang];
+---
+
+<div class="announcement-bar">
+    <div class="announcement-container">
+        <span class="announcement-message">{text.message}</span>
+        <a
+            class="announcement-cta"
+            data-formkit-toggle="63da439e3f"
+            href="https://yahao-translate.kit.com/63da439e3f"
+        >
+            {text.cta}
+        </a>
+    </div>
+</div>
+
+<style>
+    .announcement-bar {
+        background: #28b2f7;
+        color: white;
+        padding: 6px 12px;
+        text-align: center;
+        position: relative;
+        z-index: 99; /* Lower than mobile nav */
+    }
+
+    .announcement-container {
+        max-width: var(--page-width);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .announcement-message {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .announcement-cta {
+        font-size: 12px;
+        font-weight: 600;
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 4px 12px;
+        border-radius: 16px;
+        transition: background 0.2s ease;
+        cursor: pointer;
+    }
+
+    .announcement-cta:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    @media (max-width: 480px) {
+        .announcement-bar {
+            padding: 5px 10px;
+        }
+
+        .announcement-container {
+            gap: 8px;
+        }
+
+        .announcement-message {
+            font-size: 12px;
+        }
+
+        .announcement-cta {
+            font-size: 11px;
+            padding: 3px 10px;
+        }
+    }
+</style>

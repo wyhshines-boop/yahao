@@ -1,0 +1,239 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout
+    title="关于我们 - Yahao Translate"
+    description="让 Shopify 翻译变得快速简单。我们致力于帮助 Shopify 商家在全球范围内扩展业务，消除翻译瓶颈。"
+    lang="zh"
+>
+    <Header currentPage="about" lang="zh" />
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <h1>让 Shopify 翻译变得快速简单</h1>
+                <p class="lead">
+                    我们致力于帮助 Shopify
+                    商家在全球范围内扩展业务，消除翻译瓶颈。我们的 Chrome
+                    扩展程序将 AI 驱动的翻译直接整合到 Shopify 的 Translate &
+                    Adapt 中，节省数小时的手工工作。
+                </p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <h2>我们的故事</h2>
+                <div class="story-content">
+                    <p>
+                        我们在亲身经历了管理多个跨语言 Shopify
+                        商店的痛点后，开发了 Yahao
+                        Translate。过去的流程非常繁琐：复制文本、切换翻译工具、翻译、再粘贴回去，每天都要为此消耗数小时。
+                    </p>
+                    <p>
+                        我们知道一定有更好的解决方案。因此，我们创建了这个
+                        Chrome 扩展程序，它与 Shopify 原生的 Translate & Adapt
+                        界面无缝集成，只需单击一下即可添加即时 AI 翻译功能。
+                    </p>
+                    <p>
+                        如今，我们帮助 Shopify 商家将翻译速度提高 5 倍，支持 60
+                        多种语言，并提供媲美专业人员的翻译质量。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>5倍提速</h3>
+                        <p>一键操作替代五个手动步骤</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>60+ 种语言</h3>
+                        <p>全面的语言支持助您走向全球</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>无冲突</h3>
+                        <p>与 Shopify 原生界面完美融合</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <h2>我们的价值观</h2>
+                <p class="section-desc">指导我们构建一切产品的核心原则</p>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>速度至上</h3>
+                        <p>
+                            我们坚信商家应该把宝贵的时间花在业务增长上，而不是浪费在复制粘贴翻译内容上。
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <h3>质量为本</h3>
+                        <p>
+                            专为电子商务优化的 AI
+                            翻译引擎，提供媲美专业翻译人员的高质量译文。
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <h3>简单集成</h3>
+                        <p>
+                            没有臃肿的后台应用，也没有代码冲突。与 Shopify
+                            原生工具无缝协作，开箱即用。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer lang="zh" />
+</Layout>
+
+<style>
+    .container {
+        max-width: var(--page-width);
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    .about-hero {
+        padding: 100px 0 80px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+
+    .about-hero h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(36px, 5vw, 56px);
+        margin-bottom: 24px;
+        color: var(--color-text-dark);
+        line-height: 1.2;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .lead {
+        font-size: 20px;
+        color: var(--color-text-light);
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .about-section {
+        padding: 80px 0;
+    }
+
+    .stats-section {
+        padding: 80px 0;
+        background-color: aliceblue;
+        border-top: 1px solid #e3f1ff;
+        border-bottom: 1px solid #e3f1ff;
+    }
+
+    h2 {
+        font-family: var(--font-heading);
+        font-size: 36px;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--color-text-dark);
+    }
+
+    .section-desc {
+        text-align: center;
+        margin-top: -30px;
+        margin-bottom: 60px;
+        color: var(--color-text-light);
+        font-size: 18px;
+    }
+
+    .story-content {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--color-text-dark);
+        text-align: justify;
+    }
+
+    .story-content p {
+        margin-bottom: 24px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .stat-card {
+        text-align: center;
+    }
+
+    .stat-card h3 {
+        font-family: var(--font-heading);
+        font-size: 48px;
+        margin-bottom: 16px;
+        color: var(--color-primary);
+        line-height: 1;
+    }
+
+    .stat-card p {
+        font-size: 18px;
+        color: var(--color-text-dark);
+        font-weight: 500;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .value-card {
+        padding: 32px;
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 12px;
+    }
+
+    .value-card h3 {
+        font-family: var(--font-heading);
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        color: var(--color-text-dark);
+    }
+
+    .value-card p {
+        color: var(--color-text-light);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+        .stats-grid,
+        .values-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .stats-grid,
+        .values-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .about-hero h1 {
+            font-size: 32px;
+        }
+    }
+</style>

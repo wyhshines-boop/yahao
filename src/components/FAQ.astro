@@ -1,0 +1,278 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const content = {
+  en: [
+    {
+      question: "How does Yahao Translate work with Shopify?",
+      answer:
+        "Yahao Translate is a browser extension that integrates directly with Shopify's built-in Translate & Adapt app. Once installed, you'll see AI translate buttons next to every text field, allowing you to translate content instantly without leaving the Shopify admin.",
+    },
+    {
+      question: "Do I need to install any Shopify apps?",
+      answer:
+        "No, you don't need to install any third-party Shopify apps. Yahao Translate works as a Chrome extension that enhances your existing Shopify Translate & Adapt experience. Just install the extension and start translating.",
+    },
+    {
+      question: "How many languages are supported?",
+      answer:
+        "We support over 60 languages, covering all major markets worldwide including European, Asian, Middle Eastern, and other regional languages. Our AI is optimized specifically for e-commerce content to ensure accurate, context-aware translations.",
+    },
+    {
+      question: "What can the Sidebar Assistant do for me?",
+      answer:
+        "It offers two core modes: Chat and Translate. You can use AI Chat to find creative inspiration, write marketing emails, or modify code. You can also use Translate mode to quickly translate web content, product descriptions, or buyer reviews into multiple languages and fill them in with one click.",
+    },
+    {
+      question: "Where can I use the Sidebar Assistant?",
+      answer:
+        "As a browser extension, it can be used on any browser tab. Whether you are in the Shopify admin, on social media, or browsing news websites, just click the sidebar and the AI assistant will respond in real-time on your current page, eliminating the need to switch between windows.",
+    },
+    {
+      question: "Is there a limit on the number of Shopify stores?",
+      answer:
+        "No, all plans include unlimited Shopify store support. Whether you manage one store or hundreds, you can use Yahao Translate across all of them with a single subscription.",
+    },
+    {
+      question: "What's the difference between Free and Professional plans?",
+      answer:
+        "The Free plan includes 1,000 characters per month and basic features. The Professional plan offers 100,000 characters per month, auto-translate for entire pages, AI sidebar assistant for personalized translations, and priority email support.",
+    },
+  ],
+  zh: [
+    {
+      question: "Yahao Translate 如何与 Shopify 配合使用？",
+      answer:
+        "Yahao Translate 是一个浏览器扩展，直接集成到 Shopify 内置的 Translate & Adapt 应用中。安装后，您会在每个文本字段旁边看到 AI 翻译按钮，无需离开 Shopify 后台即可即时翻译内容。",
+    },
+    {
+      question: "我需要安装任何 Shopify 应用吗？",
+      answer:
+        "不，您不需要安装任何第三方 Shopify 应用。Yahao Translate 作为一个 Chrome 扩展程序运行，可增强您现有的 Shopify Translate & Adapt 体验。只需安装扩展程序即可开始翻译。",
+    },
+    {
+      question: "支持多少种语言？",
+      answer:
+        "我们支持 60 多种语言，覆盖全球所有主要市场，包括欧洲、亚洲、中东和其他地区语言。我们的 AI 专门针对电子商务内容进行了优化，以确保准确、符合上下文的翻译。",
+    },
+    {
+      question: "侧边栏助手能帮我做什么？",
+      answer:
+        "它提供对话与翻译两种核心模式。你可以通过 AI 对话寻求创作灵感、撰写营销邮件或修改代码；也可以使用翻译模式，快速将网页内容、商品描述或买家评价翻译成多国语言，并一键填充。",
+    },
+    {
+      question: "侧边栏助手可以在哪些地方使用？",
+      answer:
+        "作为浏览器扩展程序，它支持在任何网页标签页中使用。无论是 Shopify 后台、社交媒体，还是日常浏览的资讯网站，只需点击侧边栏，AI 助手就会在当前页面实时响应，无需频繁切换窗口。",
+    },
+    {
+      question: "Shopify 商店数量有限制吗？",
+      answer:
+        "没有，所有计划均包含对无限个 Shopify 商店的支持。无论您管理一个商店还是数百个商店，只需一个订阅即可在所有商店中使用 Yahao Translate。",
+    },
+    {
+      question: "免费版和专业版有什么区别？",
+      answer:
+        "免费版包含每月 1,000 个字符和基础功能。专业版提供每月 100,000 个字符、自动翻译正页、用于个性化翻译的 AI 侧边栏助手和优先邮件支持。",
+    },
+  ],
+};
+
+const faqs: FAQItem[] = content[lang];
+---
+
+<section class="faq-section" id="faq">
+  <div class="faq-container">
+    <div class="faq-header">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <!-- <a href="/faq" class="faq-more">See more FAQs</a> -->
+    </div>
+
+    <div class="faq-list">
+      {
+        faqs.map((faq, index) => (
+          <div class={`faq-item ${index === 0 ? "open" : ""}`} data-faq-item>
+            <button class="faq-question" data-faq-toggle>
+              <span>{faq.question}</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-background);
+  }
+
+  .faq-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .faq-header {
+    position: sticky;
+    top: 100px;
+  }
+
+  .faq-title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin: 0 0 16px;
+  }
+
+  .faq-more {
+    font-size: 15px;
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .faq-more:hover {
+    color: var(--color-primary);
+  }
+
+  .faq-list {
+    width: 100%;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    transition: color 0.2s ease;
+  }
+
+  .faq-question:hover {
+    color: var(--color-primary);
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition:
+      max-height 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 20px;
+  }
+
+  .faq-answer p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .faq-container {
+      padding: 0 16px;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .faq-header {
+      position: static;
+    }
+
+    .faq-title {
+      margin-bottom: 12px;
+    }
+
+    .faq-question {
+      padding: 16px 0;
+      font-size: 15px;
+    }
+
+    .faq-icon {
+      font-size: 20px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqItems = document.querySelectorAll("[data-faq-item]");
+
+    faqItems.forEach((item) => {
+      const toggle = item.querySelector("[data-faq-toggle]");
+
+      toggle?.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+
+        // Close all items
+        faqItems.forEach((otherItem) => {
+          otherItem.classList.remove("open");
+        });
+
+        // Toggle current item
+        if (!isOpen) {
+          item.classList.add("open");
+        }
+      });
+    });
+  });
+</script>

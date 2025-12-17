@@ -1,0 +1,249 @@
+---
+import col1 from "../assets/col1.png";
+import col2 from "../assets/col2.png";
+import col3 from "../assets/col3.png";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface ColumnItem {
+  image: ImageMetadata;
+  title: string;
+  description: string;
+}
+
+const content = {
+  en: [
+    {
+      image: col1,
+      title: "One click vs. five steps",
+      description:
+        "Translate entire fields in seconds instead of copying, pasting, switching apps, and pasting again. Save up to 5x time per store daily.",
+    },
+    {
+      image: col2,
+      title: "Translator-Quality Translations",
+      description:
+        "Advanced AI delivers professional-grade accuracy that matches experienced translators—but instantly and at a fraction of the cost.",
+    },
+    {
+      image: col3,
+      title: "60+ Languages",
+      description:
+        "Future-proof your store. Support 60+ languages means you are ready to expand whenever opportunity comes.",
+    },
+  ],
+  zh: [
+    {
+      image: col1,
+      title: "一键操作 vs 五个步骤",
+      description:
+        "几秒钟内即可翻译整个字段，告别复制、粘贴、切换应用。每天为每个 Shopify 商店节省高达 5 倍的时间。",
+    },
+    {
+      image: col2,
+      title: "媲美专业翻译的质量",
+      description:
+        "先进的 AI 提供媲美专业翻译人员的专业级准确度——但速度更快，成本仅为其一小部分。",
+    },
+    {
+      image: col3,
+      title: "支持 60+ 种语言",
+      description:
+        "为未来做好准备。支持 60 多种语言意味着您随时可以抓住机遇扩展市场。",
+    },
+  ],
+};
+
+const columns = content[lang];
+---
+
+<section class="features-grid">
+  <div class="features-container">
+    <div class="features-header">
+      <h2 class="features-title">{t("features.title")}</h2>
+      <a href="#try-free" class="features-cta"
+        ><span class="btn-arrow">→</span><span class="btn-text"
+          >{t("btn.tryFree")}</span
+        ></a
+      >
+    </div>
+
+    <div class="features-columns">
+      {
+        columns.map((column, index) => (
+          <div class="feature-column">
+            <div class="feature-image">
+              <img
+                src={column.image.src}
+                alt={`Feature ${index + 1}`}
+                loading="lazy"
+              />
+            </div>
+            <h3 class="feature-item-title">{column.title}</h3>
+            <p class="feature-description">{column.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-grid {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-background);
+  }
+
+  .features-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .features-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .features-title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--color-text-dark);
+    max-width: 500px;
+  }
+
+  .features-cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: var(--color-text-dark);
+    font-size: 15px;
+    font-weight: 500;
+    border: 1.5px solid var(--color-text-dark);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .features-cta .btn-arrow {
+    position: absolute;
+    left: 16px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .features-cta .btn-text {
+    transition: transform 0.25s ease;
+  }
+
+  .features-cta:hover .btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .features-cta:hover .btn-text {
+    transform: translateX(10px);
+  }
+
+  .features-cta:hover {
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
+  }
+
+  .features-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .feature-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .feature-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+  }
+
+  .feature-item-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+  }
+
+  @media (max-width: 768px) {
+    .features-container {
+      padding: 0 16px;
+    }
+
+    .features-header {
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .features-title {
+      font-size: 24px;
+      max-width: 100%;
+    }
+
+    .features-cta {
+      align-self: flex-start;
+    }
+
+    .features-columns {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .feature-image {
+      aspect-ratio: 4 / 3;
+    }
+
+    .feature-description {
+      font-size: 15px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .features-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

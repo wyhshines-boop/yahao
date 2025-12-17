@@ -1,0 +1,244 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+    title="About Us - Yahao Translate"
+    description="Making Shopify Translation Fast & Easy. We're on a mission to help Shopify merchants expand globally without the translation bottleneck."
+>
+    <Header currentPage="about" />
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <h1>Making Shopify Translation Fast & Easy</h1>
+                <p class="lead">
+                    We're on a mission to help Shopify merchants expand globally
+                    without the translation bottleneck. Our Chrome extension
+                    brings AI-powered translation directly into Shopify's
+                    Translate & Adapt, saving hours of manual work.
+                </p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <h2>Our Story</h2>
+                <div class="story-content">
+                    <p>
+                        We built yahao translate after experiencing the pain of
+                        managing multiple Shopify stores across different
+                        languages. Copying text, switching between translation
+                        tools, and pasting everything back was eating up hours
+                        every single day.
+                    </p>
+                    <p>
+                        We knew there had to be a better way. That's why we
+                        created a Chrome extension that integrates seamlessly
+                        with Shopify's native Translate & Adapt interface,
+                        adding instant AI translation with a single click.
+                    </p>
+                    <p>
+                        Today, we help Shopify merchants translate 5x faster,
+                        supporting 60+ languages with translation quality that
+                        matches professional translators.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>5x Faster</h3>
+                        <p>One click replaces five manual steps</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>60+ Languages</h3>
+                        <p>Go global with comprehensive language support</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>No Conflicts</h3>
+                        <p>Works natively with Shopify's interface</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <h2>Our Values</h2>
+                <p class="section-desc">
+                    The principles that guide everything we build
+                </p>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>Speed First</h3>
+                        <p>
+                            We believe merchants should spend time growing their
+                            business, not copying and pasting translations.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Quality Matters</h3>
+                        <p>
+                            AI-powered translations optimized for e-commerce,
+                            matching professional translator quality.
+                        </p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Simple Integration</h3>
+                        <p>
+                            No clunky apps or conflicts. Works seamlessly with
+                            Shopify's native tools.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    .container {
+        max-width: var(--page-width);
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+
+    .about-hero {
+        padding: 100px 0 80px;
+        text-align: center;
+        background-color: aliceblue;
+    }
+
+    .about-hero h1 {
+        font-family: var(--font-heading);
+        font-size: clamp(36px, 5vw, 56px);
+        margin-bottom: 24px;
+        color: var(--color-text-dark);
+        line-height: 1.2;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .lead {
+        font-size: 20px;
+        color: var(--color-text-light);
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .about-section {
+        padding: 80px 0;
+    }
+
+    .stats-section {
+        padding: 80px 0;
+        background-color: aliceblue;
+        border-top: 1px solid #e3f1ff;
+        border-bottom: 1px solid #e3f1ff;
+    }
+
+    h2 {
+        font-family: var(--font-heading);
+        font-size: 36px;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--color-text-dark);
+    }
+
+    .section-desc {
+        text-align: center;
+        margin-top: -30px;
+        margin-bottom: 60px;
+        color: var(--color-text-light);
+        font-size: 18px;
+    }
+
+    .story-content {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--color-text-dark);
+    }
+
+    .story-content p {
+        margin-bottom: 24px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .stat-card {
+        text-align: center;
+    }
+
+    .stat-card h3 {
+        font-family: var(--font-heading);
+        font-size: 48px;
+        margin-bottom: 16px;
+        color: var(--color-primary);
+        line-height: 1;
+    }
+
+    .stat-card p {
+        font-size: 18px;
+        color: var(--color-text-dark);
+        font-weight: 500;
+    }
+
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+
+    .value-card {
+        padding: 32px;
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 12px;
+    }
+
+    .value-card h3 {
+        font-family: var(--font-heading);
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: 600;
+        color: var(--color-text-dark);
+    }
+
+    .value-card p {
+        color: var(--color-text-light);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+        .stats-grid,
+        .values-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .stats-grid,
+        .values-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .about-hero h1 {
+            font-size: 32px;
+        }
+    }
+</style>

@@ -1,0 +1,243 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import SubscriptionToggle from "../../components/SubscriptionToggle.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const lang = "en";
+const t = useTranslations(lang);
+
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts
+  .filter((post) => (post.data.lang || "en") === lang)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<Layout currentPage="blog" lang={lang}>
+  <Header currentPage="blog" lang={lang} />
+  <main>
+    <section class="blog-hero">
+      <div class="blog-container">
+        <p class="blog-subtitle">{t("blog.subtitle")}</p>
+        <h1 class="blog-title">{t("blog.title")}</h1>
+      </div>
+    </section>
+
+    <section class="blog-posts">
+      <div class="blog-container">
+        <div class="posts-grid">
+          {
+            sortedPosts.map((post) => (
+              <a href={`/blog/${post.slug}`} class="post-card">
+                <div class="post-image">
+                  {post.data.image ? (
+                    <Image
+                      src={post.data.image}
+                      alt={post.data.title}
+                      style="width: 100%; height: 100%; object-fit: cover;"
+                    />
+                  ) : (
+                    <div class="post-image-placeholder" />
+                  )}
+                </div>
+                <div class="post-content">
+                  <h2 class="post-title">{post.data.title}</h2>
+                  <p class="post-excerpt">{post.data.excerpt}</p>
+                  <div class="post-meta">
+                    <span class="post-author">{post.data.author}</span>
+                    <span class="post-date">{formatDate(post.data.date)}</span>
+                  </div>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+    <section class="blog-subscribe-section">
+      <div class="blog-container">
+        <div class="subscribe-card" style="background-color: #E1F5FF;">
+          <h3>Stay Updated</h3>
+          <p>
+            Get the latest e-commerce translation tips delivered to your inbox.
+          </p>
+          <div class="subscribe-toggle-wrapper">
+            <SubscriptionToggle size="large" showLabel={false} />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Layout>
+
+<style>
+  .blog-hero {
+    padding: 60px 0 40px;
+    background-color: var(--color-background);
+  }
+
+  .blog-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .blog-subtitle {
+    font-size: 16px;
+    color: var(--color-text-dark);
+    margin-bottom: 8px;
+  }
+
+  .blog-title {
+    font-family: var(--font-heading);
+    font-size: clamp(80px, 15vw, 160px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .blog-posts {
+    padding: 0 0 var(--section-spacing);
+    background-color: var(--color-background);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .post-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #e1f5ff;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .post-title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-text-dark);
+    line-height: 1.3;
+  }
+
+  .post-card:hover .post-title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .post-excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--color-text-light);
+  }
+
+  .post-author {
+    font-weight: 500;
+    color: var(--color-text-dark);
+  }
+
+  .blog-subscribe-section {
+    padding: 0 0 80px;
+    background-color: var(--color-background);
+  }
+
+  .subscribe-card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .subscribe-card h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--color-text-dark);
+  }
+
+  .subscribe-card p {
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-hero {
+      padding: 40px 0 24px;
+    }
+
+    .blog-container {
+      padding: 0 16px;
+    }
+
+    .blog-subtitle {
+      font-size: 14px;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .post-title {
+      font-size: 18px;
+    }
+  }
+</style>

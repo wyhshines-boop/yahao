@@ -1,0 +1,336 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface PlanFeature {
+  text: string;
+}
+
+interface Plan {
+  name: string;
+  price: string;
+  priceNote?: string;
+  buttonText: string;
+  buttonStyle: "outline" | "filled";
+  features: PlanFeature[];
+}
+
+const content = {
+  en: [
+    {
+      name: "Starter",
+      price: "Free",
+      buttonText: "Select Plan",
+      buttonStyle: "outline",
+      features: [
+        { text: "150 Translations / Chats monthly" },
+        { text: "60+ languages supported" },
+        { text: "Unlimited Shopify stores" },
+        { text: "Auto-translate entire pages" },
+        { text: "Basic email support" },
+      ],
+    },
+    {
+      name: "Professional",
+      price: "$69 / year",
+      priceNote:
+        "Only $5.75 per month, more affordable than most Shopify app subscriptions",
+      buttonText: "Select Plan",
+      buttonStyle: "filled",
+      features: [
+        { text: "10000 Translations / Chats monthly" },
+        { text: "60+ languages supported" },
+        { text: "Unlimited Shopify stores" },
+        { text: "Auto-translate entire pages" },
+        { text: "AI sidebar assistant" },
+        { text: "Priority email support" },
+      ],
+    },
+  ],
+  zh: [
+    {
+      name: "入门版",
+      price: "免费",
+      buttonText: "选择计划",
+      buttonStyle: "outline",
+      features: [
+        { text: "每月 150 次翻译/聊天" },
+        { text: "支持 60 多种语言" },
+        { text: "支持无限个 Shopify 商店" },
+        { text: "自动翻译整页" },
+        { text: "基础邮件支持" },
+      ],
+    },
+    {
+      name: "专业版",
+      price: "$69 / 年",
+      priceNote: "只需 $5.75 / 月，比大多数 Shopify 应用订阅更实惠",
+      buttonText: "选择计划",
+      buttonStyle: "filled",
+      features: [
+        { text: "每月 10000 次翻译/聊天" },
+        { text: "支持 60 多种语言" },
+        { text: "支持无限个 Shopify 商店" },
+        { text: "自动翻译整页" },
+        { text: "AI 侧边栏助手" },
+        { text: "优先邮件支持" },
+      ],
+    },
+  ],
+};
+
+const plans: Plan[] = content[lang] as Plan[];
+---
+
+<section class="pricing-section" id="pricing">
+  <div class="pricing-container">
+    <div class="pricing-header">
+      <h2 class="pricing-title">{t("pricing.title")}</h2>
+      <p class="pricing-subtitle">
+        {t("pricing.subtitle")}<br />
+        {
+          lang === "en"
+            ? "All plans include unlimited Shopify stores."
+            : "所有计划均包含对无限个 Shopify 商店的支持。"
+        }
+      </p>
+    </div>
+
+    <div class="pricing-plans">
+      {
+        plans.map((plan) => (
+          <div class="plan-card">
+            <div class="plan-info">
+              <h3 class="plan-name">{plan.name}</h3>
+              <p class="plan-price">{plan.price}</p>
+              {plan.priceNote && <p class="plan-note">{plan.priceNote}</p>}
+            </div>
+
+            <a
+              href="#select-plan"
+              class={`plan-button ${plan.buttonStyle === "filled" ? "filled" : "outline"}`}
+            >
+              <span class="btn-content">
+                <span class="btn-arrow">→</span>
+                <span class="btn-text">{plan.buttonText}</span>
+              </span>
+            </a>
+
+            <ul class="plan-features">
+              {plan.features.map((feature) => (
+                <li class="feature-item">
+                  <span class="feature-bullet">•</span>
+                  {feature.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding: var(--section-spacing) 0;
+    background-color: #ffffff;
+  }
+
+  .pricing-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .pricing-header {
+    margin-bottom: 48px;
+  }
+
+  .pricing-title {
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin-bottom: 16px;
+  }
+
+  .pricing-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    margin: 0;
+  }
+
+  .pricing-plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .plan-card {
+    padding: 32px 40px;
+    border-left: 1px solid #d5d5d5;
+  }
+
+  .plan-card:last-child {
+    border-right: 1px solid #d5d5d5;
+  }
+
+  .plan-info {
+    min-height: 120px;
+    margin-bottom: 24px;
+  }
+
+  .plan-name {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin: 0 0 8px;
+  }
+
+  .plan-price {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin: 0;
+  }
+
+  .plan-note {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #666666;
+    margin: 8px 0 0;
+    max-width: 280px;
+  }
+
+  .plan-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    margin-bottom: 32px;
+  }
+
+  .plan-button .btn-content {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plan-button .btn-arrow {
+    display: inline-block;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition:
+      width 0.25s ease,
+      opacity 0.25s ease,
+      margin 0.25s ease;
+    margin-right: 0;
+  }
+
+  .plan-button .btn-text {
+    transition: transform 0.25s ease;
+  }
+
+  .plan-button:hover .btn-arrow {
+    width: 18px;
+    opacity: 1;
+    margin-right: 4px;
+  }
+
+  .plan-button.outline {
+    background-color: transparent;
+    color: var(--color-text-dark);
+    border: 1.5px solid var(--color-text-dark);
+  }
+
+  .plan-button.outline:hover {
+    background-color: var(--color-text-dark);
+    color: #ffffff;
+  }
+
+  .plan-button.filled {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+  }
+
+  .plan-button.filled:hover {
+    opacity: 0.95;
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+  }
+
+  .feature-bullet {
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .pricing-container {
+      padding: 0 16px;
+    }
+
+    .pricing-header {
+      margin-bottom: 32px;
+    }
+
+    .pricing-plans {
+      grid-template-columns: 1fr;
+    }
+
+    .plan-card {
+      padding: 24px 0;
+      border-left: none;
+      border-top: 1px solid #d5d5d5;
+    }
+
+    .plan-card:last-child {
+      border-right: none;
+      border-bottom: 1px solid #d5d5d5;
+    }
+
+    .plan-name {
+      font-size: 26px;
+    }
+
+    .plan-price {
+      font-size: 20px;
+    }
+
+    .plan-button {
+      max-width: 100%;
+    }
+  }
+</style>

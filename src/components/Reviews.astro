@@ -1,0 +1,263 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+
+interface Props {
+  lang?: "en" | "zh";
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+
+interface Review {
+  quote: string;
+  author: string;
+  role: string;
+}
+
+const content = {
+  en: [
+    {
+      quote:
+        "I manage 3 Shopify stores in different languages. This extension saves me hours every week — no more copy-pasting into Google Translate. Everything stays right in the Shopify admin.",
+      author: "Marcus W.",
+      role: "Store Owner",
+    },
+    {
+      quote:
+        "The translations are surprisingly good for product descriptions. I still review them, but it gets me 90% there instantly. The sidebar chat is handy for quick rewrites too.",
+      author: "Sarah C.",
+      role: "E-commerce Manager",
+    },
+    {
+      quote:
+        "Simple and does exactly what it says. Click the button, get the translation. Works well with Translate & Adapt. Would love to see more language options in the future.",
+      author: "David M.",
+      role: "Shopify Developer",
+    },
+  ],
+  zh: [
+    {
+      quote:
+        "我管理3个不同语言的Shopify商店。这个扩展每周能帮我省好几个小时——再也不用复制粘贴到翻译工具了。所有操作都在Shopify后台完成。",
+      author: "Marcus W.",
+      role: "店主",
+    },
+    {
+      quote:
+        "产品描述的翻译质量出乎意料地好。我还是会检查一遍，但它能让我瞬间完成90%的工作。侧边栏的对话功能也很方便，可以快速改写文案。",
+      author: "Sarah C.",
+      role: "电商运营",
+    },
+    {
+      quote:
+        "简单实用，功能如其所述。点击按钮，获得翻译。和Translate & Adapt配合良好。期待未来能支持更多语言选项。",
+      author: "David M.",
+      role: "Shopify 开发者",
+    },
+  ],
+};
+
+const reviews: Review[] = content[lang];
+---
+
+<section class="reviews-section" id="reviews">
+  <div class="reviews-container">
+    <div class="reviews-content">
+      {
+        reviews.map((review, index) => (
+          <div
+            class={`review-slide ${index === 0 ? "active" : ""}`}
+            data-index={index}
+          >
+            <blockquote class="review-quote">
+              <span class="quote-mark">"</span>
+              {review.quote}
+              <span class="quote-mark">"</span>
+            </blockquote>
+            <div class="review-author">
+              <span class="author-name">{review.author}</span>
+              <span class="author-role">{review.role}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="reviews-nav">
+      {
+        reviews.map((_, index) => (
+          <button
+            class={`nav-indicator ${index === 0 ? "active" : ""}`}
+            data-index={index}
+            aria-label={`View review ${index + 1}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section {
+    background-color: #000000;
+    padding: var(--section-spacing) 0;
+  }
+
+  .reviews-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .reviews-content {
+    position: relative;
+    min-height: 280px;
+  }
+
+  .review-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.4s ease,
+      visibility 0.4s ease;
+    text-align: center;
+  }
+
+  .review-slide.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .review-quote {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 400;
+    line-height: 1.4;
+    color: #ffffff;
+    margin: 0 0 32px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quote-mark {
+    color: #ffffff;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .author-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .author-role {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .reviews-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .nav-indicator {
+    position: relative;
+    width: 48px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-indicator::before {
+    content: "";
+    position: absolute;
+    top: -12px;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+  }
+
+  .nav-indicator:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .nav-indicator.active {
+    background-color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .reviews-container {
+      padding: 0 16px;
+    }
+
+    .reviews-content {
+      min-height: auto;
+    }
+
+    .review-quote {
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+
+    .review-author {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .author-name,
+    .author-role {
+      font-size: 14px;
+    }
+
+    .reviews-nav {
+      margin-top: 32px;
+    }
+
+    .nav-indicator {
+      width: 40px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".review-slide");
+    const indicators = document.querySelectorAll(".nav-indicator");
+
+    indicators.forEach((indicator) => {
+      indicator.addEventListener("click", () => {
+        const index = indicator.getAttribute("data-index");
+
+        // Update slides
+        slides.forEach((slide) => {
+          slide.classList.remove("active");
+          if (slide.getAttribute("data-index") === index) {
+            slide.classList.add("active");
+          }
+        });
+
+        // Update indicators
+        indicators.forEach((ind) => {
+          ind.classList.remove("active");
+        });
+        indicator.classList.add("active");
+      });
+    });
+  });
+</script>

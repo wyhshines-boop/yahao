@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout currentPage="privacy" title="Privacy Policy - Yahao Translate">
+  <Header currentPage="privacy" />
+  <main>
+    <article class="privacy-page">
+      <div class="privacy-container">
+        <header class="privacy-header">
+          <h1 class="privacy-title">Yahao Translate Privacy Policy</h1>
+          <p class="privacy-date">Last Updated: November 30, 2025</p>
+        </header>
+        
+        <div class="privacy-content">
+          <p>Thank you for using Yahao Translate (hereinafter referred to as "this extension" or "this service"). We highly value user privacy and data security. This privacy policy explains what information we collect, how we use it, how we store and protect this data, and the rights you enjoy as a user.</p>
+          
+          <p>If you have any questions about this policy, please contact us at <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a>.</p>
+          
+          <h2>1. Information We Collect</h2>
+          <p>We only collect the minimum information necessary to provide our services, including:</p>
+          
+          <h3>1.1 Account Information (when you register or log in to the extension)</h3>
+          <ul>
+            <li>Email address</li>
+            <li>Login credentials (such as hashed passwords)</li>
+          </ul>
+          
+          <h3>1.2 Usage Data</h3>
+          <p>To provide translation services and track usage, we collect:</p>
+          <ul>
+            <li>API call records (quantity, frequency, time)</li>
+            <li>Your subscription status (if applicable)</li>
+            <li>Basic information such as extension version and language settings</li>
+          </ul>
+          
+          <div class="notice">
+            <p><strong>⚠️ We do NOT collect the following information:</strong></p>
+            <ul>
+              <li>Content of websites you browse</li>
+              <li>Non-translation text you enter</li>
+              <li>Any sensitive personal information (such as ID numbers, payment information, health information, etc.)</li>
+              <li>Browsing history, Cookies, advertising data, etc.</li>
+              <li>Any background monitoring data unrelated to privacy</li>
+            </ul>
+          </div>
+          
+          <h2>2. How We Use This Information</h2>
+          <p>The information we collect is used solely for:</p>
+          <ul>
+            <li>Providing and maintaining translation services</li>
+            <li>Managing user accounts</li>
+            <li>Tracking usage and optimizing model services</li>
+            <li>Preventing abuse (such as abnormal usage monitoring)</li>
+            <li>Responding to user requests (such as deleting account data)</li>
+          </ul>
+          <p>We will not use your data for advertising or marketing purposes.</p>
+          
+          <h2>3. Data Storage and Third-Party Services</h2>
+          
+          <h3>3.1 Data Storage: Supabase</h3>
+          <p>Your account information and usage data will be securely stored in Supabase (a secure and compliant database and authentication service).</p>
+          
+          <h3>3.2 Model Service Providers</h3>
+          <p>When you use translation features, text will be sent to our integrated model providers, such as:</p>
+          <ul>
+            <li>Open AI</li>
+            <li>Alibaba Cloud Bailian</li>
+            <li>Zhipu AI (GLM)</li>
+            <li>(Future potential expansion of model providers)</li>
+          </ul>
+          <p>We only send the text necessary to perform translations, and we will not use this data to train user profiles or behavioral patterns.</p>
+          
+          <h3>3.3 Vercel (Website Hosting)</h3>
+          <p>The website does not collect customer information or provide registration functionality, so no user data is involved.</p>
+          
+          <h2>4. Data Retention and Deletion</h2>
+          <ul>
+            <li>While your account exists, your basic profile and usage records will be retained.</li>
+            <li>You can email <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a> at any time to request:
+              <ul>
+                <li>Account deletion</li>
+                <li>Deletion of all personal data</li>
+              </ul>
+            </li>
+            <li>We will process your request within a reasonable timeframe (usually within 7 days).</li>
+          </ul>
+          
+          <h2>5. Data Security</h2>
+          <p>We take the following measures to protect your data:</p>
+          <ul>
+            <li>Password encryption storage (irreversible hashing)</li>
+            <li>Strict database access restrictions</li>
+            <li>HTTPS encrypted transmission</li>
+            <li>Regular security updates and monitoring</li>
+          </ul>
+          <p>Although we strive to protect your data, no internet service can guarantee absolute security.</p>
+          
+          <h2>6. No Selling, Trading, or Sharing of User Data with Third Parties</h2>
+          <p>We will not sell, rent, or trade your personal information.</p>
+          <p>We will only share minimal necessary information in the following circumstances:</p>
+          <ul>
+            <li>To perform translations, sending your submitted translation content to model service providers</li>
+            <li>When required by law (rarely)</li>
+          </ul>
+          
+          <h2>7. Children's Privacy</h2>
+          <p>This extension is not directed at children under 13. If we discover that we have inadvertently collected relevant information, we will delete it immediately.</p>
+          
+          <h2>8. Updates to This Privacy Policy</h2>
+          <p>We may adjust this privacy policy based on feature updates. Significant changes will be notified to users in advance.</p>
+          
+          <h2>9. Contact Us</h2>
+          <p>For any privacy questions, data deletion requests, or other related matters, please contact:</p>
+          <p>📧 <a href="mailto:support@yahaotranslate.com">support@yahaotranslate.com</a></p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .privacy-page {
+    padding: 60px 0 var(--section-spacing);
+    background-color: var(--color-background);
+  }
+  
+  .privacy-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .privacy-header {
+    margin-bottom: 48px;
+  }
+  
+  .privacy-title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 400;
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+  }
+  
+  .privacy-date {
+    font-size: 14px;
+    color: var(--color-text-light);
+  }
+  
+  .privacy-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-text-dark);
+  }
+  
+  .privacy-content h2 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    margin: 40px 0 16px;
+  }
+  
+  .privacy-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 24px 0 12px;
+  }
+  
+  .privacy-content p {
+    margin-bottom: 16px;
+  }
+  
+  .privacy-content ul {
+    margin-bottom: 16px;
+    padding-left: 24px;
+  }
+  
+  .privacy-content li {
+    margin-bottom: 8px;
+  }
+  
+  .privacy-content ul ul {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+  
+  .privacy-content a {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  
+  .privacy-content a:hover {
+    color: var(--color-primary);
+  }
+  
+  .notice {
+    background-color: #FFF8E1;
+    padding: 20px 24px;
+    border-radius: 8px;
+    margin: 24px 0;
+  }
+  
+  .notice p {
+    margin-bottom: 12px;
+  }
+  
+  .notice ul {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .privacy-page {
+      padding: 40px 0 var(--section-spacing);
+    }
+    
+    .privacy-container {
+      padding: 0 16px;
+    }
+    
+    .privacy-header {
+      margin-bottom: 32px;
+    }
+    
+    .privacy-content {
+      font-size: 15px;
+    }
+    
+    .privacy-content h2 {
+      font-size: 20px;
+      margin: 32px 0 12px;
+    }
+    
+    .privacy-content h3 {
+      font-size: 16px;
+    }
+  }
+</style>

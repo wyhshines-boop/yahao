@@ -1,0 +1,112 @@
+---
+import yahaoLogo from '../assets/yahao_logo.svg';
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'zh';
+}
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const footerLinks = [
+  { href: getLocalizedPath('blog', lang), label: t('footer.blog') },
+  { href: getLocalizedPath('contact', lang), label: t('footer.contact') },
+  { href: getLocalizedPath('privacy', lang), label: t('footer.privacy') },
+  { href: getLocalizedPath('terms', lang), label: t('footer.terms') },
+  { href: getLocalizedPath('refund', lang), label: t('footer.refund') }
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <a href={getLocalizedPath('', lang)} class="footer-logo">
+        <img src={yahaoLogo.src} alt="Yahao Translate" width="40" height="40" />
+      </a>
+      <span class="footer-copyright">{currentYear} yahao translate.</span>
+    </div>
+    
+    <nav class="footer-nav">
+      {footerLinks.map((link) => (
+        <a href={link.href} class="footer-link">{link.label}</a>
+      ))}
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 40px 0;
+    background-color: var(--color-background);
+    border-top: 1px solid #EEE;
+  }
+  
+  .footer-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .footer-logo img {
+    width: 40px;
+    height: auto;
+  }
+  
+  .footer-copyright {
+    font-size: 14px;
+    color: var(--color-text-dark);
+  }
+  
+  .footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-link {
+    font-size: 14px;
+    color: var(--color-text-dark);
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 0 16px;
+    }
+    
+    .footer-nav {
+      gap: 16px 24px;
+    }
+    
+    .footer-link {
+      font-size: 13px;
+    }
+  }
+</style>
