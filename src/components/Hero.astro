@@ -1,5 +1,4 @@
 ---
-import heroImage from "../assets/hero.webp";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
@@ -13,10 +12,16 @@ const t = useTranslations(lang);
 <section class="hero">
   <div class="hero-container">
     <div class="hero-content">
-      <div class="hero-left">
-        <h1 class="hero-title">
-          {t("hero.title")}
-        </h1>
+      <h1 class="hero-title">
+        {t("hero.title")}
+      </h1>
+      <p class="hero-description">
+        {t("hero.description")}
+        <a href="#shopify-translate-adapt" class="hero-link"
+          >{t("hero.shopifyLink")}</a
+        >{lang === "zh" ? t("hero.descriptionAfter") : ""}
+      </p>
+      <div class="hero-buttons">
         <a
           href="#"
           class="hero-cta"
@@ -55,31 +60,59 @@ const t = useTranslations(lang);
           </svg>
           <span class="btn-text">{t("btn.tryFree")}</span>
         </a>
+        <a href="#demo" class="hero-demo-btn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            ><path
+              fill="currentColor"
+              fill-opacity="0"
+              stroke="currentColor"
+              stroke-dasharray="38"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 6l10 6l-10 6Z"
+              ><animate
+                fill="freeze"
+                attributeName="stroke-dashoffset"
+                dur="0.5s"
+                values="38;0"></animate><animate
+                fill="freeze"
+                attributeName="fill-opacity"
+                begin="0.5s"
+                dur="0.4s"
+                to="1"></animate></path
+            ></svg
+          >
+          <span>{t("btn.watchDemo")}</span>
+        </a>
       </div>
-      <div class="hero-right">
-        <p class="hero-description">
-          {t("hero.description")}
-          <a href="#shopify-translate-adapt" class="hero-link"
-            >{t("hero.shopifyLink")}</a
-          >{lang === "zh" ? t("hero.descriptionAfter") : ""}
-        </p>
-      </div>
-    </div>
-
-    <div class="hero-image-wrapper">
-      <img
-        src={heroImage.src}
-        alt="Yahao Translate interface showing Shopify product translation"
-        class="hero-image"
-        loading="eager"
-      />
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    padding: 40px 0 var(--section-spacing);
+    padding: 80px 0;
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 50% 0%,
+        rgba(0, 160, 232, 0.12) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 80% 20%,
+        rgba(100, 180, 255, 0.08) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 50% 50% at 20% 30%,
+        rgba(0, 200, 255, 0.06) 0%,
+        transparent 60%
+      );
   }
 
   .hero-container {
@@ -89,38 +122,52 @@ const t = useTranslations(lang);
   }
 
   .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-    margin-bottom: 48px;
-  }
-
-  .hero-left {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
   }
 
   .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 400;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
     line-height: 1.15;
     color: var(--color-text-dark);
+    max-width: 700px;
+  }
+
+  .hero-description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-text-light);
+    max-width: 560px;
+  }
+
+  .hero-link {
+    color: var(--color-text-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .hero-cta {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 24px;
+    padding: 10px 24px;
     background-color: var(--color-primary);
     color: var(--color-white);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    border-radius: 8px;
+    border-radius: 999px;
     transition: opacity 0.2s ease;
     overflow: hidden;
     position: relative;
@@ -159,41 +206,32 @@ const t = useTranslations(lang);
     transform: translateX(12px);
   }
 
-  .hero-right {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding-top: 8px;
-  }
-
-  .hero-description {
-    font-size: 18px;
-    line-height: 1.6;
+  .hero-demo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background-color: var(--color-white);
     color: var(--color-text-dark);
-    max-width: 380px;
-    text-align: right;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 999px;
+    border: 1.5px solid #e0e0e0;
+    transition: all 0.2s ease;
   }
 
-  .hero-link {
-    color: var(--color-text-dark);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  .hero-demo-btn:hover {
+    border-color: var(--color-text-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
-  .hero-image-wrapper {
-    width: 100%;
-  }
-
-  .hero-image {
-    width: 100%;
-    height: auto;
-    border: 2px solid #b5d5fdc2; /* 修改这里的颜色值即可改变边框颜色 */
-    border-radius: 16px;
+  .hero-demo-btn svg {
+    flex-shrink: 0;
   }
 
   @media (max-width: 768px) {
     .hero {
-      padding: 24px 0 var(--section-spacing);
+      padding: 40px 0 var(--section-spacing);
     }
 
     .hero-container {
@@ -201,33 +239,21 @@ const t = useTranslations(lang);
     }
 
     .hero-content {
-      grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 16px;
       margin-bottom: 32px;
-    }
-
-    .hero-left {
-      gap: 24px;
     }
 
     .hero-title {
       font-size: 28px;
     }
 
+    .hero-description {
+      font-size: 16px;
+    }
+
     .hero-cta {
       padding: 12px 20px;
       font-size: 15px;
-    }
-
-    .hero-right {
-      padding-top: 0;
-      justify-content: flex-start;
-    }
-
-    .hero-description {
-      font-size: 16px;
-      max-width: 100%;
-      text-align: left;
     }
   }
 

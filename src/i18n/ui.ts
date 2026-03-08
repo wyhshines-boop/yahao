@@ -18,6 +18,7 @@ export const ui = {
 
         // Buttons
         'btn.tryFree': 'Try Free',
+        'btn.watchDemo': 'Watch Demo',
         'btn.selectPlan': 'Select Plan',
         'btn.seeMoreFaqs': 'See more FAQs',
         'btn.backToBlog': '← Back to Blog',
@@ -75,6 +76,7 @@ export const ui = {
 
         // Buttons
         'btn.tryFree': '免费试用',
+        'btn.watchDemo': '观看演示视频',
         'btn.selectPlan': '选择计划',
         'btn.seeMoreFaqs': '查看更多问题',
         'btn.backToBlog': '← 返回博客',

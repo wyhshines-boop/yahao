@@ -1,5 +1,5 @@
 /* Global Styles */
-@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
 
 :root {
   /* Colors */
@@ -10,7 +10,7 @@
   --color-white: #ffffff;
 
   /* Typography */
-  --font-heading: 'Zilla Slab', serif;
+  --font-heading: 'Bricolage Grotesque', 'Noto Sans SC', sans-serif;
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   /* Layout */
@@ -51,7 +51,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--color-text-dark);
   line-height: 1.2;
 }
