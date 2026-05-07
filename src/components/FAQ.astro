@@ -28,17 +28,7 @@ const content = {
     {
       question: "How many languages are supported?",
       answer:
-        "We support over 60 languages, covering all major markets worldwide including European, Asian, Middle Eastern, and other regional languages. Our AI is optimized specifically for e-commerce content to ensure accurate, context-aware translations.",
-    },
-    {
-      question: "What can the Sidebar Assistant do for me?",
-      answer:
-        "It offers two core modes: Chat and Translate. You can use AI Chat to find creative inspiration, write marketing emails, or modify code. You can also use Translate mode to quickly translate web content, product descriptions, or buyer reviews into multiple languages and fill them in with one click.",
-    },
-    {
-      question: "Where can I use the Sidebar Assistant?",
-      answer:
-        "As a browser extension, it can be used on any browser tab. Whether you are in the Shopify admin, on social media, or browsing news websites, just click the sidebar and the AI assistant will respond in real-time on your current page, eliminating the need to switch between windows.",
+        "We support over 90 languages, covering all major markets worldwide including European, Asian, Middle Eastern, and other regional languages. Our AI is optimized specifically for e-commerce content to ensure accurate, context-aware translations.",
     },
     {
       question: "Is there a limit on the number of Shopify stores?",
@@ -48,7 +38,7 @@ const content = {
     {
       question: "What's the difference between Free and Professional plans?",
       answer:
-        "The Free plan includes 1,000 characters per month and basic features. The Professional plan offers 100,000 characters per month, auto-translate for entire pages, AI sidebar assistant for personalized translations, and priority email support.",
+        "The Free plan includes 1,000 characters per month and basic features. The Professional plan offers 100,000 characters per month, auto-translate for entire pages, and priority email support.",
     },
   ],
   zh: [
@@ -65,17 +55,7 @@ const content = {
     {
       question: "支持多少种语言？",
       answer:
-        "我们支持 60 多种语言，覆盖全球所有主要市场，包括欧洲、亚洲、中东和其他地区语言。我们的 AI 专门针对电子商务内容进行了优化，以确保准确、符合上下文的翻译。",
-    },
-    {
-      question: "侧边栏助手能帮我做什么？",
-      answer:
-        "它提供对话与翻译两种核心模式。你可以通过 AI 对话寻求创作灵感、撰写营销邮件或修改代码；也可以使用翻译模式，快速将网页内容、商品描述或买家评价翻译成多国语言，并一键填充。",
-    },
-    {
-      question: "侧边栏助手可以在哪些地方使用？",
-      answer:
-        "作为浏览器扩展程序，它支持在任何网页标签页中使用。无论是 Shopify 后台、社交媒体，还是日常浏览的资讯网站，只需点击侧边栏，AI 助手就会在当前页面实时响应，无需频繁切换窗口。",
+        "我们支持 90 多种语言，覆盖全球所有主要市场，包括欧洲、亚洲、中东和其他地区语言。我们的 AI 专门针对电子商务内容进行了优化，以确保准确、符合上下文的翻译。",
     },
     {
       question: "Shopify 商店数量有限制吗？",
@@ -85,7 +65,7 @@ const content = {
     {
       question: "免费版和专业版有什么区别？",
       answer:
-        "免费版包含每月 1,000 个字符和基础功能。专业版提供每月 100,000 个字符、自动翻译正页、用于个性化翻译的 AI 侧边栏助手和优先邮件支持。",
+        "免费版包含每月 1,000 个字符和基础功能。专业版提供每月 100,000 个字符、自动翻译整页和优先邮件支持。",
     },
   ],
 };
@@ -95,25 +75,27 @@ const faqs: FAQItem[] = content[lang];
 
 <section class="faq-section" id="faq">
   <div class="faq-container">
-    <div class="faq-header">
-      <h2 class="faq-title">Frequently Asked Questions</h2>
-      <!-- <a href="/faq" class="faq-more">See more FAQs</a> -->
-    </div>
+    <div class="faq-panel">
+      <div class="faq-header">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        <!-- <a href="/faq" class="faq-more">See more FAQs</a> -->
+      </div>
 
-    <div class="faq-list">
-      {
-        faqs.map((faq, index) => (
-          <div class={`faq-item ${index === 0 ? "open" : ""}`} data-faq-item>
-            <button class="faq-question" data-faq-toggle>
-              <span>{faq.question}</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer">
-              <p>{faq.answer}</p>
+      <div class="faq-list">
+        {
+          faqs.map((faq, index) => (
+            <div class={`faq-item ${index === 0 ? "open" : ""}`} data-faq-item>
+              <button class="faq-question" data-faq-toggle>
+                <span>{faq.question}</span>
+                <span class="faq-icon">+</span>
+              </button>
+              <div class="faq-answer">
+                <p>{faq.answer}</p>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
@@ -121,13 +103,18 @@ const faqs: FAQItem[] = content[lang];
 <style>
   .faq-section {
     padding: var(--section-spacing) 0;
-    background-color: var(--color-background);
   }
 
   .faq-container {
     max-width: var(--page-width);
     margin: 0 auto;
     padding: 0 24px;
+  }
+
+  .faq-panel {
+    background-color: #f0f8ff;
+    border-radius: 24px;
+    padding: 40px;
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 60px;
@@ -226,8 +213,12 @@ const faqs: FAQItem[] = content[lang];
   @media (max-width: 768px) {
     .faq-container {
       padding: 0 16px;
+    }
+
+    .faq-panel {
       grid-template-columns: 1fr;
       gap: 32px;
+      padding: 28px 20px;
     }
 
     .faq-header {

@@ -1,7 +1,6 @@
 ---
 import yahaoLogo from '../assets/yahao_logo.svg';
 import { getLangFromUrl, useTranslations, getLocalizedPath, getAlternatePath, getAlternateLanguage } from '../i18n/utils';
-import { languages } from '../i18n/ui';
 
 interface Props {
   currentPage?: string;
@@ -13,7 +12,6 @@ const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const navLinks = [
-  { href: getLocalizedPath('', lang), label: t('nav.home'), id: 'home' },
   { href: getLocalizedPath('docs', lang), label: t('nav.docs'), id: 'docs' },
   { href: getLocalizedPath('blog', lang), label: t('nav.blog'), id: 'blog' },
   { 
@@ -31,9 +29,10 @@ const alternateLang = getAlternateLanguage(lang);
 const alternatePath = getAlternatePath(Astro.url.pathname, lang);
 const currentLangLabel = lang === 'en' ? 'EN' : '中文';
 const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
+const isHomePage = currentPage === 'home';
 ---
 
-<header class="header">
+<header class:list={['header', { 'header-home': isHomePage }]}>
   <div class="header-container">
     <a href={getLocalizedPath('', lang)} class="logo">
       <img src={yahaoLogo.src} alt="Yahao Translate" width="48" height="50" />
@@ -55,8 +54,6 @@ const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
     </nav>
     
     <div class="header-actions">
-      <a href="#try-free" class="btn-primary"><span class="btn-arrow">→</span><span class="btn-text">{t('btn.tryFree')}</span></a>
-      
       <div class="lang-dropdown-wrapper">
         <button class="language-selector" aria-expanded="false">
           <span>{currentLangLabel}</span>
@@ -76,7 +73,6 @@ const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
     </div>
     
     <div class="mobile-header-actions">
-      <a href="#try-free" class="btn-primary btn-mobile"><span class="btn-arrow">→</span><span class="btn-text">{t('btn.tryFree')}</span></a>
       <button class="mobile-menu-btn" aria-label="Toggle menu">
         <span class="hamburger"></span>
       </button>
@@ -120,11 +116,20 @@ const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
 
 <style>
   .header {
-    position: sticky;
+    position: static;
     top: 0;
     z-index: 105; /* Higher than mobile nav */
     background-color: var(--color-background);
     border-bottom: 1px solid #EEE;
+  }
+
+  .header-home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    border-bottom: none;
   }
   
   .header-container {
@@ -174,46 +179,6 @@ const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
     display: flex;
     align-items: center;
     gap: 20px;
-  }
-  
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 6px;
-    transition: all 0.25s ease;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .btn-primary .btn-arrow {
-    position: absolute;
-    left: 12px;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
-  }
-  
-  .btn-primary .btn-text {
-    transition: transform 0.25s ease;
-  }
-  
-  .btn-primary:hover .btn-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  
-  .btn-primary:hover .btn-text {
-    transform: translateX(10px);
-  }
-  
-  .btn-primary:hover {
-    opacity: 0.95;
   }
   
   .language-selector {
@@ -381,10 +346,6 @@ const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
     font-size: 18px;
   }
   
-  .mobile-nav-actions .btn-primary {
-    text-align: center;
-  }
-  
   .mobile-header-actions {
     display: none;
   }
@@ -406,12 +367,7 @@ const alternateLangLabel = lang === 'en' ? '中文' : 'EN';
     .mobile-header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
-    }
-    
-    .btn-mobile {
-      padding: 8px 16px;
-      font-size: 13px;
+      gap: 0;
     }
     
     .mobile-menu-btn {

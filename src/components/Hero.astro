@@ -17,9 +17,8 @@ const t = useTranslations(lang);
       </h1>
       <p class="hero-description">
         {t("hero.description")}
-        <a href="#shopify-translate-adapt" class="hero-link"
-          >{t("hero.shopifyLink")}</a
-        >{lang === "zh" ? t("hero.descriptionAfter") : ""}
+        {` ${t("hero.shopifyLink")}`}
+        {lang === "zh" ? t("hero.descriptionAfter") : ""}
       </p>
       <div class="hero-buttons">
         <a
@@ -60,35 +59,6 @@ const t = useTranslations(lang);
           </svg>
           <span class="btn-text">{t("btn.tryFree")}</span>
         </a>
-        <a href="#demo" class="hero-demo-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            ><path
-              fill="currentColor"
-              fill-opacity="0"
-              stroke="currentColor"
-              stroke-dasharray="38"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M8 6l10 6l-10 6Z"
-              ><animate
-                fill="freeze"
-                attributeName="stroke-dashoffset"
-                dur="0.5s"
-                values="38;0"></animate><animate
-                fill="freeze"
-                attributeName="fill-opacity"
-                begin="0.5s"
-                dur="0.4s"
-                to="1"></animate></path
-            ></svg
-          >
-          <span>{t("btn.watchDemo")}</span>
-        </a>
       </div>
     </div>
   </div>
@@ -96,7 +66,7 @@ const t = useTranslations(lang);
 
 <style>
   .hero {
-    padding: 80px 0;
+    padding: 156px 0 80px;
     background:
       radial-gradient(
         ellipse 80% 60% at 50% 0%,
@@ -139,7 +109,7 @@ const t = useTranslations(lang);
   .hero-title {
     font-family: var(--font-heading);
     font-size: clamp(32px, 5vw, 52px);
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1.15;
     color: var(--color-text-dark);
     max-width: 700px;
@@ -150,12 +120,6 @@ const t = useTranslations(lang);
     line-height: 1.6;
     color: var(--color-text-light);
     max-width: 560px;
-  }
-
-  .hero-link {
-    color: var(--color-text-dark);
-    text-decoration: underline;
-    text-underline-offset: 3px;
   }
 
   .hero-cta {
@@ -206,32 +170,9 @@ const t = useTranslations(lang);
     transform: translateX(12px);
   }
 
-  .hero-demo-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 24px;
-    background-color: var(--color-white);
-    color: var(--color-text-dark);
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 999px;
-    border: 1.5px solid #e0e0e0;
-    transition: all 0.2s ease;
-  }
-
-  .hero-demo-btn:hover {
-    border-color: var(--color-text-dark);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-
-  .hero-demo-btn svg {
-    flex-shrink: 0;
-  }
-
   @media (max-width: 768px) {
     .hero {
-      padding: 40px 0 var(--section-spacing);
+      padding: 120px 0 var(--section-spacing);
     }
 
     .hero-container {

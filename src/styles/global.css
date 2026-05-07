@@ -3,7 +3,7 @@
 
 :root {
   /* Colors */
-  --color-background: rgb(243, 251, 255);
+  --color-background: #ffffff;
   --color-primary: #00A0E8;
   --color-text-dark: #1a1a1a;
   --color-text-light: #666666;
@@ -45,13 +45,19 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-text-dark);
+  line-height: 1.2;
+}
+
 h3,
 h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text-dark);
   line-height: 1.2;
 }
