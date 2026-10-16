@@ -1,4 +1,5 @@
 ---
+import "../../styles/docs.css";
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -14,12 +15,24 @@ const sections = [
 ---
 
 <Layout
+    currentPage="docs"
     title="使用文档 - Yahao Translate"
     description="Yahao Translate 使用指南和文档 - 了解如何翻译您的 Shopify 商店"
     lang="zh"
 >
     <Header currentPage="docs" lang="zh" />
     <main class="docs-page">
+        <section class="docs-hero">
+            <div class="docs-hero-container">
+                <p class="docs-subtitle">使用指南</p>
+                <h1 class="docs-title">文档</h1>
+                    <p class="docs-intro">
+                        了解如何使用 Yahao Translate 通过 AI 驱动的翻译功能，
+                        结合 Shopify 的 Translate & Adapt 应用自动翻译您的商店。
+                    </p>
+
+            </div>
+        </section>
         <div class="docs-container">
             <!-- 左侧边栏：目录 -->
             <aside class="docs-sidebar">
@@ -41,13 +54,7 @@ const sections = [
 
             <!-- 主要内容 -->
             <article class="docs-content">
-                <header class="docs-header">
-                    <h1>Yahao Translate 使用文档</h1>
-                    <p class="docs-intro">
-                        了解如何使用 Yahao Translate 通过 AI 驱动的翻译功能，
-                        结合 Shopify 的 Translate & Adapt 应用自动翻译您的商店。
-                    </p>
-                </header>
+
 
                 <section id="getting-started" class="docs-section">
                     <h2>快速开始</h2>
@@ -226,260 +233,7 @@ const sections = [
     <Footer lang="zh" />
 </Layout>
 
-<style>
-    .docs-page {
-        background-color: var(--color-background);
-        min-height: 100vh;
-    }
 
-    .docs-container {
-        max-width: var(--page-width);
-        margin: 0 auto;
-        padding: 60px 24px var(--section-spacing);
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        gap: 60px;
-        align-items: start;
-    }
-
-    /* Sidebar */
-    .docs-sidebar {
-        position: sticky;
-        top: 100px;
-    }
-
-    .toc-heading {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--color-text-light);
-        margin-bottom: 16px;
-        font-weight: 600;
-    }
-
-    .toc-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        border-left: 2px solid #e0e0e0;
-    }
-
-    .toc-link {
-        display: block;
-        padding: 10px 0 10px 20px;
-        font-size: 14px;
-        color: var(--color-text-light);
-        border-left: 2px solid transparent;
-        margin-left: -2px;
-        transition: all 0.2s;
-    }
-
-    .toc-link:hover,
-    .toc-link.active {
-        color: var(--color-primary);
-        border-left-color: var(--color-primary);
-    }
-
-    /* Content */
-    .docs-content {
-        max-width: 800px;
-    }
-
-    .docs-header {
-        margin-bottom: 48px;
-        padding-bottom: 32px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .docs-header h1 {
-        font-family: "Zilla Slab", serif;
-        font-size: clamp(32px, 5vw, 42px);
-        font-weight: 500;
-        margin-bottom: 16px;
-        color: var(--color-text-dark);
-    }
-
-    .docs-intro {
-        font-size: 18px;
-        line-height: 1.7;
-        color: var(--color-text-light);
-    }
-
-    .docs-section {
-        margin-bottom: 56px;
-        scroll-margin-top: 100px;
-    }
-
-    .docs-section h2 {
-        font-family: "Zilla Slab", serif;
-        font-size: 28px;
-        font-weight: 500;
-        margin-bottom: 20px;
-        color: var(--color-text-dark);
-        padding-bottom: 12px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .docs-section h3 {
-        font-size: 20px;
-        font-weight: 600;
-        margin: 32px 0 16px;
-        color: var(--color-text-dark);
-    }
-
-    .docs-section p {
-        font-size: 16px;
-        line-height: 1.8;
-        margin-bottom: 16px;
-        color: var(--color-text-dark);
-    }
-
-    .docs-section ol,
-    .docs-section ul {
-        padding-left: 24px;
-        margin-bottom: 20px;
-    }
-
-    .docs-section li {
-        font-size: 16px;
-        line-height: 1.8;
-        margin-bottom: 8px;
-    }
-
-    .docs-section a {
-        color: var(--color-primary);
-        text-decoration: underline;
-        text-underline-offset: 3px;
-    }
-
-    .docs-section code {
-        background-color: #f0f4f8;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 14px;
-        font-family: "SF Mono", Monaco, monospace;
-    }
-
-    /* Callouts */
-    .callout {
-        padding: 20px 24px;
-        border-radius: 8px;
-        margin: 24px 0;
-    }
-
-    .callout-info {
-        background-color: #e8f4fd;
-        border-left: 4px solid var(--color-primary);
-    }
-
-    .callout-tip {
-        background-color: #e6f7ed;
-        border-left: 4px solid #10b981;
-    }
-
-    .callout ul {
-        margin-bottom: 0;
-        margin-top: 12px;
-    }
-
-    /* Table */
-    .settings-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-    }
-
-    .settings-table th,
-    .settings-table td {
-        text-align: left;
-        padding: 14px 16px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .settings-table th {
-        background-color: #f8f9fa;
-        font-weight: 600;
-        font-size: 14px;
-    }
-
-    .settings-table td {
-        font-size: 15px;
-    }
-
-    /* FAQ */
-    .faq-item {
-        margin-bottom: 28px;
-    }
-
-    .faq-item h3 {
-        margin-top: 0;
-        margin-bottom: 8px;
-    }
-
-    .faq-item p {
-        margin-bottom: 0;
-    }
-
-    /* Footer */
-    .docs-footer {
-        margin-top: 48px;
-        padding-top: 24px;
-        border-top: 1px solid #eee;
-    }
-
-    .docs-footer p {
-        color: var(--color-text-light);
-    }
-
-    /* Mobile */
-    @media (max-width: 1024px) {
-        .docs-container {
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-
-        .docs-sidebar {
-            position: static;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 24px;
-        }
-
-        .toc-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            border-left: none;
-        }
-
-        .toc-link {
-            border-left: none;
-            border: 1px solid #e0e0e0;
-            border-radius: 20px;
-            padding: 8px 16px;
-            margin-left: 0;
-        }
-
-        .toc-link:hover,
-        .toc-link.active {
-            border-color: var(--color-primary);
-            background-color: #e8f4fd;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .docs-container {
-            padding: 40px 16px;
-        }
-
-        .docs-header h1 {
-            font-size: 28px;
-        }
-
-        .docs-section h2 {
-            font-size: 24px;
-        }
-    }
-</style>
 
 <script>
     // Highlight active TOC link on scroll

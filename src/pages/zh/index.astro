@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Hero from "../../components/Hero.astro";
+import TranslationAdvantages from "../../components/TranslationAdvantages.astro";
 import ProductIntro from "../../components/ProductIntro.astro";
 import ImageWithText from "../../components/ImageWithText.astro";
 import formatting from "../../assets/preserve-formatting.webp";
@@ -22,6 +23,7 @@ const lang = "zh";
   <main>
     <Hero lang={lang} />
     <ProductIntro lang={lang} />
+    <TranslationAdvantages lang={lang} />
 
     <ImageWithText
       title="完整保留格式与布局"
@@ -48,6 +50,7 @@ const lang = "zh";
     />
 
     <FeaturesGrid lang={lang} />
+
 
     <Reviews lang={lang} />
 
