@@ -4,14 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const sections = [
-    { id: "getting-started", title: "Getting Started" },
-    { id: "installation", title: "Installation" },
-    { id: "basic-usage", title: "Basic Usage" },
-    { id: "translation-settings", title: "Translation Settings" },
-    { id: "advanced-features", title: "Advanced Features" },
-    { id: "faq", title: "FAQ" },
-];
+const sections = [{"id": "getting-started", "title": "Before you start"}, {"id": "installation", "title": "Install the extension"}, {"id": "click-translation", "title": "Translate a single field"}, {"id": "auto-translation", "title": "Auto-translate the current page"}, {"id": "translation-settings", "title": "Translation modes and settings"}, {"id": "glossary", "title": "Use your brand glossary"}, {"id": "faq", "title": "Troubleshooting and FAQ"}];
 ---
 
 <Layout
@@ -26,12 +19,7 @@ const sections = [
             <div class="docs-hero-container">
                 <p class="docs-subtitle">User Guide</p>
                 <h1 class="docs-title">DOCS</h1>
-                    <p class="docs-intro">
-                        Learn how to use Yahao Translate to automatically
-                        translate your Shopify store using AI-powered
-                        translations integrated with Shopify's Translate & Adapt
-                        app.
-                    </p>
+                    <p class="docs-intro">Learn how to install Yahao, translate individual fields or the current page, use translation modes and glossary rules, and save your results in Shopify Translate &amp; Adapt.</p>
 
             </div>
         </section>
@@ -56,204 +44,14 @@ const sections = [
 
             <!-- Main Content -->
             <article class="docs-content">
-
-
-                <section id="getting-started" class="docs-section">
-                    <h2>Getting Started</h2>
-                    <p>
-                        Yahao Translate is a browser extension that supercharges
-                        Shopify's built-in
-                        <strong>Translate & Adapt</strong> app with AI-powered translations.
-                        Instead of manually translating each product, you can translate
-                        your entire store in minutes.
-                    </p>
-                    <div class="callout callout-info">
-                        <strong>Prerequisites:</strong>
-                        <ul>
-                            <li>
-                                A Shopify store with the <a
-                                    href="https://apps.shopify.com/translate-and-adapt"
-                                    target="_blank">Translate & Adapt</a
-                                > app installed
-                            </li>
-                            <li>Google Chrome or Microsoft Edge browser</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section id="installation" class="docs-section">
-                    <h2>Installation</h2>
-                    <h3>Step 1: Install the Extension</h3>
-                    <ol>
-                        <li>
-                            Visit the <a href="#">Chrome Web Store</a> (or Edge Add-ons)
-                        </li>
-                        <li>Search for "Yahao Translate"</li>
-                        <li>Click <strong>Add to Chrome</strong></li>
-                        <li>
-                            Confirm by clicking <strong>Add extension</strong>
-                        </li>
-                    </ol>
-
-                    <h3>Step 2: Pin the Extension (Optional)</h3>
-                    <p>
-                        For quick access, click the puzzle icon in your browser
-                        toolbar and pin Yahao Translate.
-                    </p>
-                </section>
-
-                <section id="basic-usage" class="docs-section">
-                    <h2>Basic Usage</h2>
-                    <h3>Translating Your Store</h3>
-                    <ol>
-                        <li>
-                            <strong>Open Translate & Adapt:</strong> In your Shopify
-                            admin, go to
-                            <code>Settings → Languages → Translate & Adapt</code
-                            >
-                        </li>
-                        <li>
-                            <strong>Select a Language:</strong> Choose the target
-                            language you want to translate to
-                        </li>
-                        <li>
-                            <strong>Click the Translate Button:</strong> Yahao Translate
-                            will automatically detect the page and show a floating
-                            translate button
-                        </li>
-                        <li>
-                            <strong>Wait for Completion:</strong> The AI will translate
-                            all visible content. Progress is shown in real-time
-                        </li>
-                    </ol>
-
-                    <div class="callout callout-tip">
-                        <strong>Tip:</strong> You can translate one resource type
-                        at a time (products, collections, pages, etc.) for better
-                        organization.
-                    </div>
-                </section>
-
-                <section id="translation-settings" class="docs-section">
-                    <h2>Translation Settings</h2>
-                    <p>
-                        Click the Yahao Translate icon in your toolbar to access
-                        settings:
-                    </p>
-                    <table class="settings-table">
-                        <thead>
-                            <tr>
-                                <th>Setting</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>AI Model</strong></td>
-                                <td
-                                    >Choose between different AI providers
-                                    (GPT-4, Claude, etc.)</td
-                                >
-                            </tr>
-                            <tr>
-                                <td><strong>Translation Style</strong></td>
-                                <td>Formal, Casual, or E-commerce optimized</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Auto-save</strong></td>
-                                <td
-                                    >Automatically save translations after
-                                    completion</td
-                                >
-                            </tr>
-                            <tr>
-                                <td><strong>Batch Size</strong></td>
-                                <td>Number of items to translate at once</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section id="advanced-features" class="docs-section">
-                    <h2>Advanced Features</h2>
-
-                    <h3>Glossary / Term Lock</h3>
-                    <p>
-                        Keep certain terms untranslated (brand names, technical
-                        terms):
-                    </p>
-                    <ol>
-                        <li>Open extension settings</li>
-                        <li>Go to <strong>Glossary</strong> tab</li>
-                        <li>Add terms you want to preserve</li>
-                    </ol>
-
-                    <h3>Bulk Translation</h3>
-                    <p>
-                        Translate multiple pages or entire resource types at
-                        once. Navigate to a listing page (e.g., Products list)
-                        and click the bulk translate option.
-                    </p>
-
-                    <h3>Translation Memory</h3>
-                    <p>
-                        Previously translated phrases are remembered for
-                        consistency. This ensures your product descriptions
-                        maintain a uniform voice across your store.
-                    </p>
-                </section>
-
-                <section id="faq" class="docs-section">
-                    <h2>Frequently Asked Questions</h2>
-
-                    <div class="faq-item">
-                        <h3>How much does it cost?</h3>
-                        <p>
-                            Yahao Translate offers a free tier with limited
-                            translations per month. Premium plans provide
-                            unlimited translations and additional features.
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>Which languages are supported?</h3>
-                        <p>
-                            We support all languages available in Shopify's
-                            Translate & Adapt app, including Chinese, Spanish,
-                            French, German, Japanese, Korean, and 50+ more.
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>
-                            Can I edit translations after they're generated?
-                        </h3>
-                        <p>
-                            Yes! All translations are saved in Shopify's
-                            Translate & Adapt app where you can review and edit
-                            them at any time.
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>Is my data secure?</h3>
-                        <p>
-                            We only access translation content within the
-                            Translate & Adapt interface. No store data is stored
-                            on our servers. See our <a href="/privacy"
-                                >Privacy Policy</a
-                            > for details.
-                        </p>
-                    </div>
-                </section>
-
-                <footer class="docs-footer">
-                    <p>
-                        Still have questions? <a href="/contact"
-                            >Contact our support team</a
-                        >.
-                    </p>
-                </footer>
+<section id="getting-started" class="docs-section"><h2>Before you start</h2><p>Yahao Translate is a Chrome / Edge extension that adds AI translation to Shopify’s official Translate &amp; Adapt app. You continue to review, edit and save translations in Shopify.</p><div class="callout callout-info"><strong>You will need:</strong><ul><li>Desktop Google Chrome or Microsoft Edge.</li><li>Access to a Shopify admin account with permission to edit store content.</li><li><a href="https://apps.shopify.com/translate-and-adapt" target="_blank" rel="noopener noreferrer">Translate &amp; Adapt</a> installed and your target language added to the store.</li></ul></div><p>You can try translation with the guest allowance without signing in to Yahao. You still need to sign in to Shopify to access the store admin.</p></section>
+<section id="installation" class="docs-section"><h2>Install the extension</h2><ol><li>Find Yahao Translate in the Chrome Web Store or Edge Add-ons, choose Add to Chrome or Get, and confirm installation.</li><li>Optionally pin Yahao Translate in your browser’s extensions menu for easy access to its sidebar and settings.</li><li>If Shopify was already open, refresh the admin page so the extension can load.</li><li>Open Translate &amp; Adapt from your Shopify admin’s apps, select a target language and open a product, page or another resource to translate.</li></ol><p>On the side-by-side translation editor, you will see <strong>Translate</strong> beside supported fields and <strong>AI Auto-translate</strong> at the top of the page.</p></section>
+<section id="click-translation" class="docs-section"><h2>Translate a single field</h2><ol><li>Confirm the target language selected in Translate &amp; Adapt.</li><li>Find the field you want to translate and check its source text.</li><li>Click <strong>Translate</strong> beside that field and wait for the result to appear in its translation input.</li><li>Review the wording, formatting and brand terms. Edit the result directly in Shopify if needed.</li><li>Use Shopify’s <strong>Save</strong> button to save your changes.</li></ol><div class="callout callout-tip"><strong>Retranslating:</strong> A single-field translation fills the current field and may replace existing text. Copy any wording you want to keep before proceeding.</div></section>
+<section id="auto-translation" class="docs-section"><h2>Auto-translate the current page</h2><ol><li>Open a resource’s translation editor and select your target language.</li><li>If needed, choose a translation mode using the selector beside <strong>AI Auto-translate</strong>.</li><li>Click <strong>AI Auto-translate</strong> to process the translatable fields detected on the current page.</li><li>Follow the progress notification. Use its cancel button if you want to stop.</li><li>Review the results, retry failed fields individually if needed, then click Shopify’s <strong>Save</strong>.</li></ol><div class="callout callout-info"><strong>Scope:</strong> Auto-translate skips translation fields that already contain text, as well as some system fields. It does not navigate through your entire store or open the next resource. Open each resource to continue.</div><p>After cancelling, you can still review and save results already filled in. Translating multiple fields in a batch does not mean the whole page uses only one translation credit.</p></section>
+<section id="translation-settings" class="docs-section"><h2>Translation modes and settings</h2><p>Open the extension sidebar and go to Settings. You can also change modes using the selector at the top of the Shopify translation page.</p><table class="settings-table"><thead><tr><th>Setting</th><th>What it does</th></tr></thead><tbody><tr><td>Fast</td><td>Available to guests and Free accounts for everyday translation.</td></tr><tr><td>Balanced / Accurate</td><td>Advanced Pro modes for choosing a balance of speed and quality.</td></tr><tr><td>Tone</td><td>Choose formal, informal or automatic tone. Fast mode may not apply tone preferences.</td></tr><tr><td>Industry domain</td><td>Choose the industry context for your content.</td></tr><tr><td>Hide native auto-translate</td><td>Hide Shopify’s own auto-translate button to distinguish it from Yahao’s AI Auto-translate.</td></tr><tr><td>Translate URL handles</td><td>Control translation of URL handles / slugs. Leave this off unless you have reviewed your link and SEO requirements.</td></tr></tbody></table><p>Yahao selects the underlying models for these modes. You do not need to configure GPT, Claude or your own API key.</p></section>
+<section id="glossary" class="docs-section"><h2>Use your brand glossary</h2><p>Use the glossary to specify consistent translations for brand names, products and recurring terms, or to keep a term unchanged. The glossary workflow described here is for signed-in Pro users.</p><ol><li>Open the sidebar settings, find <strong>Glossary</strong> and choose <strong>Manage</strong>.</li><li>Enter the source term and preferred translation. Leave the translation blank to keep the original term.</li><li>Select a target language or all languages, then click <strong>Add</strong>.</li><li>Translate a relevant field in Translate &amp; Adapt and check the terminology.</li></ol><p>Pro supports up to 500 terms. Adding a rule does not rewrite saved translations. Retranslate the relevant fields and save if you want to apply a new rule.</p></section>
+<section id="faq" class="docs-section"><h2>Troubleshooting and FAQ</h2><div class="faq-item"><h3>Why can’t I see the Translate buttons?</h3><p>Check that the extension is enabled in desktop Chrome / Edge and that you have opened a specific resource’s translation editor in Translate &amp; Adapt. Refresh Shopify after installing or updating the extension. Buttons do not appear on every Shopify page.</p></div><div class="faq-item"><h3>Why were some fields skipped?</h3><p>Fields may be skipped when they already have a translation, have no available source text, use an unsupported editor or contain system data. To replace an existing translation, use its individual Translate button and keep a copy of any text you need first.</p></div><div class="faq-item"><h3>What if a translation fails or my allowance runs out?</h3><p>Read the notification and check your connection and remaining usage. Retry failed fields later if the service is busy. Guests can sign in to use an account allowance. Check your plan and usage in the sidebar, and upgrade if you need more.</p></div><div class="faq-item"><h3>How do Free and Pro differ?</h3><p>Free accounts include 150 translations / chats per month with Fast mode, without advanced models or glossary. Pro includes 10,000 per month, Balanced / Accurate modes, up to 500 glossary terms and priority email support. <a href="/#pricing">View current plans</a>.</p></div><div class="faq-item"><h3>Will translations immediately appear on my storefront?</h3><p>Review and save them in Translate &amp; Adapt first. Storefront availability also depends on your Shopify language publishing and market settings. Yahao does not publish languages for you.</p></div><div class="faq-item"><h3>How is translation data handled?</h3><p>Relevant text is sent to the translation service to generate results. Usage records do not store submitted translation text; account details, usage and saved glossary entries are processed as needed for the service. See our <a href="/privacy">Privacy Policy</a>.</p></div></section>
+<footer class="docs-footer"><p>Need help? <a href="/contact">Contact our support team</a>.</p></footer>
             </article>
         </div>
     </main>

@@ -4,14 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
-const sections = [
-    { id: "getting-started", title: "快速开始" },
-    { id: "installation", title: "安装扩展" },
-    { id: "basic-usage", title: "基本使用" },
-    { id: "translation-settings", title: "翻译设置" },
-    { id: "advanced-features", title: "高级功能" },
-    { id: "faq", title: "常见问题" },
-];
+const sections = [{"id": "getting-started", "title": "开始之前"}, {"id": "installation", "title": "安装扩展"}, {"id": "click-translation", "title": "点击翻译单个字段"}, {"id": "auto-translation", "title": "自动翻译当前页面"}, {"id": "translation-settings", "title": "翻译模式与设置"}, {"id": "glossary", "title": "使用品牌词库"}, {"id": "faq", "title": "常见问题"}];
 ---
 
 <Layout
@@ -26,10 +19,7 @@ const sections = [
             <div class="docs-hero-container">
                 <p class="docs-subtitle">使用指南</p>
                 <h1 class="docs-title">文档</h1>
-                    <p class="docs-intro">
-                        了解如何使用 Yahao Translate 通过 AI 驱动的翻译功能，
-                        结合 Shopify 的 Translate & Adapt 应用自动翻译您的商店。
-                    </p>
+                    <p class="docs-intro">从安装到保存译文，了解如何在 Shopify Translate &amp; Adapt 中使用点击翻译、自动翻译、翻译模式和品牌词库。</p>
 
             </div>
         </section>
@@ -54,179 +44,14 @@ const sections = [
 
             <!-- 主要内容 -->
             <article class="docs-content">
-
-
-                <section id="getting-started" class="docs-section">
-                    <h2>快速开始</h2>
-                    <p>
-                        Yahao Translate 是一款浏览器扩展，为 Shopify 内置的
-                        <strong>Translate & Adapt</strong> 应用增加 AI 驱动的翻译功能。
-                        无需手动逐个翻译产品，您可以在几分钟内翻译整个商店。
-                    </p>
-                    <div class="callout callout-info">
-                        <strong>前提条件：</strong>
-                        <ul>
-                            <li>
-                                已安装 <a
-                                    href="https://apps.shopify.com/translate-and-adapt"
-                                    target="_blank">Translate & Adapt</a
-                                > 应用的 Shopify 商店
-                            </li>
-                            <li>Google Chrome 或 Microsoft Edge 浏览器</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section id="installation" class="docs-section">
-                    <h2>安装扩展</h2>
-                    <h3>步骤 1：安装扩展</h3>
-                    <ol>
-                        <li>
-                            访问 <a href="#">Chrome 网上应用店</a>（或 Edge
-                            外接程序）
-                        </li>
-                        <li>搜索 "Yahao Translate"</li>
-                        <li>点击 <strong>添加至 Chrome</strong></li>
-                        <li>点击 <strong>添加扩展程序</strong> 确认</li>
-                    </ol>
-
-                    <h3>步骤 2：固定扩展（可选）</h3>
-                    <p>
-                        为了方便访问，点击浏览器工具栏中的拼图图标，将 Yahao
-                        Translate 固定到工具栏。
-                    </p>
-                </section>
-
-                <section id="basic-usage" class="docs-section">
-                    <h2>基本使用</h2>
-                    <h3>翻译您的商店</h3>
-                    <ol>
-                        <li>
-                            <strong>打开 Translate & Adapt：</strong>在 Shopify
-                            后台，进入
-                            <code>设置 → 语言 → Translate & Adapt</code>
-                        </li>
-                        <li>
-                            <strong>选择语言：</strong>选择您要翻译到的目标语言
-                        </li>
-                        <li>
-                            <strong>点击翻译按钮：</strong>Yahao Translate
-                            会自动检测页面并显示悬浮翻译按钮
-                        </li>
-                        <li>
-                            <strong>等待完成：</strong>AI
-                            将翻译所有可见内容，进度实时显示
-                        </li>
-                    </ol>
-
-                    <div class="callout callout-tip">
-                        <strong>提示：</strong
-                        >您可以每次翻译一种资源类型（产品、系列、页面等），
-                        以便更好地组织和管理翻译内容。
-                    </div>
-                </section>
-
-                <section id="translation-settings" class="docs-section">
-                    <h2>翻译设置</h2>
-                    <p>点击工具栏中的 Yahao Translate 图标访问设置：</p>
-                    <table class="settings-table">
-                        <thead>
-                            <tr>
-                                <th>设置项</th>
-                                <th>说明</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>AI 模型</strong></td>
-                                <td>选择不同的 AI 提供商（GPT-4、Claude 等）</td
-                                >
-                            </tr>
-                            <tr>
-                                <td><strong>翻译风格</strong></td>
-                                <td>正式、轻松或电商优化风格</td>
-                            </tr>
-                            <tr>
-                                <td><strong>自动保存</strong></td>
-                                <td>翻译完成后自动保存</td>
-                            </tr>
-                            <tr>
-                                <td><strong>批量大小</strong></td>
-                                <td>每次翻译的项目数量</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section id="advanced-features" class="docs-section">
-                    <h2>高级功能</h2>
-
-                    <h3>术语锁定 / 词汇表</h3>
-                    <p>保持某些术语不被翻译（品牌名称、专业术语）：</p>
-                    <ol>
-                        <li>打开扩展设置</li>
-                        <li>进入 <strong>词汇表</strong> 选项卡</li>
-                        <li>添加您想要保留的术语</li>
-                    </ol>
-
-                    <h3>批量翻译</h3>
-                    <p>
-                        一次翻译多个页面或整个资源类型。导航到列表页面（如产品列表），
-                        然后点击批量翻译选项。
-                    </p>
-
-                    <h3>翻译记忆</h3>
-                    <p>
-                        之前翻译过的短语会被记住以保持一致性。这确保您的产品描述
-                        在整个商店中保持统一的语气。
-                    </p>
-                </section>
-
-                <section id="faq" class="docs-section">
-                    <h2>常见问题</h2>
-
-                    <div class="faq-item">
-                        <h3>费用是多少？</h3>
-                        <p>
-                            Yahao Translate 提供免费层级，每月有限制的翻译次数。
-                            高级计划提供无限翻译和额外功能。
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>支持哪些语言？</h3>
-                        <p>
-                            我们支持 Shopify Translate & Adapt
-                            应用中所有可用的语言，
-                            包括中文、西班牙语、法语、德语、日语、韩语等 50
-                            多种语言。
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>生成后可以编辑翻译吗？</h3>
-                        <p>
-                            可以！所有翻译都保存在 Shopify 的 Translate & Adapt
-                            应用中， 您可以随时查看和编辑。
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>我的数据安全吗？</h3>
-                        <p>
-                            我们只在 Translate & Adapt 界面中访问翻译内容。
-                            不会在我们的服务器上存储任何商店数据。详情请参阅我们的<a
-                                href="/zh/privacy">隐私政策</a
-                            >。
-                        </p>
-                    </div>
-                </section>
-
-                <footer class="docs-footer">
-                    <p>
-                        还有疑问？<a href="/zh/contact">联系我们的支持团队</a>。
-                    </p>
-                </footer>
+<section id="getting-started" class="docs-section"><h2>开始之前</h2><p>Yahao Translate 是 Chrome / Edge 浏览器扩展，直接为 Shopify 官方的 Translate &amp; Adapt 添加 AI 翻译功能。你仍在 Shopify 后台检查、编辑和保存译文。</p><div class="callout callout-info"><strong>准备好以下条件：</strong><ul><li>使用桌面版 Google Chrome 或 Microsoft Edge。</li><li>拥有可编辑商店内容的 Shopify 后台访问权限。</li><li>商店已安装 <a href="https://apps.shopify.com/translate-and-adapt" target="_blank" rel="noopener noreferrer">Translate &amp; Adapt</a>，并已添加需要翻译的目标语言。</li></ul></div><p>无需先登录 Yahao 账号即可使用游客额度。Shopify 后台仍需要登录；游客模式不代表可以在未登录的商店中翻译。</p></section>
+<section id="installation" class="docs-section"><h2>安装扩展</h2><ol><li>在 Chrome 网上应用店或 Edge 外接程序商店找到 Yahao Translate，点击“添加至 Chrome”或“获取”，确认安装。</li><li>可在浏览器工具栏的扩展菜单中固定 Yahao Translate，方便打开侧边栏和设置。</li><li>如果安装前已经打开 Shopify，请刷新对应的后台页面，让扩展加载。</li><li>从 Shopify 后台的应用入口打开 Translate &amp; Adapt，选择目标语言，再打开一个产品、页面或其他待翻译资源。</li></ol><p>进入原文和译文并排显示的编辑页面后，支持的字段旁会出现 <strong>Translate</strong> 按钮，页面顶部会出现 <strong>AI Auto-translate</strong> 按钮。</p></section>
+<section id="click-translation" class="docs-section"><h2>点击翻译单个字段</h2><ol><li>确认 Translate &amp; Adapt 当前选择的是你需要的目标语言。</li><li>找到需要翻译的字段，检查左侧原文。</li><li>点击该字段旁的 <strong>Translate</strong>，等待结果填入对应的译文输入框。</li><li>检查译文、格式和专有名词，按需直接在 Shopify 中修改。</li><li>确认内容后，使用 Shopify 页面上的 <strong>Save（保存）</strong> 按钮保存更改。</li></ol><div class="callout callout-tip"><strong>重新翻译：</strong>单字段翻译会将结果填入当前字段，可能替换已有译文。需要保留的内容请先复制备份。</div></section>
+<section id="auto-translation" class="docs-section"><h2>自动翻译当前页面</h2><ol><li>打开具体资源的翻译编辑页，选择目标语言。</li><li>如需更改翻译模式，可使用 <strong>AI Auto-translate</strong> 旁的模式选择器。</li><li>点击 <strong>AI Auto-translate</strong>，扩展会处理当前页面检测到的可翻译字段。</li><li>查看进度提示。需要停止时，点击进度提示中的取消按钮。</li><li>完成后检查结果，必要时单独重试失败的字段，再点击 Shopify 的 <strong>Save（保存）</strong>。</li></ol><div class="callout callout-info"><strong>范围说明：</strong>自动翻译会跳过已有内容的译文字段，也会跳过部分系统字段。它不会自动遍历整个店铺或打开下一项资源；请进入下一项后继续操作。</div><p>取消后，已填入的译文仍可检查和保存。自动翻译包含多个字段，不代表整页只消耗一次翻译额度。</p></section>
+<section id="translation-settings" class="docs-section"><h2>翻译模式与设置</h2><p>打开扩展侧边栏，进入设置。页面顶部的模式选择器也可以切换翻译模式。</p><table class="settings-table"><thead><tr><th>设置</th><th>用途</th></tr></thead><tbody><tr><td>Fast（快速）</td><td>游客和免费版可用，适合日常快速翻译。</td></tr><tr><td>Balanced / Accurate（均衡 / 精准）</td><td>Pro 高级模式，可按内容需求选择速度与质量。</td></tr><tr><td>Tone（语气）</td><td>设置正式、非正式或自动语气。快速模式可能不采用语气要求。</td></tr><tr><td>Industry domain（行业）</td><td>选择内容所属行业，帮助翻译理解上下文。</td></tr><tr><td>Hide native auto-translate</td><td>隐藏 Shopify 自带的自动翻译按钮，便于区分 Yahao 的 AI Auto-translate。</td></tr><tr><td>Translate URL handles</td><td>控制是否翻译 URL handle / slug。默认建议保持关闭，修改前应确认链接和 SEO 需求。</td></tr></tbody></table><p>这些模式由 Yahao 自动选择对应模型，无需自行配置 GPT、Claude 等服务或 API Key。</p></section>
+<section id="glossary" class="docs-section"><h2>使用品牌词库</h2><p>词库用于为品牌名、产品名和常用术语指定统一译法，或指定保留原文。此教程中的词库功能面向已登录的 Pro 用户。</p><ol><li>打开侧边栏设置，找到 <strong>Glossary（词库）</strong>，点击 <strong>Manage（管理）</strong>。</li><li>输入原词和希望使用的译文；如需保留原词，将译文留空。</li><li>选择规则适用的目标语言，或选择所有语言，然后点击 <strong>Add（添加）</strong>。</li><li>回到 Translate &amp; Adapt 翻译相关字段，检查术语是否符合预期。</li></ol><p>Pro 最多可保存 500 个词条。添加规则不会自动修改已经保存的译文；如需应用新规则，请重新翻译对应字段并保存。</p></section>
+<section id="faq" class="docs-section"><h2>常见问题</h2><div class="faq-item"><h3>为什么没有看到 Translate 按钮？</h3><p>确认扩展已启用，使用的是桌面 Chrome / Edge，并已进入 Translate &amp; Adapt 的具体资源翻译页。安装或更新扩展后请刷新 Shopify 页面；扩展不会在所有 Shopify 页面都显示翻译按钮。</p></div><div class="faq-item"><h3>为什么自动翻译跳过了某些字段？</h3><p>已有译文、无可用原文、不支持的编辑器或部分系统字段可能被跳过。如需替换已有译文，可使用对应字段旁的 Translate，并在操作前保留需要的原稿。</p></div><div class="faq-item"><h3>翻译失败或额度不足怎么办？</h3><p>先查看提示，检查网络和可用额度。服务繁忙时可稍后重试失败字段。游客可登录账号使用账号额度；登录后可在侧边栏查看套餐与用量，需要更高额度时再升级。</p></div><div class="faq-item"><h3>免费版和 Pro 有什么区别？</h3><p>免费账号每月 150 次翻译 / 聊天，仅支持快速模式，不含高级模型和词库。Pro 每月 10,000 次，并提供均衡 / 精准模式、最多 500 个词条和优先邮件支持。<a href="/zh/#pricing">查看当前套餐</a>。</p></div><div class="faq-item"><h3>翻译后会直接在店铺前台显示吗？</h3><p>先在 Translate &amp; Adapt 检查并保存；前台是否展示还取决于 Shopify 的语言发布和市场设置。Yahao 不会替你发布语言。</p></div><div class="faq-item"><h3>翻译数据如何处理？</h3><p>相关文本会发送到翻译服务以生成译文，使用记录不保存提交的翻译文本；账号、用量和已保存的词库会按功能需要处理。详见<a href="/zh/privacy">隐私政策</a>。</p></div></section>
+<footer class="docs-footer"><p>还有疑问？<a href="/zh/contact">联系我们的支持团队</a>。</p></footer>
             </article>
         </div>
     </main>
