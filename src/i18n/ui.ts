@@ -86,8 +86,8 @@ export const ui = {
         // Hero
         'hero.title': '无缝 AI 翻译',
         'hero.connector': '适用于',
-        'hero.free': '零成本开始使用',
-        'hero.stores': '一个账号，不限店铺',
+        'hero.free': '免费使用',
+        'hero.stores': '不限店铺',
         'hero.imageAlt': 'Yahao Translate 在 Shopify Translate & Adapt 中自动将内容翻译为德语',
         'hero.description': '浏览器扩展，为',
         'hero.shopifyLink': 'Shopify 的 Translate & Adapt',
