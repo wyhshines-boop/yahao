@@ -75,14 +75,14 @@ const isHomePage = currentPage === 'home';
     </div>
     
     <div class="mobile-header-actions">
-      <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-navigation">
         <span class="hamburger"></span>
       </button>
     </div>
   </div>
   
   <!-- Mobile Navigation -->
-  <div class="mobile-nav">
+  <div class="mobile-nav" id="mobile-navigation">
     <ul class="mobile-nav-list">
       {navLinks.map((link) => (
         <li class="mobile-nav-item">
@@ -423,15 +423,28 @@ const isHomePage = currentPage === 'home';
   const langSelectors = document.querySelectorAll('.language-selector');
 
   if (mobileMenuBtn && mobileNav) {
+    let previousOverflow = body.style.overflow;
+    function setMenuOpen(open: boolean) {
+      if (open && !mobileNav!.classList.contains('open')) previousOverflow = body.style.overflow;
+      mobileMenuBtn!.classList.toggle('open', open);
+      mobileMenuBtn!.setAttribute('aria-expanded', String(open));
+      mobileNav!.classList.toggle('open', open);
+      body.style.overflow = open ? 'hidden' : previousOverflow;
+    }
     mobileMenuBtn.addEventListener('click', () => {
-      mobileMenuBtn.classList.toggle('open');
-      mobileNav.classList.toggle('open'); // Fixed: changed 'active' to 'open' to match CSS
-      
-      if (mobileNav.classList.contains('open')) { // Fixed: check for 'open'
-        body.style.overflow = 'hidden';
-      } else {
-        body.style.overflow = '';
+      setMenuOpen(!mobileNav.classList.contains('open'));
+    });
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMenuOpen(false));
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileNav.classList.contains('open')) {
+        setMenuOpen(false);
+        (mobileMenuBtn as HTMLButtonElement).focus();
       }
+    });
+    window.matchMedia('(max-width: 768px)').addEventListener('change', (event) => {
+      if (!event.matches && mobileNav.classList.contains('open')) setMenuOpen(false);
     });
   }
 
