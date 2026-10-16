@@ -1,4 +1,5 @@
 ---
+import BrowserDownload from "./BrowserDownload.astro";
 import col1 from "../assets/col1.png";
 import col2 from "../assets/col2.png";
 import col3 from "../assets/col3.png";
@@ -67,11 +68,7 @@ const columns = content[lang];
   <div class="features-container">
     <div class="features-header">
       <h2 class="features-title">{t("features.title")}</h2>
-      <a href="#try-free" class="features-cta"
-        ><span class="btn-arrow">→</span><span class="btn-text"
-          >{t("btn.tryFree")}</span
-        ></a
-      >
+      <BrowserDownload lang={lang} id="features" />
     </div>
 
     <div class="features-columns">
@@ -101,7 +98,7 @@ const columns = content[lang];
   }
 
   .features-container {
-    max-width: var(--page-width);
+    max-width: calc(var(--page-width) + 48px);
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -123,51 +120,6 @@ const columns = content[lang];
     max-width: 500px;
   }
 
-  .features-cta {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 28px;
-    background-color: transparent;
-    color: var(--color-text-dark);
-    font-size: 15px;
-    font-weight: 500;
-    border: 1.5px solid var(--color-text-dark);
-    border-radius: 6px;
-    transition: all 0.25s ease;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .features-cta .btn-arrow {
-    position: absolute;
-    left: 16px;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition:
-      opacity 0.25s ease,
-      transform 0.25s ease;
-  }
-
-  .features-cta .btn-text {
-    transition: transform 0.25s ease;
-  }
-
-  .features-cta:hover .btn-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .features-cta:hover .btn-text {
-    transform: translateX(10px);
-  }
-
-  .features-cta:hover {
-    background-color: var(--color-text-dark);
-    color: var(--color-white);
-  }
-
   .features-columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -183,6 +135,7 @@ const columns = content[lang];
   .feature-image {
     width: 100%;
     aspect-ratio: 4 / 3;
+    border-radius: 16px;
     overflow: hidden;
   }
 
@@ -223,9 +176,6 @@ const columns = content[lang];
       max-width: 100%;
     }
 
-    .features-cta {
-      align-self: flex-start;
-    }
 
     .features-columns {
       grid-template-columns: 1fr;

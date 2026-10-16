@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import Button from '../../components/Button.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const lang = 'zh';
@@ -28,8 +29,8 @@ const t = useTranslations(lang);
               </svg>
             </div>
             <h2 class="contact-label">{t('contact.emailLabel')}</h2>
-            <a href="mailto:support@yahaotranslate.com" class="contact-value">support@yahaotranslate.com</a>
             <p class="contact-description">{t('contact.emailDesc')}</p>
+            <div class="contact-action"><Button href="mailto:support@yahaotranslate.com" variant="outline">support@yahaotranslate.com</Button></div>
           </div>
           
           <div class="contact-item">
@@ -39,8 +40,8 @@ const t = useTranslations(lang);
               </svg>
             </div>
             <h2 class="contact-label">{t('contact.whatsappLabel')}</h2>
-            <a href="https://wa.me/8617633975260" target="_blank" rel="noopener" class="contact-value">+86 176 3397 5260</a>
             <p class="contact-description">{t('contact.whatsappDesc')}</p>
+            <div class="contact-action"><Button href="https://wa.me/8617633975260" target="_blank">通过 WhatsApp 联系</Button></div>
           </div>
         </div>
       </div>
@@ -83,12 +84,15 @@ const t = useTranslations(lang);
   
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 48px;
-    max-width: 800px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 960px;
   }
   
   .contact-item {
+    padding: 32px;
+    border: 1px solid #e1e4e7;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -110,17 +114,9 @@ const t = useTranslations(lang);
     color: var(--color-text-dark);
   }
   
-  .contact-value {
-    font-size: 18px;
-    color: var(--color-text-dark);
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-  
-  .contact-value:hover {
-    color: var(--color-primary);
-  }
-  
+  .contact-action { margin-top: auto; padding-top: 12px; }
+  .contact-action :global(.btn) { max-width: 100%; overflow-wrap: anywhere; text-align: center; }
+
   .contact-description {
     font-size: 14px;
     color: var(--color-text-light);
@@ -142,15 +138,14 @@ const t = useTranslations(lang);
     
     .contact-grid {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 20px;
     }
     
     .contact-label {
       font-size: 20px;
     }
     
-    .contact-value {
-      font-size: 16px;
-    }
+    .contact-item { padding: 24px; }
+    .contact-action :global(.btn) { padding: 12px 18px; font-size: 14px; }
   }
 </style>

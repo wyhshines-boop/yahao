@@ -2,7 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import ProductIntro from "../components/ProductIntro.astro";
 import ImageWithText from "../components/ImageWithText.astro";
+import formatting from "../assets/preserve-formatting.webp";
+import speed from "../assets/fast-translation.webp";
+import controls from "../assets/translation-controls.webp";
 import FeaturesGrid from "../components/FeaturesGrid.astro";
 import Reviews from "../components/Reviews.astro";
 import Pricing from "../components/Pricing.astro";
@@ -15,22 +19,31 @@ import Footer from "../components/Footer.astro";
 	<Header currentPage="home" />
 	<main>
 		<Hero />
+    <ProductIntro />
 
-		<ImageWithText
-			title="Accurately Translate Any Field Instantly"
-			description="AI translate button next to every text field - click to translate that specific content."
-			mediaType="video"
-			mediaSrc="/videos/button.mp4"
-			layout="left"
-		/>
+    <ImageWithText
+      title="Preserve All Formatting & Layout"
+      description="Keep bold, links, colors, tables, and images 100% intact"
+      image={formatting}
+      mediaAlt="English and German content with the same bold text, links, colors, table, and product image"
+      layout="left"
+    />
 
-		<ImageWithText
-			title="Translate Entire Pages with One Click"
-			description="Auto-translate button intelligently detects all text items on the page and translates everything at once."
-			mediaType="video"
-			mediaSrc="/videos/onclick.mp4"
-			layout="right"
-		/>
+    <ImageWithText
+      title="Lightning-Fast & Accurate Translation"
+      description="Powered by a specialized e-commerce AI model"
+      image={speed}
+      mediaAlt="Completed auto-translation with 90+ languages and Fast, Balanced, and Accurate modes"
+      layout="right"
+    />
+
+    <ImageWithText
+      title="Full Control at Your Fingertips"
+      description="Custom glossaries, brand tone & settings"
+      image={controls}
+      mediaAlt="Yahao Translate glossary, brand tone, translation mode, and industry settings"
+      layout="left"
+    />
 
 		<FeaturesGrid />
 

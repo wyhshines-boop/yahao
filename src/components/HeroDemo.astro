@@ -1,0 +1,210 @@
+---
+interface Props { lang: 'en' | 'zh'; }
+const { lang } = Astro.props;
+const copy = {
+  en: { pause: 'Pause demo', play: 'Play demo', auto: 'Auto-translate', click: 'Click to translate', tabs: 'Translation demo', fullscreen: 'Enter fullscreen', exitFullscreen: 'Exit fullscreen', fallback: 'Your browser does not support embedded video.' },
+  zh: { pause: '暂停演示', play: '播放演示', auto: '自动翻译', click: '点击翻译', tabs: '翻译演示', fullscreen: '全屏展示', exitFullscreen: '退出全屏', fallback: '您的浏览器不支持播放此视频。' },
+}[lang];
+---
+<div class="hero-demo" data-hero-demo>
+  <div role="tabpanel" id="hero-demo-panel" aria-labelledby="hero-demo-auto" class="demo-panel">
+    <video
+      class="demo-video"
+      src="/videos/hero-auto.mp4"
+      poster="/videos/hero-auto-poster.jpg"
+      width="1578"
+      height="1080"
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-label={copy.auto}
+    >{copy.fallback}</video>
+  </div>
+  <div class="demo-controls">
+  <div class="demo-actions">
+    <button type="button" class="demo-fullscreen demo-playback" aria-label={copy.play} data-play-label={copy.play} data-pause-label={copy.pause}>
+      <svg class="pause-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z" /></svg>
+      <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 11 7-11 7z" /></svg>
+    </button>
+  <button type="button" class="demo-fullscreen" aria-label={copy.fullscreen} data-enter-label={copy.fullscreen} data-exit-label={copy.exitFullscreen}>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path class="expand-icon" d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+    </svg>
+  </button>
+  </div>
+  <div class="demo-tabs" role="tablist" aria-label={copy.tabs}>
+    <button type="button" role="tab" id="hero-demo-auto" aria-selected="true" aria-controls="hero-demo-panel" tabindex="0" data-video-src="/videos/hero-auto.mp4" data-video-poster="/videos/hero-auto-poster.jpg">{copy.auto}</button>
+    <button type="button" role="tab" id="hero-demo-click" aria-selected="false" aria-controls="hero-demo-panel" tabindex="-1" data-video-src="/videos/hero-click.mp4" data-video-poster="/videos/hero-click-poster.jpg">{copy.click}</button>
+  </div>
+  </div>
+</div>
+
+<style>
+  .hero-demo {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+
+  }
+  .demo-panel { aspect-ratio: 1578 / 1080; overflow: hidden; border: 1px solid #e3e8ed; border-radius: 16px; background: #fff; }
+  .demo-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 16px; }
+  .demo-actions { display: flex; align-items: center; gap: 8px; }
+  .pause-icon { display: none; }
+  .demo-playback[data-playing="true"] .pause-icon { display: block; }
+  .demo-playback[data-playing="true"] .play-icon { display: none; }
+  .demo-video { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .demo-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border: 1px solid #dce3e8;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fff, #eef1f4);
+    box-shadow: inset 0 1px 0 #fff, 0 3px 9px rgba(24,40,56,.14);
+  }
+  .demo-tabs button {
+    min-height: 38px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(205,214,222,.7);
+    background: linear-gradient(180deg, #fff, #f2f4f6);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(24,40,56,.08);
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: color 180ms, box-shadow 180ms, transform 180ms;
+  }
+  .demo-tabs button[aria-selected="true"] {
+    background: linear-gradient(180deg, #43b4ff, #32a8ff 48%, #239bef);
+    border-color: #279eea;
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(0,87,160,.15), 0 2px 4px rgba(24,137,218,.22);
+  }
+  .demo-tabs button:hover { filter: brightness(1.03); }
+  .demo-tabs button:active { transform: translateY(1px); box-shadow: inset 0 1px 3px rgba(24,40,56,.16); }
+  .demo-fullscreen {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #dce3e8;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #fff 20%, #edf1f4);
+    box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(24,40,56,.06), 0 3px 8px rgba(24,40,56,.16);
+    color: #333;
+    transition: box-shadow 180ms, transform 180ms;
+  }
+  .demo-fullscreen:hover { box-shadow: inset 0 1px 0 #fff, 0 4px 10px rgba(24,40,56,.2); }
+  .demo-fullscreen:active { transform: translateY(1px); box-shadow: inset 0 1px 3px rgba(24,40,56,.18); }
+  .demo-video:fullscreen { width: 100%; height: 100%; object-fit: contain; background: #000; }
+  .demo-tabs button:focus-visible, .demo-fullscreen:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+  @media (max-width: 768px) {
+    .demo-panel { border-radius: 10px; }
+    .demo-controls { margin-top: 12px; gap: 8px; }
+    .demo-tabs { padding: 3px; gap: 2px; }
+    .demo-tabs button { min-height: 30px; padding: 6px 10px; font-size: 12px; }
+    .demo-fullscreen { width: 32px; height: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .demo-tabs button, .demo-fullscreen { transition: none; } }
+</style>
+
+<script>
+  function setupHeroDemo() {
+    document.querySelectorAll<HTMLElement>('[data-hero-demo]').forEach((demo) => {
+      if (demo.dataset.initialized) return;
+      demo.dataset.initialized = 'true';
+      const video = demo.querySelector<HTMLVideoElement>('video');
+      const panel = demo.querySelector<HTMLElement>('[role="tabpanel"]');
+      const fullscreen = demo.querySelector<HTMLButtonElement>('.demo-fullscreen:not(.demo-playback)');
+      const playback = demo.querySelector<HTMLButtonElement>('.demo-playback');
+      const tabs = Array.from(demo.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+      if (!video || !panel || !fullscreen || !playback) return;
+      const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let userPaused = motion.matches;
+      let inView = true;
+
+      function play() {
+        if (userPaused || !inView || document.hidden) return;
+        video?.play().catch(() => {});
+      }
+      function syncPlayback() {
+        playback!.dataset.playing = String(!video!.paused);
+        playback!.setAttribute('aria-label', (video!.paused ? playback!.dataset.playLabel : playback!.dataset.pauseLabel)!);
+      }
+      video.addEventListener('play', syncPlayback);
+      video.addEventListener('pause', syncPlayback);
+      playback.addEventListener('click', () => {
+        userPaused = !video.paused;
+        if (userPaused) video.pause();
+        else video.play().catch(syncPlayback);
+      });
+      syncPlayback();
+      video.muted = true;
+      let nativeFullscreen = false;
+      const nativeVideo = video as HTMLVideoElement & { webkitEnterFullscreen?: () => void };
+      fullscreen.addEventListener('click', async () => {
+        video.controls = true;
+        try {
+          if (video.requestFullscreen) await video.requestFullscreen();
+          else if (nativeVideo.webkitEnterFullscreen) nativeVideo.webkitEnterFullscreen();
+        } catch {
+          // Keep native controls available when the embedded browser blocks fullscreen.
+        }
+      });
+      document.addEventListener('fullscreenchange', () => {
+        nativeFullscreen = document.fullscreenElement === video;
+        video.controls = nativeFullscreen;
+      });
+      video.addEventListener('webkitbeginfullscreen', () => { nativeFullscreen = true; video.controls = true; });
+      video.addEventListener('webkitendfullscreen', () => { nativeFullscreen = false; video.controls = false; });
+
+      function selectTab(tab: HTMLButtonElement) {
+        if (!video || !panel || tab.getAttribute('aria-selected') === 'true') return;
+        tabs.forEach((item) => {
+          const selected = item === tab;
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+        panel.setAttribute('aria-labelledby', tab.id);
+        video.pause();
+        video.poster = tab.dataset.videoPoster || '';
+        video.src = tab.dataset.videoSrc || '';
+        video.setAttribute('aria-label', tab.textContent?.trim() || '');
+        video.load();
+        play();
+      }
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+          else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabs.length - 1;
+          else return;
+          event.preventDefault();
+          tabs[next].focus();
+          selectTab(tabs[next]);
+        });
+      });
+      const observer = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        if (inView) play();
+        else if (!nativeFullscreen) video.pause();
+      });
+      observer.observe(demo);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) video.pause();
+        else play();
+      });
+      motion.addEventListener('change', (event) => {
+        if (event.matches) { userPaused = true; video.pause(); }
+      });
+      play();
+    });
+  }
+  setupHeroDemo();
+  document.addEventListener('astro:page-load', setupHeroDemo);
+</script>

@@ -13,7 +13,6 @@ export const ui = {
         'nav.pricing': 'Pricing',
         'nav.blog': 'Blog',
         'nav.docs': 'Document',
-        'nav.about': 'About',
         'nav.contact': 'Contact',
 
         // Buttons
@@ -24,7 +23,11 @@ export const ui = {
         'btn.backToBlog': '← Back to Blog',
 
         // Hero
-        'hero.title': 'Translate Your Shopify Store 5x Faster',
+        'hero.title': 'Seamless AI Translation',
+        'hero.connector': 'for',
+        'hero.free': '100% Free to Start',
+        'hero.stores': '1 Account, Unlimited Stores',
+        'hero.imageAlt': 'Yahao Translate automatically translating Shopify Translate & Adapt content into German',
         'hero.description': 'Browser extension that adds instant AI translation to',
         'hero.shopifyLink': "Shopify's Translate & Adapt",
         'hero.descriptionAfter': '.',
@@ -36,7 +39,7 @@ export const ui = {
         'reviews.title': 'What Our Users Say',
 
         // Pricing
-        'pricing.title': 'Simple, Transparent Pricing',
+        'pricing.title': 'Choose Your Plan',
         'pricing.subtitle': 'Choose the plan that works for you',
 
         // FAQ
@@ -71,7 +74,6 @@ export const ui = {
         'nav.pricing': '价格',
         'nav.blog': '博客',
         'nav.docs': '文档',
-        'nav.about': '关于',
         'nav.contact': '联系我们',
 
         // Buttons
@@ -82,7 +84,11 @@ export const ui = {
         'btn.backToBlog': '← 返回博客',
 
         // Hero
-        'hero.title': '让您的 Shopify 商店翻译速度提升 5 倍',
+        'hero.title': '无缝 AI 翻译',
+        'hero.connector': '适用于',
+        'hero.free': '零成本开始使用',
+        'hero.stores': '一个账号，不限店铺',
+        'hero.imageAlt': 'Yahao Translate 在 Shopify Translate & Adapt 中自动将内容翻译为德语',
         'hero.description': '浏览器扩展，为',
         'hero.shopifyLink': 'Shopify 的 Translate & Adapt',
         'hero.descriptionAfter': ' 添加即时 AI 翻译功能',
@@ -94,7 +100,7 @@ export const ui = {
         'reviews.title': '用户评价',
 
         // Pricing
-        'pricing.title': '简单透明的定价',
+        'pricing.title': '选择你的计划',
         'pricing.subtitle': '选择适合您的计划',
 
         // FAQ

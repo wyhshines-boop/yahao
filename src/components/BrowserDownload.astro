@@ -1,0 +1,158 @@
+---
+import { downloadLinks } from "../config/downloads";
+import chromeIcon from "../assets/chrome-color.svg";
+import edgeIcon from "../assets/edge-color.svg";
+interface Props { lang: "en" | "zh"; id: string; variant?: "blue" | "white"; }
+const { lang, id, variant = "blue" } = Astro.props;
+const optionsId = `${id}-browser-options`;
+const downloadUrl = downloadLinks.chrome || downloadLinks.edge;
+const DownloadTag = downloadUrl ? "a" : "button";
+---
+<div class:list={["hero-downloads", { "download-white": variant === "white" }]} data-download-group>
+        <DownloadTag
+          class="download-button download-primary"
+          data-browser-download
+          data-chrome-url={downloadLinks.chrome}
+          data-edge-url={downloadLinks.edge}
+          href={downloadUrl || undefined}
+          target={downloadUrl ? "_blank" : undefined}
+          rel={downloadUrl ? "noopener noreferrer" : undefined}
+          type={downloadUrl ? undefined : "button"}
+          disabled={!downloadUrl}
+        >
+          <img data-download-icon src={chromeIcon.src} data-chrome-icon={chromeIcon.src} data-edge-icon={edgeIcon.src} width="24" height="24" alt="" />
+          <span data-download-label>{lang === "en" ? "Add to Chrome — It's Free" : "添加至 Chrome — 免费使用"}</span>
+        </DownloadTag>
+        <button class="download-toggle" type="button" aria-expanded="false" aria-controls={optionsId} aria-label={lang === "zh" ? "其他浏览器" : "Other browsers"}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <div class="download-options" id={optionsId} hidden>
+          <DownloadTag class="download-alternative" data-alternative-download href={downloadLinks.edge || undefined} target={downloadUrl ? "_blank" : undefined} rel={downloadUrl ? "noopener noreferrer" : undefined} type={downloadUrl ? undefined : "button"} disabled={!downloadUrl}>
+            <img data-alternative-icon src={edgeIcon.src} width="24" height="24" alt="" />
+            <span data-alternative-label>{lang === "zh" ? "添加至 Edge" : "Add to Edge"}</span>
+          </DownloadTag>
+        </div>
+      </div>
+<style>
+  .hero-downloads {
+    position: relative;
+    display: inline-flex;
+    align-items: stretch;
+    flex-shrink: 0;
+    max-width: 100%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #43b4ff 0%, #32a8ff 48%, #239bef 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(0,95,174,.18), 0 3px 7px rgba(24,137,218,.16);
+  }
+  .download-button, .download-toggle { background: transparent; color: #fff; border: none; min-height: 50px; transition: background-color 0.2s; }
+  .download-white {
+    background: linear-gradient(180deg, #fff 0%, #fcfdfe 48%, #eef2f5 100%);
+    box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(24,40,56,.08), 0 3px 7px rgba(0,75,135,.18);
+  }
+  .download-white .download-button, .download-white .download-toggle { color: #202830; }
+  .download-white .download-toggle { border-left-color: #dce3e8; }
+  .download-white .download-toggle:hover, .download-white a.download-button:hover { background: rgba(24,40,56,.05); }
+  .download-white .download-toggle:active, .download-white a.download-button:active { background: rgba(24,40,56,.1); }
+  .download-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 24px; border-radius: 999px 0 0 999px; font-size: 16px; font-weight: 600; }
+  .download-button img, .download-alternative img { flex-shrink: 0; }
+  .download-toggle { display: grid; place-items: center; width: 48px; flex-shrink: 0; padding: 0; border-left: 1px solid rgba(255,255,255,.4); border-radius: 0 999px 999px 0; cursor: pointer; }
+  .download-toggle svg { transition: transform .2s; }
+  .download-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .download-toggle:hover, a.download-button:hover { background: rgba(0,100,180,.1); }
+  .download-toggle:active, a.download-button:active { background: rgba(0,80,150,.18); }
+  .download-button:disabled, .download-alternative:disabled { cursor: default; }
+  .hero-downloads :focus-visible { outline: 2px solid #0089c8; outline-offset: 3px; }
+  .download-options {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 10;
+    min-width: 190px;
+    max-width: 100%;
+    border-radius: 999px;
+    transform-origin: top right;
+    animation: download-appear 200ms cubic-bezier(.2,.8,.2,1) both;
+  }
+  .download-options[hidden] { display: none; }
+  .download-alternative {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 24px;
+    border: 1px solid #dce3e8;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fff 0%, #fcfdfe 48%, #eef2f5 100%);
+    color: #202830;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(24,40,56,.06), 0 3px 7px rgba(24,40,56,.12);
+    transition: box-shadow .2s;
+  }
+  a.download-alternative:hover { box-shadow: inset 0 1px 0 #fff, 0 4px 10px rgba(24,40,56,.18); }
+  a.download-alternative:active { box-shadow: inset 0 1px 3px rgba(24,40,56,.15); }
+  @keyframes download-appear {
+    from { opacity: 0; transform: translateY(-6px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .download-toggle svg, .download-alternative { transition: none; }
+    .download-options { animation: none; }
+  }
+
+  @media (max-width: 768px) {
+    .download-button { padding: 12px 16px; font-size: 14px; gap: 8px; }
+    .download-toggle { width: 40px; }
+    .download-alternative { padding: 12px 16px; font-size: 14px; gap: 8px; }
+  }
+</style>
+<script>
+  function setupBrowserDownload() {
+    document.querySelectorAll<HTMLElement>("[data-download-group]").forEach((group) => {
+    if (group.dataset.initialized) return;
+    group.dataset.initialized = "true";
+    const button = group.querySelector<HTMLAnchorElement | HTMLButtonElement>("[data-browser-download]")!;
+    const alternate = group.querySelector<HTMLAnchorElement | HTMLButtonElement>("[data-alternative-download]")!;
+    const icon = group.querySelector<HTMLImageElement>("[data-download-icon]")!;
+    const alternateIcon = group.querySelector<HTMLImageElement>("[data-alternative-icon]")!;
+    const toggle = group.querySelector<HTMLButtonElement>(".download-toggle")!;
+    const options = group.querySelector<HTMLElement>(".download-options")!;
+    const isEdge = /Edg(?:e|A|iOS)?\//.test(navigator.userAgent);
+    const browser = isEdge ? "Edge" : "Chrome";
+    const other = isEdge ? "Chrome" : "Edge";
+    const zh = document.documentElement.lang === "zh";
+    group.querySelector("[data-download-label]")!.textContent = zh ? `添加至 ${browser} — 免费使用` : `Add to ${browser} — It's Free`;
+    group.querySelector("[data-alternative-label]")!.textContent = zh ? `添加至 ${other}` : `Add to ${other}`;
+    icon.src = (isEdge ? icon.dataset.edgeIcon : icon.dataset.chromeIcon)!;
+    alternateIcon.src = (isEdge ? icon.dataset.chromeIcon : icon.dataset.edgeIcon)!;
+    function setLink(element: HTMLAnchorElement | HTMLButtonElement, url: string | undefined) {
+      if (element instanceof HTMLAnchorElement) {
+        if (url) element.href = url;
+        else element.removeAttribute("href");
+        element.setAttribute("aria-disabled", String(!url));
+      } else element.disabled = !url;
+    }
+    setLink(button, isEdge ? button.dataset.edgeUrl : button.dataset.chromeUrl);
+    setLink(alternate, isEdge ? button.dataset.chromeUrl : button.dataset.edgeUrl);
+    function close() { options.hidden = true; toggle.setAttribute("aria-expanded", "false"); }
+    toggle.addEventListener("click", () => {
+      options.hidden = !options.hidden;
+      toggle.setAttribute("aria-expanded", String(!options.hidden));
+    });
+    group.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") { close(); toggle.focus(); }
+    });
+    group.addEventListener("focusout", (event) => {
+      if (!group.contains(event.relatedTarget as Node | null)) close();
+    });
+    document.addEventListener("click", (event) => {
+      if (!group.contains(event.target as Node)) close();
+    });
+    });
+  }
+  setupBrowserDownload();
+  document.addEventListener("astro:page-load", setupBrowserDownload);
+</script>

@@ -1,5 +1,6 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Button from "./Button.astro";
+import { getLangFromUrl, getLocalizedPath, useTranslations } from "../i18n/utils";
 
 interface Props {
   lang?: "en" | "zh";
@@ -7,328 +8,327 @@ interface Props {
 
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
-interface PlanFeature {
-  text: string;
-}
-
-interface Plan {
-  name: string;
-  price: string;
-  priceNote?: string;
-  buttonText: string;
-  buttonStyle: "outline" | "filled";
-  features: PlanFeature[];
-}
-
-const content = {
-  en: [
-    {
-      name: "Starter",
-      price: "Free",
-      buttonText: "Select Plan",
-      buttonStyle: "outline",
-      features: [
-        { text: "150 Translations / Chats monthly" },
-        { text: "90+ languages supported" },
-        { text: "Unlimited Shopify stores" },
-        { text: "Auto-translate entire pages" },
-        { text: "Basic email support" },
-      ],
-    },
-    {
-      name: "Professional",
-      price: "$69 / year",
-      priceNote:
-        "Only $5.75 per month, more affordable than most Shopify app subscriptions",
-      buttonText: "Select Plan",
-      buttonStyle: "filled",
-      features: [
-        { text: "10000 Translations / Chats monthly" },
-        { text: "90+ languages supported" },
-        { text: "Unlimited Shopify stores" },
-        { text: "Auto-translate entire pages" },
-        { text: "Priority email support" },
-      ],
-    },
-  ],
-  zh: [
-    {
-      name: "入门版",
-      price: "免费",
-      buttonText: "选择计划",
-      buttonStyle: "outline",
-      features: [
-        { text: "每月 150 次翻译/聊天" },
-        { text: "支持 90 多种语言" },
-        { text: "支持无限个 Shopify 商店" },
-        { text: "自动翻译整页" },
-        { text: "基础邮件支持" },
-      ],
-    },
-    {
-      name: "专业版",
-      price: "$69 / 年",
-      priceNote: "只需 $5.75 / 月，比大多数 Shopify 应用订阅更实惠",
-      buttonText: "选择计划",
-      buttonStyle: "filled",
-      features: [
-        { text: "每月 10000 次翻译/聊天" },
-        { text: "支持 90 多种语言" },
-        { text: "支持无限个 Shopify 商店" },
-        { text: "自动翻译整页" },
-        { text: "优先邮件支持" },
-      ],
-    },
-  ],
-};
-
-const plans: Plan[] = content[lang] as Plan[];
+const copy = {
+  en: {
+    subtitle: "One account. Unlimited Shopify stores.",
+    billing: "Billing period",
+    yearly: "Yearly",
+    monthly: "Monthly",
+    savings: "Save 47%",
+    year: "/ year",
+    month: "/ month",
+    annualNote: "Equivalent to $6.58/month, billed yearly.",
+    monthlyNote: "Billed monthly.",
+    recommended: "Recommended",
+    free: "Free",
+    custom: "Custom",
+    contact: "Contact Us",
+    starter: "Starter",
+    pro: "Pro",
+    enterprise: "Enterprise",
+    starterNote: "Fast mode only. No advanced models or glossary.",
+    enterpriseNote: "A plan for stores with higher translation needs.",
+    starterFeatures: ["150 translations / chats per month", "90+ languages supported", "Unlimited Shopify stores", "Auto-translate entire pages", "Basic email support"],
+    proFeatures: ["10,000 translations / chats per month", "90+ languages supported", "Unlimited Shopify stores", "Auto-translate entire pages", "Advanced models: Balanced & Accurate", "Custom glossary: up to 500 terms", "Priority email support"],
+    enterpriseFeatures: ["Higher translation volume", "90+ languages supported", "Unlimited Shopify stores", "Auto-translate entire pages", "Contact us for a tailored plan"],
+  },
+  zh: {
+    subtitle: "一个账号，不限 Shopify 店铺。",
+    billing: "付费周期",
+    yearly: "年付",
+    monthly: "月付",
+    savings: "省 47%",
+    year: "/ 年",
+    month: "/ 月",
+    annualNote: "折合每月 $6.58，按年付费。",
+    monthlyNote: "按月付费。",
+    recommended: "推荐",
+    free: "免费",
+    custom: "定制报价",
+    contact: "联系我们",
+    starter: "入门版",
+    pro: "专业版",
+    enterprise: "企业版",
+    starterNote: "仅支持快速模式，不含高级模型和词库。",
+    enterpriseNote: "满足更高用量的店铺翻译需求。",
+    starterFeatures: ["每月 150 次翻译 / 聊天", "支持 90 多种语言", "不限 Shopify 店铺", "自动翻译整页", "基础邮件支持"],
+    proFeatures: ["每月 10,000 次翻译 / 聊天", "支持 90 多种语言", "不限 Shopify 店铺", "自动翻译整页", "高级模型：均衡与精准模式", "自定义词库：最多 500 个词条", "优先邮件支持"],
+    enterpriseFeatures: ["更高翻译用量", "支持 90 多种语言", "不限 Shopify 店铺", "自动翻译整页", "联系我们定制用量方案"],
+  },
+}[lang];
+const plans = [
+  { id: "starter", name: copy.starter, price: copy.free, note: copy.starterNote, features: copy.starterFeatures },
+  { id: "pro", name: copy.pro, price: "$79", note: copy.annualNote, features: copy.proFeatures },
+];
 ---
 
 <section class="pricing-section" id="pricing">
   <div class="pricing-container">
     <div class="pricing-header">
       <h2 class="pricing-title">{t("pricing.title")}</h2>
-      <p class="pricing-subtitle">
-        {t("pricing.subtitle")}<br />
-        {
-          lang === "en"
-            ? "All plans include unlimited Shopify stores."
-            : "所有计划均包含对无限个 Shopify 商店的支持。"
-        }
-      </p>
+
     </div>
 
-    <div class="pricing-plans">
-      {
-        plans.map((plan) => (
-          <div class="plan-card">
-            <div class="plan-info">
-              <h3 class="plan-name">{plan.name}</h3>
-              <p class="plan-price">{plan.price}</p>
-              {plan.priceNote && <p class="plan-note">{plan.priceNote}</p>}
-            </div>
-
-            <a
-              href="#select-plan"
-              class={`plan-button ${plan.buttonStyle === "filled" ? "filled" : "outline"}`}
-            >
-              <span class="btn-content">
-                <span class="btn-arrow">→</span>
-                <span class="btn-text">{plan.buttonText}</span>
-              </span>
-            </a>
-
-            <ul class="plan-features">
-              {plan.features.map((feature) => (
-                <li class="feature-item">
-                  <span class="feature-bullet">•</span>
-                  {feature.text}
-                </li>
-              ))}
-            </ul>
+    <div class="pricing-plans" id="pricing-plans">
+      {plans.map((plan) => (
+        <article class:list={["plan-card", { "plan-pro": plan.id === "pro" }]}>
+          <div class="plan-heading">
+            <h3 class="plan-name">{plan.name}</h3>
+            {plan.id === "pro" && (
+      <div class="billing-switch" data-period="yearly" role="group" aria-label={copy.billing}>
+        <button type="button" data-billing="yearly" aria-pressed="true" aria-controls="pricing-plans">
+          {copy.yearly}
+        </button>
+        <button type="button" data-billing="monthly" aria-pressed="false" aria-controls="pricing-plans">{copy.monthly}</button>
+      </div>
+            )}
           </div>
-        ))
-      }
+          <div class="plan-info" aria-live={plan.id === "pro" ? "polite" : undefined} aria-atomic={plan.id === "pro" ? "true" : undefined}>
+            {plan.id === "pro" ? (
+              <>
+                <div data-price-period="yearly">
+                  <p class="plan-price">$79<span>{copy.year}</span></p>
+                  <p class="plan-note">{copy.annualNote}</p>
+                </div>
+                <div data-price-period="monthly" hidden>
+                  <p class="plan-price">$12.5<span>{copy.month}</span></p>
+                  <p class="plan-note">{copy.monthlyNote}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <p class="plan-price">{plan.price}</p>
+                <p class="plan-note">{plan.note}</p>
+              </>
+            )}
+          </div>
+          <Button
+            href="#select-plan"
+            variant={plan.id === "pro" ? "primary" : "outline"}
+            class="plan-button"
+          >
+            {plan.id === "pro" ? (lang === "en" ? "Unlock Pro" : "解锁专业版") : t("btn.selectPlan")}
+          </Button>
+          <div class="plan-included">
+            <h4>{lang === "en" ? `Included with ${plan.name}` : `${plan.name}包含`}</h4>
+          <ul class="plan-features">
+            {plan.features.map((feature) => (
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          </div>
+        </article>
+      ))}
     </div>
+    <p class="enterprise-note">
+      {lang === "en" ? "Need higher usage? " : "需要更高用量？"}
+      <a href={getLocalizedPath("contact", lang)}>{lang === "en" ? "Contact us for an enterprise plan." : "联系我们定制企业方案。"}</a>
+    </p>
   </div>
 </section>
 
 <style>
   .pricing-section {
-    padding: var(--section-spacing) 0;
-    background-color: #ffffff;
+    padding: 88px 0 32px;
+    scroll-margin-top: 32px;
   }
 
   .pricing-container {
-    max-width: var(--page-width);
+    max-width: calc(var(--page-width) + 48px);
     margin: 0 auto;
     padding: 0 24px;
   }
 
   .pricing-header {
-    margin-bottom: 48px;
+    text-align: center;
+    margin-bottom: 40px;
   }
 
   .pricing-title {
-    font-family: var(--font-heading);
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 400;
-    color: var(--color-text-dark);
-    margin-bottom: 16px;
-  }
-
-  .pricing-subtitle {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--color-text-dark);
-    margin: 0;
-  }
-
-  .pricing-plans {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
-
-  .plan-card {
-    padding: 32px 40px;
-    border-left: 1px solid #d5d5d5;
-  }
-
-  .plan-card:last-child {
-    border-right: 1px solid #d5d5d5;
-  }
-
-  .plan-info {
-    min-height: 120px;
-    margin-bottom: 24px;
-  }
-
-  .plan-name {
-    font-family: var(--font-heading);
-    font-size: 32px;
-    font-weight: 400;
-    color: var(--color-text-dark);
-    margin: 0 0 8px;
-  }
-
-  .plan-price {
-    font-size: 24px;
-    font-weight: 400;
-    color: var(--color-text-dark);
-    margin: 0;
-  }
-
-  .plan-note {
-    font-size: 13px;
-    line-height: 1.4;
-    color: #666666;
-    margin: 8px 0 0;
-    max-width: 280px;
-  }
-
-  .plan-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 280px;
-    padding: 14px 24px;
-    font-size: 15px;
+    font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
     font-weight: 500;
-    text-align: center;
-    border-radius: 6px;
-    transition: all 0.25s ease;
-    margin-bottom: 32px;
-  }
-
-  .plan-button .btn-content {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .plan-button .btn-arrow {
-    display: inline-block;
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition:
-      width 0.25s ease,
-      opacity 0.25s ease,
-      margin 0.25s ease;
-    margin-right: 0;
-  }
-
-  .plan-button .btn-text {
-    transition: transform 0.25s ease;
-  }
-
-  .plan-button:hover .btn-arrow {
-    width: 18px;
-    opacity: 1;
-    margin-right: 4px;
-  }
-
-  .plan-button.outline {
-    background-color: transparent;
-    color: var(--color-text-dark);
-    border: 1.5px solid var(--color-text-dark);
-  }
-
-  .plan-button.outline:hover {
-    background-color: var(--color-text-dark);
-    color: #ffffff;
-  }
-
-  .plan-button.filled {
-    background-color: var(--color-primary);
-    color: #ffffff;
-    border: none;
-  }
-
-  .plan-button.filled:hover {
-    opacity: 0.95;
-  }
-
-  .plan-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .feature-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 15px;
-    line-height: 1.5;
-    color: var(--color-text-dark);
+    letter-spacing: -0.025em;
     margin-bottom: 12px;
   }
 
-  .feature-bullet {
-    flex-shrink: 0;
+  .pricing-subtitle { color: #69737d; font-size: 16px; }
+
+  .pricing-plans {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 24px;
+  }
+
+  .plan-card {
+    padding: 28px;
+    border: 1.5px solid #dce3e8;
+    border-radius: 16px;
+    background: white;
+  }
+
+  .plan-pro { border: none; background: #f2f9ff; padding: 29.5px; }
+
+  .plan-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 42px;
+    margin-bottom: 22px;
+  }
+
+  .plan-name {
+    font-family: var(--font-body);
+    font-size: 26px;
     font-weight: 600;
+    color: #222b33;
+  }
+
+  .billing-switch {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-shrink: 0;
+    padding: 4px;
+    background: #f1f3f4;
+    border-radius: 999px;
+  }
+
+  .billing-switch::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc((100% - 8px) / 2);
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .billing-switch[data-period="monthly"]::before { transform: translateX(100%); }
+
+  .billing-switch button {
+    position: relative;
+    z-index: 1;
+    transition: color 180ms ease;
+    padding: 7px 13px;
+    border-radius: 999px;
+    min-height: 34px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .billing-switch button[aria-pressed="true"] {
+    color: #171717;
+  }
+
+  .plan-info { min-height: 112px; }
+  [data-price-period][hidden] { display: none; }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    color: #222b33;
+    font-size: 44px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  .plan-price span { color: #63707c; font-size: 17px; font-weight: 400; letter-spacing: 0; }
+  .custom-price { font-size: 36px; min-height: 55px; }
+  .plan-note { margin-top: 12px; color: #69737d; font-size: 13px; line-height: 1.6; }
+
+  :global(.plan-button) { width: 100%; }
+  :global(.plan-button:focus-visible),
+  .billing-switch button:focus-visible { outline: 2px solid #0089c8; outline-offset: 3px; }
+
+  .plan-included { border-top: 1px solid #dce3e8; margin-top: 28px; padding-top: 24px; }
+  .plan-included h4 { font-family: var(--font-body); font-size: 16px; font-weight: 600; color: #444; margin-bottom: 22px; }
+  .plan-features { display: grid; gap: 18px; }
+  .plan-features li { display: flex; align-items: flex-start; gap: 12px; color: #444; font-size: 15px; line-height: 1.6; }
+  .plan-features svg { flex-shrink: 0; margin-top: 2px; }
+
+  .enterprise-note { margin: 28px 0 0; text-align: center; font-size: 15px; line-height: 1.6; color: #555; }
+  .enterprise-note a { color: var(--color-text-dark); text-decoration: underline; text-underline-offset: 4px; }
+  .enterprise-note a:hover { color: var(--color-primary); }
+
+  @media (max-width: 1100px) and (min-width: 769px) {
+    .pricing-plans { gap: 16px; }
+    .plan-card { padding: 22px; }
+    .plan-pro { padding: 23.5px; }
+    .plan-heading { flex-wrap: wrap; min-height: 92px; align-content: flex-start; }
   }
 
   @media (max-width: 768px) {
-    .pricing-container {
-      padding: 0 16px;
-    }
-
-    .pricing-header {
-      margin-bottom: 32px;
-    }
-
-    .pricing-plans {
-      grid-template-columns: 1fr;
-    }
-
-    .plan-card {
-      padding: 24px 0;
-      border-left: none;
-      border-top: 1px solid #d5d5d5;
-    }
-
-    .plan-card:last-child {
-      border-right: none;
-      border-bottom: 1px solid #d5d5d5;
-    }
-
-    .plan-name {
-      font-size: 26px;
-    }
-
-    .plan-price {
-      font-size: 20px;
-    }
-
-    .plan-button {
-      max-width: 100%;
-    }
+    .pricing-section { padding: 56px 0 20px; }
+    .pricing-container { padding: 0 16px; }
+    .pricing-plans { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .plan-card { padding: 24px; }
+    .plan-pro { padding: 25.5px; }
+    .plan-name { font-size: 24px; }
+    .billing-switch button { padding: 7px 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .billing-switch::before, .billing-switch button { transition: none; }
   }
 </style>
+
+<script>
+  function setupBillingSwitch() {
+    document.querySelectorAll<HTMLElement>(".pricing-section").forEach((section) => {
+      if (section.dataset.billingInitialized) return;
+      section.dataset.billingInitialized = "true";
+      const buttons = section.querySelectorAll<HTMLButtonElement>("[data-billing]");
+      const prices = Array.from(section.querySelectorAll<HTMLElement>("[data-price-period]"));
+      const control = section.querySelector<HTMLElement>(".billing-switch");
+      let revision = 0;
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", async () => {
+          if (button.getAttribute("aria-pressed") === "true") return;
+          const currentRevision = ++revision;
+          const period = button.dataset.billing;
+          const next = prices.find((price) => price.dataset.pricePeriod === period);
+          if (!next) return;
+          buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+          if (control) control.dataset.period = period;
+          prices.forEach((price) => price.getAnimations().forEach((animation) => animation.cancel()));
+          const current = prices.find((price) => !price.hidden);
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+          if (current && current !== next && !reducedMotion) {
+            await current.animate(
+              [{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(-6px)" }],
+              { duration: 110, easing: "ease-in", fill: "forwards" },
+            ).finished.catch(() => {});
+          }
+          if (currentRevision !== revision) return;
+          prices.forEach((price) => {
+            price.getAnimations().forEach((animation) => animation.cancel());
+            price.hidden = price !== next;
+          });
+          if (!reducedMotion) {
+            next.animate(
+              [{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }],
+              { duration: 200, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+            );
+          }
+        });
+      });
+    });
+  }
+  setupBillingSwitch();
+  document.addEventListener("astro:page-load", setupBillingSwitch);
+</script>

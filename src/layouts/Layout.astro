@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import { getLangFromUrl, getAlternatePath } from "../i18n/utils";
 import { SEO } from "astro-seo";
-import AnnouncementBar from "../components/AnnouncementBar.astro";
 
 interface Props {
   title?: string;
@@ -42,6 +41,19 @@ const absoluteImageUrl = new URL(image, Astro.url.origin).href;
 <!doctype html>
 <html lang={currentLang}>
   <head>
+    <script is:inline data-language-redirect>
+      (() => {
+        const preferredLanguage = navigator.languages?.[0] || navigator.language || "en";
+        if (!/^zh(?:-|$)/i.test(preferredLanguage)) return;
+        const destination = new URL(window.location.href);
+        const path = destination.pathname;
+        // Only localize routes with a Chinese counterpart; respect explicit /zh/ URLs.
+        const hasChinesePage = path === "/" || /^\/(?:docs|contact|privacy|terms|refund|blog)(?:\/|$)/.test(path);
+        if (!hasChinesePage) return;
+        destination.pathname = `/zh${path}`;
+        window.location.replace(destination.href);
+      })();
+    </script>
     <SEO
       charset="UTF-8"
       title={title}
@@ -117,7 +129,6 @@ const absoluteImageUrl = new URL(image, Astro.url.origin).href;
       src="https://yahao-translate.kit.com/63da439e3f/index.js"></script>
   </head>
   <body>
-    <AnnouncementBar lang={currentLang} />
     <div class="page-wrapper">
       <slot />
     </div>

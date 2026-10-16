@@ -1,0 +1,36 @@
+---
+import introIcon from '../assets/product-intro-icon.svg';
+import { getLangFromUrl } from '../i18n/utils';
+interface Props { lang?: 'en' | 'zh'; }
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
+const copy = {
+  en: {
+    title: 'What is Yahao Translate?',
+    description: "An AI-powered Chrome extension built specifically for Shopify's Translate & Adapt app. Batch-translate your entire store in one click while keeping 100% of your formatting, tables, metafields, and brand glossaries intact.",
+  },
+  zh: {
+    title: 'Yahao Translate 是什么？',
+    description: '专为 Shopify Translate & Adapt 应用打造的 AI Chrome 扩展。一键批量翻译整个店铺，同时 100% 完整保留内容格式、表格、元字段和品牌词库。',
+  },
+}[lang];
+---
+<section class="product-intro">
+  <div class="intro-content">
+    <img class="intro-icon" src={introIcon.src} width="48" height="48" alt="" />
+    <h2>{copy.title}</h2>
+    <p>{copy.description}</p>
+  </div>
+</section>
+<style>
+  .product-intro { padding: 24px 24px 64px; }
+  .intro-content { max-width: var(--page-width); margin: 0 auto; padding: 48px; text-align: center; background: #f7f8f9; border-radius: 20px; }
+  .intro-content p { max-width: 820px; margin: 0 auto; }
+  .intro-icon { width: 48px; height: 48px; margin: 0 auto 20px; }
+  h2 { font-size: clamp(1.75rem, 1.25rem + 1.5vw, 2.25rem); font-weight: 500; letter-spacing: -0.025em; margin-bottom: 20px; }
+  p { font-size: 18px; line-height: 1.8; color: #555; }
+  @media (max-width: 768px) {
+    .product-intro { padding: 16px 16px 40px; }
+    .intro-content { padding: 28px 20px; border-radius: 16px; }
+    p { font-size: 16px; line-height: 1.75; }
+  }
+</style>

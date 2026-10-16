@@ -2,7 +2,11 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Hero from "../../components/Hero.astro";
+import ProductIntro from "../../components/ProductIntro.astro";
 import ImageWithText from "../../components/ImageWithText.astro";
+import formatting from "../../assets/preserve-formatting.webp";
+import speed from "../../assets/fast-translation.webp";
+import controls from "../../assets/translation-controls.webp";
 import FeaturesGrid from "../../components/FeaturesGrid.astro";
 import Reviews from "../../components/Reviews.astro";
 import Pricing from "../../components/Pricing.astro";
@@ -17,21 +21,30 @@ const lang = "zh";
   <Header currentPage="home" lang={lang} />
   <main>
     <Hero lang={lang} />
+    <ProductIntro lang={lang} />
 
     <ImageWithText
-      title="即时准确的翻译任意字段"
-      description="每个文本字段旁边都有 AI 翻译按钮 - 点击即可翻译该特定内容。"
-      mediaType="video"
-      mediaSrc="/videos/button.mp4"
+      title="完整保留格式与布局"
+      description="粗体、链接、颜色、表格和图片，100% 完整保留"
+      image={formatting}
+      mediaAlt="英文与德文内容对照，完整保留粗体、链接、颜色、表格和商品图片"
       layout="left"
     />
 
     <ImageWithText
-      title="一键翻译整个页面"
-      description="自动翻译按钮智能检测页面上的所有文本项，一次翻译所有内容。"
-      mediaType="video"
-      mediaSrc="/videos/onclick.mp4"
+      title="快速、精准的 AI 翻译"
+      description="由专为电商打造的 AI 模型驱动"
+      image={speed}
+      mediaAlt="自动翻译完成，支持 90 多种语言及快速、均衡和精准模式"
       layout="right"
+    />
+
+    <ImageWithText
+      title="一切尽在掌握"
+      description="自定义术语表、品牌语气与翻译设置"
+      image={controls}
+      mediaAlt="Yahao Translate 的术语表、品牌语气、翻译模式和行业设置"
+      layout="left"
     />
 
     <FeaturesGrid lang={lang} />

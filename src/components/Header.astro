@@ -1,4 +1,5 @@
 ---
+import FreeBenefits from './FreeBenefits.astro';
 import yahaoLogo from '../assets/yahao_logo.svg';
 import { getLangFromUrl, useTranslations, getLocalizedPath, getAlternatePath, getAlternateLanguage } from '../i18n/utils';
 
@@ -21,7 +22,6 @@ const navLinks = [
     label: t('nav.pricing'), 
     id: 'pricing' 
   },
-  { href: getLocalizedPath('about', lang), label: t('nav.about'), id: 'about' },
   { href: getLocalizedPath('contact', lang), label: t('nav.contact'), id: 'contact' },
 ];
 
@@ -36,6 +36,7 @@ const isHomePage = currentPage === 'home';
   <div class="header-container">
     <a href={getLocalizedPath('', lang)} class="logo">
       <img src={yahaoLogo.src} alt="Yahao Translate" width="48" height="50" />
+      <span class="logo-text">yahao Shopify translator</span>
     </a>
     
     <nav class="nav">
@@ -54,6 +55,7 @@ const isHomePage = currentPage === 'home';
     </nav>
     
     <div class="header-actions">
+      <FreeBenefits lang={lang} />
       <div class="lang-dropdown-wrapper">
         <button class="language-selector" aria-expanded="false">
           <span>{currentLangLabel}</span>
@@ -94,6 +96,7 @@ const isHomePage = currentPage === 'home';
       ))}
     </ul>
     <div class="mobile-nav-actions">
+      <FreeBenefits lang={lang} />
       <div class="lang-dropdown-wrapper">
         <button class="language-selector mobile-lang-selector" aria-expanded="false">
           <span>{currentLangLabel}</span>
@@ -146,6 +149,14 @@ const isHomePage = currentPage === 'home';
     flex-shrink: 0;
     display: flex;
     align-items: center;
+    gap: 12px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    white-space: nowrap;
   }
   
   .logo img {
@@ -158,9 +169,12 @@ const isHomePage = currentPage === 'home';
   }
   
   .nav-list {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: #f7f8f9;
   }
   
   .nav-link {
@@ -248,7 +262,7 @@ const isHomePage = currentPage === 'home';
   .mobile-nav {
     display: none;
     position: fixed;
-    top: 100px; /* Header (~65px) + Announcement bar (~35px) */
+    top: 66px; /* Match the mobile header height. */
     left: 0;
     right: 0;
     bottom: 0;
@@ -257,7 +271,7 @@ const isHomePage = currentPage === 'home';
     border-top: 1px solid rgba(0, 0, 0, 0.08);
     flex-direction: column;
     justify-content: space-between;
-    z-index: 102; /* Above announcement bar */
+    z-index: 102;
   }
   
   .mobile-nav.open {
@@ -277,6 +291,8 @@ const isHomePage = currentPage === 'home';
 
   
   .lang-dropdown-wrapper {
+    /* Temporarily hide the language selector on desktop and mobile. */
+    display: none;
     position: relative;
   }
   
@@ -340,6 +356,7 @@ const isHomePage = currentPage === 'home';
     justify-content: flex-start;
     gap: 16px;
     padding-bottom: 24px;
+    flex-wrap: wrap;
   }
   
   .mobile-nav-actions .language-selector {
@@ -350,7 +367,15 @@ const isHomePage = currentPage === 'home';
     display: none;
   }
   
+  @media (min-width: 769px) and (max-width: 1050px) {
+    .header-container { gap: 24px; }
+    .nav-list { gap: 16px; padding: 10px 18px; }
+    .header-actions { gap: 16px; }
+  }
+
   @media (max-width: 768px) {
+    .logo { gap: 8px; }
+    .logo-text { font-size: 14px; }
     .header-container {
       padding: 12px 16px;
     }
@@ -388,6 +413,7 @@ const isHomePage = currentPage === 'home';
     .language-selector[aria-expanded="true"] + .mobile-lang-menu {
       transform: translateY(0);
     }
+  }
 </style>
 
 <script>

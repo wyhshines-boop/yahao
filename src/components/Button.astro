@@ -1,13 +1,15 @@
 ---
 interface Props {
   href?: string;
+  target?: '_blank' | '_self';
   variant?: 'primary' | 'outline';
   showArrow?: boolean;
   class?: string;
 }
 
 const { 
-  href = '#', 
+  href = '#',
+  target,
   variant = 'primary', 
   showArrow = true,
   class: className = ''
@@ -21,7 +23,7 @@ const classes = [
 ].filter(Boolean).join(' ');
 ---
 
-<a href={href} class={classes}>
+<a href={href} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined} class={classes}>
   <span class="btn-arrow-icon">→</span>
   <span class="btn-text"><slot /></span>
 </a>
@@ -34,7 +36,7 @@ const classes = [
     padding: 12px 24px;
     font-size: 15px;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 999px;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.25s ease;

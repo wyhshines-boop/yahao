@@ -38,7 +38,7 @@ const content = {
     {
       question: "What's the difference between Free and Professional plans?",
       answer:
-        "The Free plan includes 1,000 characters per month and basic features. The Professional plan offers 100,000 characters per month, auto-translate for entire pages, and priority email support.",
+        "The Free plan includes 150 translations / chats per month and Fast mode, without advanced models or a custom glossary. Pro includes 10,000 translations / chats per month, Balanced and Accurate models, a custom glossary with up to 500 terms, and priority email support. Both plans support auto-translation and unlimited Shopify stores.",
     },
   ],
   zh: [
@@ -65,7 +65,7 @@ const content = {
     {
       question: "免费版和专业版有什么区别？",
       answer:
-        "免费版包含每月 1,000 个字符和基础功能。专业版提供每月 100,000 个字符、自动翻译整页和优先邮件支持。",
+        "免费版每月包含 150 次翻译 / 聊天，仅支持快速模式，不含高级模型和词库。专业版每月包含 10,000 次翻译 / 聊天，并提供均衡与精准高级模型、最多 500 个词条的自定义词库及优先邮件支持。两种计划均支持自动翻译整页和不限数量的 Shopify 店铺。",
     },
   ],
 };
@@ -102,17 +102,17 @@ const faqs: FAQItem[] = content[lang];
 
 <style>
   .faq-section {
-    padding: var(--section-spacing) 0;
+    padding: 32px 0;
   }
 
   .faq-container {
-    max-width: var(--page-width);
+    max-width: calc(var(--page-width) + 48px);
     margin: 0 auto;
     padding: 0 24px;
   }
 
   .faq-panel {
-    background-color: #f0f8ff;
+    background-color: #f2f9ff;
     border-radius: 24px;
     padding: 40px;
     display: grid;
@@ -211,6 +211,7 @@ const faqs: FAQItem[] = content[lang];
   }
 
   @media (max-width: 768px) {
+    .faq-section { padding: 20px 0; }
     .faq-container {
       padding: 0 16px;
     }
