@@ -1,5 +1,6 @@
 ---
 import { downloadLinks } from "../config/downloads";
+import { checkoutLinks } from "../config/billing";
 import Button from "./Button.astro";
 import { getLangFromUrl, getLocalizedPath, useTranslations } from "../i18n/utils";
 
@@ -63,7 +64,7 @@ const plans = [
 ];
 ---
 
-<section class="pricing-section" id="pricing">
+<section class="pricing-section" id="pricing" data-yearly-checkout={checkoutLinks.yearly} data-monthly-checkout={checkoutLinks.monthly}>
   <div class="pricing-container">
     <div class="pricing-header">
       <h2 class="pricing-title">{t("pricing.title")}</h2>
@@ -104,7 +105,7 @@ const plans = [
             )}
           </div>
           <Button
-            href={downloadLinks.chrome}
+            href={plan.id === "pro" ? checkoutLinks.yearly : downloadLinks.chrome}
             target="_blank"
             variant={plan.id === "pro" ? "primary" : "outline"}
             class="plan-button"
@@ -295,6 +296,7 @@ const plans = [
       const buttons = section.querySelectorAll<HTMLButtonElement>("[data-billing]");
       const prices = Array.from(section.querySelectorAll<HTMLElement>("[data-price-period]"));
       const control = section.querySelector<HTMLElement>(".billing-switch");
+      const proButton = section.querySelector<HTMLAnchorElement>(".plan-pro .plan-button");
       let revision = 0;
 
       buttons.forEach((button) => {
@@ -306,6 +308,9 @@ const plans = [
           if (!next) return;
           buttons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
           if (control) control.dataset.period = period;
+          if (proButton) {
+            proButton.href = (period === "monthly" ? section.dataset.monthlyCheckout : section.dataset.yearlyCheckout)!;
+          }
           prices.forEach((price) => price.getAnimations().forEach((animation) => animation.cancel()));
           const current = prices.find((price) => !price.hidden);
           const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
