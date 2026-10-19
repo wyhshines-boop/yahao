@@ -1,4 +1,5 @@
 ---
+import { downloadLinks } from "../config/downloads";
 import Button from "./Button.astro";
 import { getLangFromUrl, getLocalizedPath, useTranslations } from "../i18n/utils";
 
@@ -103,7 +104,8 @@ const plans = [
             )}
           </div>
           <Button
-            href="#select-plan"
+            href={downloadLinks.chrome}
+            target="_blank"
             variant={plan.id === "pro" ? "primary" : "outline"}
             class="plan-button"
           >

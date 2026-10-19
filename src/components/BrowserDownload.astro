@@ -27,7 +27,7 @@ const DownloadTag = downloadUrl ? "a" : "button";
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
         </button>
         <div class="download-options" id={optionsId} hidden>
-          <DownloadTag class="download-alternative" data-alternative-download href={downloadLinks.edge || undefined} target={downloadUrl ? "_blank" : undefined} rel={downloadUrl ? "noopener noreferrer" : undefined} type={downloadUrl ? undefined : "button"} disabled={!downloadUrl}>
+          <DownloadTag class="download-alternative" data-alternative-download href={downloadLinks.edge || downloadLinks.chrome || undefined} target={downloadUrl ? "_blank" : undefined} rel={downloadUrl ? "noopener noreferrer" : undefined} type={downloadUrl ? undefined : "button"} disabled={!downloadUrl}>
             <img data-alternative-icon src={edgeIcon.src} width="24" height="24" alt="" />
             <span data-alternative-label>{lang === "zh" ? "添加至 Edge" : "Add to Edge"}</span>
           </DownloadTag>

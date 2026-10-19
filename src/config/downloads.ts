@@ -1,5 +1,7 @@
-// Official extension store listing URLs.
+// Edge supports installation from the Chrome Web Store.
+const chromeWebStoreUrl = "https://chromewebstore.google.com/detail/yahao-shopify-translator/epkkaoaoiojghdnmhhhgfoiaeggoachn";
+
 export const downloadLinks = {
-  chrome: "",
-  edge: "",
+  chrome: chromeWebStoreUrl,
+  edge: chromeWebStoreUrl,
 };

@@ -1,4 +1,5 @@
 ---
+import { downloadLinks } from "../../config/downloads";
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
@@ -102,7 +103,7 @@ function formatDate(date: Date): string {
               <div class="sidebar-cta">
                 <h3 class="cta-heading">{t("cta.title")}</h3>
 
-                <a href="#try-free" class="btn-primary sidebar-btn">
+                <a href={downloadLinks.chrome} target="_blank" rel="noopener noreferrer" class="btn-primary sidebar-btn">
                   <span class="btn-arrow">→</span>
                   <span class="btn-text">{t("btn.tryFree")}</span>
                 </a>
